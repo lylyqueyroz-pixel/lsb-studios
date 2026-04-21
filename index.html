@@ -806,7 +806,7 @@ async function gerarBloco(idx){
   area.appendChild(card);
   card.scrollIntoView({behavior:'smooth',block:'start'});
   try{
-    const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:2000,messages:[{role:'user',content:buildPrompt(idx,textosGerados)}]})});
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':claudeKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:2000,messages:[{role:'user',content:buildPrompt(idx,textosGerados)}]})});
     const data=await resp.json();
     if(!resp.ok)throw new Error(data.error?.message||`HTTP ${resp.status}`);
     const texto=data.content?.find(b=>b.type==='text')?.text||'';
@@ -832,7 +832,7 @@ async function traduzirBloco(idx,lang){
   const el=document.getElementById(`tr-${idx}`);
   el.textContent='Traduzindo...';el.classList.add('show');
   try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:2000,messages:[{role:'user',content:`Translate to ${lang}. Keep tone and naturalness. ONLY the translated text:\n\n${texto}`}]})});
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':claudeKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'}','x-api-key':claudeKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:2000,messages:[{role:'user',content:`Translate to ${lang}. Keep tone and naturalness. ONLY the translated text:\n\n${texto}`}]})});
     const d=await r.json();
     el.textContent=d.content?.find(b=>b.type==='text')?.text||'';
   }catch(e){el.textContent='Erro: '+e.message;}
