@@ -658,6 +658,9 @@ async function excluir(i){if(!confirm('Excluir?'))return;const u=await loadUsers
 async function extender(i){const u=await loadUsers();u[i].expiresAt+=30*86400000;await saveUsers(u);renderAdmin();}
 
 // ---- estúdio ----
+let elKey='';
+let gKey='';
+let currentUser=null;
 let claudeKey='';
 
 
