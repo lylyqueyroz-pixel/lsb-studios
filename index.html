@@ -875,7 +875,7 @@ async function gerarImagensBloco(idx){
   for(let i=0;i<3;i++){const t=document.createElement('div');t.className='img-thumb';t.innerHTML=`<span class="img-loading">Gerando...</span>`;wrap.appendChild(t);}
   try{
     const pr=await callClaude(`Based on this script, write ONE cinematic Imagen 3 prompt in English. Ultra-realistic, dramatic lighting, 16:9. Max 2 sentences. ONLY the prompt:\n\n${texto.slice(0,400)}`);
-    const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-001:predict?key=${gKey}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({instances:[{prompt:pr}],parameters:{sampleCount:3,aspectRatio:'16:9',safetyFilterLevel:'block_few'}})});
+    const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-001:predict?key=${gKey}`,{method:'POST',headers:{'Content-Type':'application/json','x-api-key':claudeKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({instances:[{prompt:pr}],parameters:{sampleCount:3,aspectRatio:'16:9',safetyFilterLevel:'block_few'}})});
     const d=await r.json();if(!r.ok)throw new Error(d.error?.message||'Erro Imagen');
     wrap.innerHTML='';
     (d.predictions||[]).forEach((p,i)=>{
