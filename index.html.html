@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LSB Studios</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#08080d;--surface:#0f0f17;--surface2:#16161f;--border:#252535;--gold:#c9a84c;--gold2:#e8d08a;--purple:#6c4fc2;--text:#dddde8;--muted:#5a5a72;--danger:#d94f4f;--success:#3eb87a;--blue:#4285f4;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+.screen{display:none;}.screen.active{display:block;}
+
+/* LOGIN */
+.splash{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;}
+.brand-mono{width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,#c9a84c,#7c5ca0);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:1rem;}
+.brand-name-lg{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold2);letter-spacing:.05em;margin-bottom:.3rem;}
+.brand-tag{font-size:.72rem;color:var(--muted);letter-spacing:.18em;text-transform:uppercase;font-family:'DM Mono',monospace;margin-bottom:2.5rem;}
+.login-box{width:100%;max-width:400px;background:var(--surface);border:1px solid var(--border);border-radius:1.1rem;padding:2rem;}
+.login-box h2{font-size:1rem;font-weight:600;margin-bottom:1.5rem;}
+.field{margin-bottom:1.1rem;}
+.field label{display:block;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.45rem;font-family:'DM Mono',monospace;}
+.field input,.field textarea,.field select{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:.75rem 1rem;border-radius:.5rem;font-size:.92rem;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s;resize:vertical;}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--gold);}
+select option{background:var(--surface2);}
+.btn-full{width:100%;background:linear-gradient(135deg,var(--gold),#a07030);color:#0a0807;border:none;padding:.9rem;border-radius:.55rem;font-size:.95rem;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .2s;margin-top:.25rem;}
+.btn-full:hover{filter:brightness(1.1);}
+.err-msg{color:var(--danger);font-size:.8rem;margin-top:.75rem;text-align:center;min-height:1.2em;}
+.login-link{font-size:.78rem;color:var(--muted);text-align:center;margin-top:1.25rem;}
+.login-link span{color:var(--gold);cursor:pointer;}
+
+/* ADMIN */
+.admin-wrap{max-width:900px;margin:0 auto;padding:2rem 1.5rem 5rem;}
+.admin-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
+.admin-title{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold2);}
+.admin-sub{font-size:.72rem;color:var(--muted);font-family:'DM Mono',monospace;margin-top:.2rem;}
+.badge-admin{background:rgba(201,168,76,.15);border:1px solid var(--gold);color:var(--gold);font-size:.68rem;padding:.25rem .75rem;border-radius:100px;font-family:'DM Mono',monospace;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:1rem;padding:1.75rem;margin-bottom:1.5rem;}
+.card-title{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-family:'DM Mono',monospace;margin-bottom:1.25rem;display:flex;align-items:center;gap:.6rem;}
+.card-title::after{content:'';flex:1;height:1px;background:var(--border);}
+.grid4{display:grid;grid-template-columns:1fr 1fr 100px auto;gap:.75rem;align-items:end;}
+@media(max-width:640px){.grid4{grid-template-columns:1fr 1fr;}}
+.btn-add{background:var(--gold);color:#0a0807;border:none;padding:.75rem 1.1rem;border-radius:.5rem;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;font-size:.88rem;height:44px;}
+.btn-add:hover{filter:brightness(1.1);}
+.tbl-wrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;}
+th{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-family:'DM Mono',monospace;padding:.6rem .8rem;text-align:left;border-bottom:1px solid var(--border);}
+td{padding:.75rem .8rem;font-size:.85rem;border-bottom:1px solid var(--border);vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:var(--surface2);}
+.sbadge{display:inline-flex;align-items:center;padding:.2rem .65rem;border-radius:100px;font-size:.7rem;font-weight:600;font-family:'DM Mono',monospace;}
+.s-ok{background:rgba(62,184,122,.15);color:var(--success);border:1px solid rgba(62,184,122,.3);}
+.s-exp{background:rgba(217,79,79,.12);color:var(--danger);border:1px solid rgba(217,79,79,.25);}
+.s-trial{background:rgba(108,79,194,.15);color:#a07ce0;border:1px solid rgba(108,79,194,.3);}
+.code-pill{font-family:'DM Mono',monospace;font-size:.8rem;background:var(--surface2);border:1px solid var(--border);padding:.15rem .55rem;border-radius:4px;color:var(--gold2);}
+.btn-icon{background:none;border:1px solid var(--border);color:var(--muted);padding:.3rem .6rem;border-radius:.35rem;cursor:pointer;font-size:.75rem;font-family:'DM Mono',monospace;transition:all .15s;margin-right:.3rem;}
+.btn-icon:hover{border-color:var(--danger);color:var(--danger);}
+.btn-icon.ext:hover{border-color:var(--gold);color:var(--gold);}
+.empty{text-align:center;color:var(--muted);font-size:.85rem;padding:2.5rem;font-family:'DM Mono',monospace;}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem;}
+.stat-box{background:var(--surface);border:1px solid var(--border);border-radius:.75rem;padding:1.1rem;text-align:center;}
+.stat-num{font-family:'Playfair Display',serif;font-size:1.75rem;color:var(--gold2);line-height:1;}
+.stat-lbl{font-size:.68rem;color:var(--muted);margin-top:.3rem;font-family:'DM Mono',monospace;text-transform:uppercase;}
+
+/* STUDIO SHELL */
+.studio-shell{display:flex;flex-direction:column;min-height:100vh;}
+.studio-topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:.8rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.topbar-brand{display:flex;align-items:center;gap:.65rem;}
+.topbar-mono{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,#c9a84c,#7c5ca0);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:.85rem;font-weight:700;color:#fff;}
+.topbar-name{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--gold2);}
+.user-chip{font-size:.78rem;color:var(--muted);}
+.user-chip strong{color:var(--text);}
+.days-ok{color:var(--success);}.days-warn{color:#e0a040;}.days-urg{color:var(--danger);}
+.btn-sm-ghost{background:none;border:1px solid var(--border);color:var(--muted);padding:.3rem .75rem;border-radius:.35rem;cursor:pointer;font-size:.75rem;font-family:'DM Sans',sans-serif;transition:all .15s;}
+.btn-sm-ghost:hover{border-color:var(--danger);color:var(--danger);}
+
+/* TABS */
+.studio-tabs{display:flex;border-bottom:1px solid var(--border);background:var(--surface);padding:0 1.5rem;overflow-x:auto;}
+.tab{padding:.75rem 1.1rem;font-size:.84rem;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;display:flex;align-items:center;gap:.4rem;}
+.tab:hover{color:var(--text);}
+.tab.active{color:var(--gold2);border-bottom-color:var(--gold);}
+.tab-content{display:none;padding:2rem 1.5rem 5rem;max-width:920px;margin:0 auto;width:100%;}
+.tab-content.active{display:block;}
+
+/* SHARED FORM ELEMENTS */
+.section-label{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.7rem;font-family:'DM Mono',monospace;}
+.nichos-wrap{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1.25rem;}
+.n-chip{background:var(--surface);border:1px solid var(--border);color:var(--text);padding:.42rem .9rem;border-radius:100px;cursor:pointer;font-size:.82rem;transition:all .18s;user-select:none;display:flex;align-items:center;gap:.35rem;}
+.n-chip:hover{border-color:var(--gold);color:var(--gold);}
+.n-chip.active{background:linear-gradient(135deg,#c9a84c22,#7c5ca022);border-color:var(--gold);color:var(--gold2);font-weight:600;}
+.n-chip .xc{display:none;background:none;border:none;color:inherit;cursor:pointer;opacity:.55;font-size:.9rem;padding:0;}
+.n-chip.custom:hover .xc{display:inline;}
+.n-add-btn{background:none;border:1px dashed var(--border);color:var(--muted);padding:.42rem .9rem;border-radius:100px;cursor:pointer;font-size:.82rem;font-family:'DM Sans',sans-serif;}
+.n-add-btn:hover{border-color:var(--purple);color:var(--purple);}
+.n-form{display:none;align-items:center;gap:.4rem;background:var(--surface);border:1px solid var(--purple);border-radius:100px;padding:.28rem .28rem .28rem .9rem;}
+.n-form.show{display:flex;}
+.n-form input{background:none;border:none;outline:none;color:var(--text);font-size:.82rem;width:130px;padding:.1rem 0;}
+.btn-xs{background:var(--purple);border:none;color:white;padding:.28rem .75rem;border-radius:100px;cursor:pointer;font-size:.75rem;font-family:'DM Sans',sans-serif;}
+.form-grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;}
+@media(max-width:640px){.form-grid3{grid-template-columns:1fr 1fr;}}
+.ref-box{background:var(--surface2);border:1px solid var(--border);border-radius:.6rem;padding:1rem;margin-top:1rem;}
+.ref-box-title{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:.6rem;}
+.ref-suggestions{display:none;margin-top:.75rem;}
+.ref-suggestions.show{display:block;}
+.titles-list{display:flex;flex-direction:column;gap:.35rem;margin-top:.35rem;}
+.title-item{background:var(--surface);border:1px solid var(--border);border-radius:.4rem;padding:.5rem .85rem;font-size:.82rem;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:space-between;gap:.5rem;}
+.title-item:hover{border-color:var(--gold);color:var(--gold);}
+.use-lbl{font-size:.65rem;color:var(--gold);opacity:0;transition:opacity .15s;font-family:'DM Mono',monospace;white-space:nowrap;}
+.title-item:hover .use-lbl{opacity:1;}
+
+/* INTEGRAÇÕES */
+.integrations-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;}
+@media(max-width:640px){.integrations-grid{grid-template-columns:1fr;}}
+.api-card{background:var(--surface);border:1px solid var(--border);border-radius:.85rem;padding:1.1rem;}
+.api-card-head{display:flex;align-items:center;gap:.65rem;margin-bottom:.7rem;}
+.api-icon{font-size:1.2rem;}
+.api-card-head strong{font-size:.88rem;color:var(--text);flex:1;}
+.api-status{font-size:.68rem;font-family:'DM Mono',monospace;padding:.2rem .6rem;border-radius:100px;}
+.api-on{background:rgba(62,184,122,.12);color:var(--success);border:1px solid rgba(62,184,122,.25);}
+.api-off{background:rgba(90,90,114,.1);color:var(--muted);border:1px solid var(--border);}
+.api-desc{font-size:.75rem;color:var(--muted);margin-bottom:.7rem;line-height:1.5;}
+.api-desc a{color:var(--blue);text-decoration:none;}
+.api-row{display:flex;gap:.5rem;}
+.api-row input{flex:1;background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:.5rem .8rem;border-radius:.4rem;font-size:.8rem;font-family:'DM Mono',monospace;outline:none;transition:border-color .2s;}
+.api-row input:focus{border-color:var(--gold);}
+.btn-connect{background:var(--gold);color:#0a0807;border:none;padding:.5rem .9rem;border-radius:.4rem;font-size:.78rem;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;white-space:nowrap;}
+.btn-connect.blue{background:var(--blue);color:#fff;}
+.btn-connect.purple{background:var(--purple);color:#fff;}
+.ext-tools{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem;}
+.ext-btn{display:inline-flex;align-items:center;gap:.4rem;background:var(--surface);border:1px solid var(--border);color:var(--muted);padding:.42rem .9rem;border-radius:100px;cursor:pointer;font-size:.78rem;font-family:'DM Sans',sans-serif;text-decoration:none;transition:all .2s;}
+.ext-btn:hover{border-color:var(--gold);color:var(--gold);}
+
+/* BOTÕES PRINCIPAIS */
+.btn-gerar{width:100%;border:none;padding:1rem;border-radius:.65rem;font-size:1rem;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:1rem;}
+.btn-gerar.gold{background:linear-gradient(135deg,var(--gold),#a07030);color:#0a0807;}
+.btn-gerar.purple{background:linear-gradient(135deg,#9b6cd4,#6c4fc2);color:#fff;}
+.btn-gerar.green{background:linear-gradient(135deg,#3eb87a,#2a8a5a);color:#fff;}
+.btn-gerar.blue{background:linear-gradient(135deg,#4285f4,#2456c4);color:#fff;}
+.btn-gerar:hover{filter:brightness(1.12);transform:translateY(-1px);}
+.btn-gerar:disabled{opacity:.45;cursor:not-allowed;transform:none;}
+.btn-sec{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:.45rem 1rem;border-radius:.4rem;cursor:pointer;font-size:.8rem;font-family:'DM Sans',sans-serif;transition:all .15s;}
+.btn-sec:hover{border-color:var(--gold);color:var(--gold);}
+.prog-wrap{display:none;margin-top:1rem;}
+.prog-wrap.show{display:block;}
+.prog-lbl{font-size:.7rem;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:.4rem;display:flex;justify-content:space-between;}
+.prog-track{height:3px;background:var(--border);border-radius:100px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--gold));border-radius:100px;transition:width .4s ease;}
+.status-bar{text-align:center;padding:.8rem;font-size:.8rem;color:var(--muted);font-family:'DM Mono',monospace;}
+.status-bar.err{color:var(--danger);}.status-bar.ok{color:var(--success);}
+
+/* BLOCOS */
+.blocos-area{display:flex;flex-direction:column;gap:1.1rem;margin-top:1.5rem;}
+.bloco-card{background:var(--surface);border:1px solid var(--border);border-radius:.9rem;overflow:hidden;animation:fadeUp .3s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.bloco-head{display:flex;align-items:center;gap:.7rem;padding:.8rem 1.15rem;background:var(--surface2);border-bottom:1px solid var(--border);flex-wrap:wrap;}
+.bloco-num{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--gold);background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.25);padding:.15rem .5rem;border-radius:4px;}
+.bloco-tipo{font-size:.65rem;padding:.15rem .6rem;border-radius:100px;font-weight:700;}
+.bloco-tit{font-size:.88rem;font-weight:600;flex:1;}
+.btn-copy{background:none;border:1px solid var(--border);color:var(--muted);padding:.22rem .6rem;border-radius:4px;font-size:.65rem;cursor:pointer;font-family:'DM Mono',monospace;transition:all .15s;}
+.btn-copy:hover{color:var(--gold);border-color:var(--gold);}
+.bloco-body{padding:1.3rem 1.4rem;font-size:.92rem;line-height:1.9;color:var(--text);white-space:pre-wrap;}
+.streaming .bloco-body::after{content:'▋';color:var(--gold);animation:blink .75s steps(1) infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.translate-bar{display:flex;align-items:center;gap:.6rem;padding:.7rem 1.2rem;border-top:1px solid var(--border);flex-wrap:wrap;}
+.translate-bar span{font-size:.72rem;color:var(--muted);}
+.lang-btn{background:var(--surface2);border:1px solid var(--border);color:var(--muted);padding:.28rem .7rem;border-radius:100px;font-size:.72rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;}
+.lang-btn:hover{border-color:var(--purple);color:var(--purple);}
+.translated-text{padding:1rem 1.4rem;font-size:.88rem;line-height:1.9;color:#b8c0d8;white-space:pre-wrap;border-top:1px dashed var(--border);display:none;}
+.translated-text.show{display:block;}
+.bloco-footer{border-top:1px solid var(--border);padding:.85rem 1.2rem;display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;background:var(--surface2);}
+.btn-voice{display:inline-flex;align-items:center;gap:.4rem;padding:.38rem .88rem;border-radius:.4rem;font-size:.75rem;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;border:none;transition:all .2s;text-decoration:none;}
+.btn-voice.el{background:rgba(124,92,212,.2);color:#b090f0;border:1px solid rgba(124,92,212,.35);}
+.btn-voice.gtts{background:rgba(66,133,244,.15);color:#7ab4ff;border:1px solid rgba(66,133,244,.3);}
+.btn-voice.ai33{background:rgba(52,168,83,.1);color:#68d48a;border:1px solid rgba(52,168,83,.25);}
+.btn-voice:disabled{opacity:.35;cursor:not-allowed;}
+.btn-imagen-sm{display:inline-flex;align-items:center;gap:.4rem;padding:.38rem .88rem;border-radius:.4rem;font-size:.75rem;font-weight:600;cursor:pointer;background:rgba(201,168,76,.1);color:var(--gold);border:1px solid rgba(201,168,76,.25);font-family:'DM Sans',sans-serif;transition:all .2s;}
+.btn-imagen-sm:disabled{opacity:.35;cursor:not-allowed;}
+.audio-player{display:none;padding:.5rem 1.2rem .75rem;}
+audio{width:100%;height:32px;}
+.images-strip{display:none;gap:.6rem;flex-wrap:wrap;padding:.6rem 1.2rem 1rem;}
+.img-thumb{width:150px;height:85px;border-radius:.4rem;overflow:hidden;border:1px solid var(--border);position:relative;background:var(--surface2);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.img-thumb img{width:100%;height:100%;object-fit:cover;}
+.img-loading{font-size:.68rem;color:var(--muted);font-family:'DM Mono',monospace;animation:shim 1.2s ease-in-out infinite;}
+.dl-btn{position:absolute;bottom:.3rem;right:.3rem;background:rgba(0,0,0,.7);border:none;color:#fff;padding:.15rem .45rem;border-radius:3px;font-size:.62rem;cursor:pointer;opacity:0;transition:opacity .15s;}
+.img-thumb:hover .dl-btn{opacity:1;}
+.next-wrap{text-align:center;padding:1.4rem 0 .5rem;}
+.btn-next{background:var(--surface);border:1px solid var(--border);color:var(--text);padding:.72rem 2rem;border-radius:.5rem;cursor:pointer;font-size:.88rem;font-family:'DM Sans',sans-serif;font-weight:500;transition:all .2s;display:inline-flex;align-items:center;gap:.6rem;}
+.btn-next:hover{border-color:var(--gold);color:var(--gold);}
+.done-banner{background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(108,79,194,.08));border:1px solid var(--gold);border-radius:.75rem;padding:1.5rem;text-align:center;margin-top:1.5rem;}
+.done-banner h3{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--gold2);margin-bottom:.4rem;}
+.done-banner p{font-size:.83rem;color:var(--muted);margin-bottom:1rem;}
+.actions-bar{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border);}
+
+/* ===== ABA TÍTULOS & THUMB ===== */
+.tt-card{background:var(--surface);border:1px solid var(--border);border-radius:.85rem;padding:1.1rem 1.25rem;margin-bottom:.65rem;position:relative;cursor:pointer;transition:all .2s;}
+.tt-card:hover{border-color:var(--gold);transform:translateY(-1px);}
+.tt-card.selected{border-color:var(--gold);background:linear-gradient(135deg,rgba(201,168,76,.06),rgba(108,79,194,.04));}
+.tt-rank{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:.1em;margin-bottom:.25rem;}
+.tt-title-text{font-size:.98rem;font-weight:600;color:var(--text);line-height:1.4;margin-bottom:.35rem;}
+.tt-why{font-size:.75rem;color:var(--muted);line-height:1.55;margin-bottom:.5rem;}
+.tt-tags{display:flex;gap:.35rem;flex-wrap:wrap;}
+.tt-tag{font-size:.62rem;padding:.16rem .5rem;border-radius:100px;font-family:'DM Mono',monospace;}
+.tg-hook{background:rgba(201,168,76,.12);color:var(--gold);border:1px solid rgba(201,168,76,.2);}
+.tg-emo{background:rgba(217,79,79,.1);color:#e08080;border:1px solid rgba(217,79,79,.2);}
+.tg-cur{background:rgba(108,79,194,.12);color:#a07ce0;border:1px solid rgba(108,79,194,.2);}
+.tg-ben{background:rgba(62,184,122,.1);color:var(--success);border:1px solid rgba(62,184,122,.2);}
+.tg-agg{background:rgba(232,100,60,.1);color:#e87050;border:1px solid rgba(232,100,60,.2);}
+.tt-copy{position:absolute;top:.75rem;right:.75rem;background:none;border:1px solid var(--border);color:var(--muted);padding:.18rem .5rem;border-radius:4px;font-size:.63rem;cursor:pointer;font-family:'DM Mono',monospace;transition:all .15s;}
+.tt-copy:hover{color:var(--gold);border-color:var(--gold);}
+
+.thumb-card{background:var(--surface);border:1px solid var(--border);border-radius:.85rem;overflow:hidden;margin-bottom:1rem;}
+.thumb-preview{aspect-ratio:16/9;background:var(--surface2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.thumb-preview img{width:100%;height:100%;object-fit:cover;}
+.thumb-no-img{font-size:.75rem;color:var(--muted);font-family:'DM Mono',monospace;text-align:center;padding:1rem;line-height:1.6;}
+.thumb-info{padding:1rem 1.1rem;}
+.thumb-concept{font-size:.9rem;font-weight:600;color:var(--text);margin-bottom:.3rem;}
+.thumb-desc{font-size:.78rem;color:var(--muted);line-height:1.6;margin-bottom:.75rem;}
+.thumb-elements{margin-bottom:.75rem;}
+.thumb-elements-title{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:.4rem;}
+.thumb-el-list{display:flex;flex-direction:column;gap:.25rem;}
+.thumb-el{font-size:.78rem;color:var(--text);padding:.3rem .6rem;background:var(--surface2);border-radius:.3rem;border-left:2px solid var(--gold);}
+.prompt-box{background:var(--surface2);border:1px solid var(--border);border-radius:.4rem;padding:.65rem .8rem;font-family:'DM Mono',monospace;font-size:.72rem;color:#a0c4ff;line-height:1.55;position:relative;margin-bottom:.65rem;}
+.prompt-copy{position:absolute;top:.35rem;right:.35rem;background:none;border:1px solid var(--border);color:var(--muted);padding:.15rem .45rem;border-radius:3px;font-size:.62rem;cursor:pointer;font-family:'DM Mono',monospace;transition:all .15s;}
+.prompt-copy:hover{color:var(--gold);border-color:var(--gold);}
+.btn-gen-img{width:100%;background:rgba(66,133,244,.12);color:#7ab4ff;border:1px solid rgba(66,133,244,.25);padding:.55rem;border-radius:.4rem;font-size:.8rem;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .2s;}
+.btn-gen-img:hover{background:rgba(66,133,244,.22);}
+.btn-gen-img:disabled{opacity:.35;cursor:not-allowed;}
+
+/* ===== ABA DESCRIÇÃO ===== */
+.desc-result{background:var(--surface);border:1px solid var(--border);border-radius:.85rem;overflow:hidden;margin-top:1.5rem;display:none;animation:fadeUp .4s ease;}
+.desc-result.show{display:block;}
+.desc-section{border-bottom:1px solid var(--border);}
+.desc-section:last-child{border-bottom:none;}
+.desc-section-head{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.2rem;background:var(--surface2);}
+.desc-section-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-family:'DM Mono',monospace;}
+.desc-text{padding:1.1rem 1.2rem;font-size:.9rem;line-height:1.8;color:var(--text);white-space:pre-wrap;}
+.hashtag-wrap{display:flex;flex-wrap:wrap;gap:.4rem;padding:.75rem 1.2rem 1rem;}
+.hashtag{background:var(--surface2);border:1px solid var(--border);color:#7ab4ff;padding:.25rem .7rem;border-radius:100px;font-size:.78rem;font-family:'DM Mono',monospace;}
+
+/* ===== ABA COMUNIDADE ===== */
+.comm-result{margin-top:1.5rem;display:none;animation:fadeUp .4s ease;}
+.comm-result.show{display:block;}
+.comm-post-card{background:var(--surface);border:1px solid var(--border);border-radius:.85rem;overflow:hidden;margin-bottom:1rem;}
+.comm-post-head{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.2rem;background:var(--surface2);border-bottom:1px solid var(--border);}
+.comm-post-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-family:'DM Mono',monospace;display:flex;align-items:center;gap:.5rem;}
+.comm-post-body{padding:1.2rem;font-size:.9rem;line-height:1.85;color:var(--text);white-space:pre-wrap;}
+.comm-img-card{background:var(--surface);border:1px solid var(--border);border-radius:.85rem;overflow:hidden;margin-bottom:1rem;}
+.comm-img-preview{aspect-ratio:1/1;background:var(--surface2);display:flex;align-items:center;justify-content:center;overflow:hidden;max-width:400px;margin:0 auto;}
+.comm-img-preview img{width:100%;height:100%;object-fit:cover;}
+.comm-img-info{padding:1rem 1.2rem;}
+
+/* ===== PROJETOS ===== */
+.projeto-card{background:var(--surface);border:1px solid var(--border);border-radius:.85rem;padding:1.1rem 1.25rem;margin-bottom:.75rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;transition:border-color .2s;}
+.projeto-card:hover{border-color:var(--gold);}
+.projeto-info{flex:1;min-width:0;}
+.projeto-titulo{font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:.25rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.projeto-meta{font-size:.72rem;color:var(--muted);font-family:'DM Mono',monospace;display:flex;gap:.75rem;flex-wrap:wrap;}
+.projeto-acoes{display:flex;gap:.5rem;flex-shrink:0;}
+.btn-proj{background:none;border:1px solid var(--border);color:var(--muted);padding:.3rem .75rem;border-radius:.4rem;cursor:pointer;font-size:.75rem;font-family:'DM Sans',sans-serif;transition:all .15s;white-space:nowrap;}
+.btn-proj:hover{border-color:var(--gold);color:var(--gold);}
+.btn-proj.del:hover{border-color:var(--danger);color:var(--danger);}
+.proj-empty{text-align:center;color:var(--muted);font-size:.85rem;padding:3rem;font-family:'DM Mono',monospace;border:1px dashed var(--border);border-radius:.85rem;}
+
+/* Modal projeto */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;align-items:center;justify-content:center;padding:1rem;}
+.modal-overlay.show{display:flex;}
+.modal-box{background:var(--surface);border:1px solid var(--border);border-radius:1rem;width:100%;max-width:700px;max-height:85vh;display:flex;flex-direction:column;overflow:hidden;}
+.modal-head{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;background:var(--surface2);border-bottom:1px solid var(--border);}
+.modal-head h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gold2);}
+.modal-close{background:none;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer;padding:0;}
+.modal-body{overflow-y:auto;padding:1.25rem;flex:1;}
+.modal-bloco{margin-bottom:1.25rem;}
+.modal-bloco-label{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-family:'DM Mono',monospace;margin-bottom:.4rem;}
+.modal-bloco-text{font-size:.88rem;line-height:1.85;color:var(--text);white-space:pre-wrap;background:var(--surface2);border-radius:.4rem;padding:.85rem;}
+.modal-foot{padding:.85rem 1.25rem;border-top:1px solid var(--border);display:flex;gap:.6rem;flex-wrap:wrap;}
+
+
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="screen active" id="screen-login">
+  <div class="splash">
+    <div class="brand-mono">LSB</div>
+    <div class="brand-name-lg">LSB Studios</div>
+    <div class="brand-tag">Gerador de Roteiros · YouTube</div>
+    <div class="login-box">
+      <h2>Entrar no estúdio</h2>
+      <div class="field"><label>Código de acesso</label><input type="text" id="login-code" placeholder="Seu código..." autocomplete="off" onkeydown="if(event.key==='Enter')fazerLogin()"></div>
+      <button class="btn-full" onclick="fazerLogin()">Entrar →</button>
+      <div class="err-msg" id="login-err"></div>
+      <div class="login-link">Administradora? <span onclick="showScreen('screen-admin-login')">Acesso admin</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN LOGIN -->
+<div class="screen" id="screen-admin-login">
+  <div class="splash">
+    <div class="brand-mono">LSB</div><div class="brand-name-lg">LSB Studios</div><div class="brand-tag">Painel Admin</div>
+    <div class="login-box">
+      <h2>Acesso restrito</h2>
+      <div class="field"><label>Senha</label><input type="password" id="admin-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')loginAdmin()"></div>
+      <button class="btn-full" onclick="loginAdmin()">Entrar →</button>
+      <div class="err-msg" id="admin-err"></div>
+      <div class="login-link"><span onclick="showScreen('screen-login')">← Voltar</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN PAINEL -->
+<div class="screen" id="screen-admin">
+  <div class="admin-wrap">
+    <div class="admin-header">
+      <div><div class="admin-title">Painel Admin</div><div class="admin-sub">LSB Studios · Gestão de acessos</div></div>
+      <div style="display:flex;align-items:center;gap:.75rem;"><span class="badge-admin">ADMIN</span><button class="btn-sec" onclick="sairAdmin()">Sair</button></div>
+    </div>
+    <div class="stats-row" id="stats-row"></div>
+    <div class="card">
+      <div class="card-title">Adicionar acesso</div>
+      <div class="grid4">
+        <div class="field" style="margin:0"><label>Nome</label><input type="text" id="u-nome" placeholder="Maria Silva"></div>
+        <div class="field" style="margin:0"><label>Código</label><input type="text" id="u-codigo" placeholder="MARIA2024" style="text-transform:uppercase"></div>
+        <div class="field" style="margin:0"><label>Dias</label><input type="text" id="u-dias" placeholder="10"></div>
+        <div><label style="visibility:hidden;display:block;font-size:.68rem;margin-bottom:.45rem;">-</label><button class="btn-add" onclick="adicionarUser()">+ Add</button></div>
+      </div>
+      <div class="err-msg" id="add-err" style="text-align:left;margin-top:.5rem;"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Usuários</div>
+      <div class="tbl-wrap"><table><thead><tr><th>Nome</th><th>Código</th><th>Status</th><th>Expira</th><th>Último acesso</th><th>Ações</th></tr></thead><tbody id="users-tbody"></tbody></table></div>
+    </div>
+  </div>
+</div>
+
+<!-- ESTÚDIO -->
+<div class="screen" id="screen-studio">
+  <div class="studio-shell">
+    <div class="studio-topbar">
+      <div class="topbar-brand">
+        <div class="topbar-mono">LSB</div>
+        <span class="topbar-name">LSB Studios</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:.75rem;">
+        <div class="user-chip"><strong id="s-username">—</strong> · <span id="s-days" class="days-ok">—</span></div>
+        <button class="btn-sm-ghost" onclick="sairEstudio()">Sair</button>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="studio-tabs">
+      <div class="tab active" onclick="setTab('roteiro')" id="tab-btn-roteiro">🎬 Roteiro</div>
+      <div class="tab" onclick="setTab('titulos')" id="tab-btn-titulos">🎯 Títulos & Thumb</div>
+      <div class="tab" onclick="setTab('descricao')" id="tab-btn-descricao">📝 Descrição</div>
+      <div class="tab" onclick="setTab('comunidade')" id="tab-btn-comunidade">👥 Comunidade</div>
+      <div class="tab" onclick="setTab('projetos')" id="tab-btn-projetos">📁 Meus Projetos</div>
+      <div class="tab" onclick="setTab('config')" id="tab-btn-config">⚙️ Config</div>
+    </div>
+
+    <!-- ===== TAB ROTEIRO ===== -->
+    <div class="tab-content active" id="tab-roteiro">
+      <div class="section-label">Nicho do canal</div>
+      <div class="nichos-wrap" id="nichos-wrap"></div>
+      <div class="card">
+        <div class="card-title">Configurações do roteiro</div>
+        <div class="field"><label>Tema do vídeo</label><textarea id="tema" rows="3" placeholder="Ex: Como parar de viver para agradar os outros e começar a viver de verdade..."></textarea></div>
+        <div class="form-grid3" style="margin-bottom:1rem;">
+          <div class="field" style="margin:0"><label>Idioma</label>
+            <select id="idioma"><option value="Português do Brasil">🇧🇷 Português</option><option value="English">🇺🇸 Inglês</option><option value="Español">🇪🇸 Espanhol</option></select>
+          </div>
+          <div class="field" style="margin:0"><label>Faixa etária</label>
+            <select id="faixa"><option>18–24 anos</option><option selected>25–35 anos</option><option>35–45 anos</option><option>45–60 anos</option><option>Público geral</option></select>
+          </div>
+          <div class="field" style="margin:0"><label>Voz narradora</label>
+            <select id="genero"><option value="feminina">Feminina</option><option value="masculina">Masculina</option><option value="neutra">Neutra</option></select>
+          </div>
+        </div>
+        <div class="field"><label>Contexto do público (opcional)</label><input type="text" id="contexto" placeholder="Ex: pessoas em transformação pessoal..."></div>
+        <div class="ref-box">
+          <div class="ref-box-title">📺 Canal de referência (opcional)</div>
+          <div class="field" style="margin:0"><input type="text" id="canal-ref" placeholder="Ex: @AlanWattsOrg, Goalcast, Motiversity..."></div>
+          <div style="display:flex;gap:.5rem;margin-top:.6rem;flex-wrap:wrap;">
+            <button class="btn-xs" style="background:var(--gold);color:#0a0807;" onclick="analisarCanal()">🔍 Analisar estilo + sugerir títulos</button>
+            <button class="btn-xs" style="background:var(--surface);border:1px solid var(--border);color:var(--muted);" onclick="limparRef()">Limpar</button>
+          </div>
+          <div class="ref-suggestions" id="ref-suggestions">
+            <div style="font-size:.68rem;color:var(--muted);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.1em;margin:.75rem 0 .35rem;">💡 Estilo identificado</div>
+            <div id="ref-estilo" style="font-size:.82rem;color:var(--text);line-height:1.6;margin-bottom:.75rem;"></div>
+            <div style="font-size:.68rem;color:var(--muted);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.35rem;">🎯 Títulos sugeridos</div>
+            <div class="titles-list" id="titles-list"></div>
+          </div>
+        </div>
+        <button class="btn-gerar gold" id="btn-gerar" onclick="iniciarRoteiro()">✦ Gerar Bloco 1 — Gancho</button>
+        <div class="prog-wrap" id="prog-wrap">
+          <div class="prog-lbl"><span id="prog-txt" class="shimmer">Gerando...</span><span id="prog-frac">0 / 8</span></div>
+          <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+        </div>
+      </div>
+      <div id="blocos-area" class="blocos-area"></div>
+      <div class="next-wrap" id="next-wrap" style="display:none">
+        <button class="btn-next" onclick="proximoBloco()">Continuar → Bloco <span id="prox-num">2</span></button>
+      </div>
+      <div id="done-area"></div>
+      <div class="actions-bar" id="actions-bar" style="display:none">
+        <button class="btn-sec" onclick="copiarTudo()">📋 Copiar roteiro completo</button>
+        <button class="btn-sec" onclick="resetarRoteiro()">↺ Novo roteiro</button>
+      </div>
+      <div class="status-bar" id="status"></div>
+    </div>
+
+    <!-- ===== TAB TÍTULOS & THUMB ===== -->
+    <div class="tab-content" id="tab-titulos">
+      <div class="card">
+        <div class="card-title">Gerar Títulos & Thumbnails</div>
+        <div class="field"><label>Tema do vídeo</label><textarea id="tt-tema" rows="2" placeholder="Descreva o tema ou cole o título que já tem..."></textarea></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+          <div class="field" style="margin:0"><label>Nicho</label><input type="text" id="tt-nicho" placeholder="Ex: Espiritualidade, Histórias Reais..."></div>
+          <div class="field" style="margin:0"><label>Idioma dos títulos</label>
+            <select id="tt-idioma"><option value="Português do Brasil">🇧🇷 Português</option><option value="English">🇺🇸 Inglês</option><option value="Español">🇪🇸 Espanhol</option></select>
+          </div>
+        </div>
+        <div class="field" style="margin-top:1rem"><label>Canal de referência (opcional)</label><input type="text" id="tt-canal" placeholder="Ex: @Motiversity, Psych2Go..."></div>
+        <button class="btn-gerar purple" id="btn-tt-gerar" onclick="gerarTitulosThumb()">✦ Gerar Títulos + Thumbnails</button>
+      </div>
+
+      <div id="tt-results" style="display:none;animation:fadeUp .4s ease;">
+        <!-- Títulos -->
+        <div style="font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'DM Mono',monospace;margin-bottom:1rem;display:flex;align-items:center;gap:.6rem;">Títulos sugeridos<span style="flex:1;height:1px;background:var(--border);display:block;"></span></div>
+        <div id="tt-titles-list" style="margin-bottom:1.75rem;display:flex;flex-direction:column;gap:.65rem;"></div>
+        <!-- Thumbnails -->
+        <div style="font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'DM Mono',monospace;margin-bottom:1rem;display:flex;align-items:center;gap:.6rem;">Conceitos de Thumbnail<span style="flex:1;height:1px;background:var(--border);display:block;"></span></div>
+        <div id="tt-thumbs-list"></div>
+      </div>
+    </div>
+
+    <!-- ===== TAB DESCRIÇÃO ===== -->
+    <div class="tab-content" id="tab-descricao">
+      <div class="card">
+        <div class="card-title">Gerar Descrição do Vídeo</div>
+        <div class="field"><label>Tema do vídeo</label><textarea id="desc-tema" rows="2" placeholder="Cole o tema ou o título final do vídeo..."></textarea></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+          <div class="field" style="margin:0"><label>Tom da descrição</label>
+            <select id="desc-tom">
+              <option value="emocional e envolvente">Emocional e envolvente</option>
+              <option value="misterioso e curioso">Misterioso e curioso</option>
+              <option value="direto e informativo">Direto e informativo</option>
+              <option value="inspirador e motivacional">Inspirador e motivacional</option>
+            </select>
+          </div>
+          <div class="field" style="margin:0"><label>Idioma</label>
+            <select id="desc-idioma"><option value="Português do Brasil">🇧🇷 Português</option><option value="English">🇺🇸 Inglês</option><option value="Español">🇪🇸 Espanhol</option></select>
+          </div>
+        </div>
+        <div class="field" style="margin-top:1rem"><label>Link do canal / redes (opcional)</label><input type="text" id="desc-links" placeholder="Ex: Instagram: @seucanal | Canal: youtube.com/..."></div>
+        <button class="btn-gerar green" id="btn-desc-gerar" onclick="gerarDescricao()">✦ Gerar Descrição Completa</button>
+      </div>
+      <div class="desc-result" id="desc-result">
+        <div class="desc-section">
+          <div class="desc-section-head"><span class="desc-section-label">📌 Descrição principal</span><button class="btn-copy" onclick="copiarEl('desc-principal')">copiar</button></div>
+          <div class="desc-text" id="desc-principal"></div>
+        </div>
+        <div class="desc-section">
+          <div class="desc-section-head"><span class="desc-section-label">🔗 Links e capítulos</span><button class="btn-copy" onclick="copiarEl('desc-links-out')">copiar</button></div>
+          <div class="desc-text" id="desc-links-out"></div>
+        </div>
+        <div class="desc-section">
+          <div class="desc-section-head"><span class="desc-section-label">#️⃣ Hashtags</span><button class="btn-copy" onclick="copiarHashtags()">copiar</button></div>
+          <div class="hashtag-wrap" id="desc-hashtags"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TAB COMUNIDADE ===== -->
+    <div class="tab-content" id="tab-comunidade">
+      <div class="card">
+        <div class="card-title">Gerar Post de Comunidade</div>
+        <div class="field"><label>Tema / título do próximo vídeo</label><textarea id="comm-tema" rows="2" placeholder="Ex: A história da mulher que perdoou o imperdoável..."></textarea></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+          <div class="field" style="margin:0"><label>Tom do post</label>
+            <select id="comm-tom">
+              <option value="misterioso e curioso">Misterioso e curioso</option>
+              <option value="emocional e tocante">Emocional e tocante</option>
+              <option value="animado e convidativo">Animado e convidativo</option>
+              <option value="reflexivo e profundo">Reflexivo e profundo</option>
+            </select>
+          </div>
+          <div class="field" style="margin:0"><label>Idioma</label>
+            <select id="comm-idioma"><option value="Português do Brasil">🇧🇷 Português</option><option value="English">🇺🇸 Inglês</option><option value="Español">🇪🇸 Espanhol</option></select>
+          </div>
+        </div>
+        <div class="field" style="margin-top:1rem"><label>Nome do canal (opcional)</label><input type="text" id="comm-canal" placeholder="Ex: Canal da Liliane, LSB Stories..."></div>
+        <button class="btn-gerar blue" id="btn-comm-gerar" onclick="gerarComunidade()">✦ Gerar Post + Imagem de Comunidade</button>
+      </div>
+
+      <div class="comm-result" id="comm-result">
+        <!-- Post convite -->
+        <div class="comm-post-card">
+          <div class="comm-post-head">
+            <span class="comm-post-label">📢 Post — Convite para o vídeo</span>
+            <button class="btn-copy" onclick="copiarEl('comm-post-convite')">copiar</button>
+          </div>
+          <div class="comm-post-body" id="comm-post-convite"></div>
+        </div>
+        <!-- Post pergunta -->
+        <div class="comm-post-card">
+          <div class="comm-post-head">
+            <span class="comm-post-label">💬 Post — Pergunta de engajamento</span>
+            <button class="btn-copy" onclick="copiarEl('comm-post-pergunta')">copiar</button>
+          </div>
+          <div class="comm-post-body" id="comm-post-pergunta"></div>
+        </div>
+        <!-- Imagem comunidade -->
+        <div class="comm-img-card">
+          <div class="comm-post-head" style="border-bottom:1px solid var(--border);">
+            <span class="comm-post-label">🎨 Imagem para a Comunidade</span>
+          </div>
+          <div class="comm-img-info">
+            <div style="font-size:.68rem;color:var(--muted);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem;">Conceito visual</div>
+            <div id="comm-img-conceito" style="font-size:.85rem;color:var(--text);margin-bottom:.75rem;line-height:1.6;"></div>
+            <div style="font-size:.68rem;color:var(--muted);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem;">Prompt Imagen 3</div>
+            <div class="prompt-box" id="comm-img-prompt" style="padding-right:2.5rem;"></div>
+            <button class="btn-copy" style="margin-bottom:.65rem;" onclick="copiarEl('comm-img-prompt')">copiar prompt</button>
+            <div class="comm-img-preview" id="comm-img-preview" style="display:none;border-radius:.6rem;overflow:hidden;max-width:400px;margin-bottom:.65rem;aspect-ratio:1/1;background:var(--surface2);align-items:center;justify-content:center;">
+              <span style="font-size:.75rem;color:var(--muted);font-family:'DM Mono',monospace;" class="shimmer">Gerando imagem...</span>
+            </div>
+            <button class="btn-gen-img" id="btn-gen-comm-img" onclick="gerarImagemComunidade()" style="max-width:300px;">🎨 Gerar imagem com Imagen 3</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TAB PROJETOS ===== -->
+    <div class="tab-content" id="tab-projetos">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;">
+        <div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--gold2);">Meus Projetos</div>
+          <div style="font-size:.72rem;color:var(--muted);font-family:'DM Mono',monospace;margin-top:.2rem;">Roteiros salvos automaticamente</div>
+        </div>
+        <button class="btn-sec" onclick="limparProjetos()" style="border-color:var(--danger);color:var(--danger);">Limpar tudo</button>
+      </div>
+      <div id="projetos-lista"></div>
+    </div>
+
+    <!-- ===== TAB CONFIG ===== -->
+    <div class="tab-content" id="tab-config">
+      <div class="section-label">Integrações de API</div>
+      <div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);border-radius:.85rem;padding:1.1rem;margin-bottom:1rem;">
+        <div style="display:flex;align-items:center;gap:.65rem;margin-bottom:.7rem;">
+          <span style="font-size:1.2rem;">🤖</span>
+          <strong style="font-size:.95rem;color:var(--text);flex:1;">Claude API (Anthropic) — OBRIGATÓRIO</strong>
+          <span class="api-status api-off" id="claude-status">Desconectado</span>
+        </div>
+        <div style="font-size:.78rem;color:var(--muted);margin-bottom:.75rem;line-height:1.5;">Necessário para gerar roteiros. <a href="https://console.anthropic.com" target="_blank" style="color:var(--blue);">Obter chave → console.anthropic.com</a></div>
+        <div class="api-row">
+          <input type="password" id="claude-key" placeholder="sk-ant-api03-...">
+          <button class="btn-connect" style="background:var(--gold);color:#0a0807;" onclick="salvarKey('claude')">Conectar</button>
+        </div>
+      </div>
+      <div class="integrations-grid">
+        <div class="api-card">
+          <div class="api-card-head"><span class="api-icon">🎙</span><strong>ElevenLabs</strong><span class="api-status api-off" id="el-status">Desconectado</span></div>
+          <div class="api-desc">Voz narrativa premium. <a href="https://elevenlabs.io" target="_blank">Criar conta →</a></div>
+          <div class="api-row"><input type="password" id="el-key" placeholder="sk-..."><button class="btn-connect purple" onclick="salvarKey('el')">Conectar</button></div>
+        </div>
+        <div class="api-card">
+          <div class="api-card-head"><span class="api-icon">🎨</span><strong>Google AI (Imagen 3 + TTS)</strong><span class="api-status api-off" id="g-status">Desconectado</span></div>
+          <div class="api-desc">Imagens e voz. <a href="https://aistudio.google.com/apikey" target="_blank">Obter chave grátis →</a></div>
+          <div class="api-row"><input type="password" id="g-key" placeholder="AIza..."><button class="btn-connect blue" onclick="salvarKey('g')">Conectar</button></div>
+        </div>
+      </div>
+      <div class="section-label">Ferramentas externas</div>
+      <div class="ext-tools">
+        <a class="ext-btn" href="https://ai33.pro" target="_blank">🇧🇷 ai33.pro — TTS + Voz (Pix)</a>
+        <a class="ext-btn" href="https://capcut.com" target="_blank">🎬 CapCut</a>
+        <a class="ext-btn" href="https://runwayml.com" target="_blank">🎥 Runway</a>
+        <a class="ext-btn" href="https://klingai.com" target="_blank">🎥 Kling AI</a>
+        <a class="ext-btn" href="https://youtube.com/community" target="_blank">📢 YouTube Studio</a>
+      </div>
+      <div class="card" style="margin-top:1.5rem;">
+        <div class="card-title">Sobre o LSB Studios</div>
+        <div style="font-size:.85rem;color:var(--muted);line-height:1.8;">
+          <strong style="color:var(--text);">LSB Studios</strong> — Plataforma de produção de conteúdo YouTube com IA.<br>
+          Roteiros longos · Títulos & Thumbnails · Descrições · Posts de Comunidade<br><br>
+          <span style="font-size:.75rem;font-family:'DM Mono',monospace;">Versão 1.0 · by Liliane S.B.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const ADMIN_PASS='LSB@2024';
+
+// ---- storage ----
+// Usuários em memória
+let _users = [
+  {name:'Liliane',code:'LSB2024',createdAt:Date.now(),expiresAt:Date.now()+365*86400000,trial:false,lastAccess:null}
+];
+function loadUsers(){return _users;}
+function saveUsers(u){_users=u;}
+
+// ---- nav ----
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function setTab(name){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-btn-'+name).classList.add('active');
+  document.getElementById('tab-'+name).classList.add('active');
+  // Sincronizar tema entre abas
+  const tema=document.getElementById('tema').value.trim();
+  if(tema){
+    ['tt-tema','desc-tema','comm-tema'].forEach(id=>{if(document.getElementById(id)&&!document.getElementById(id).value)document.getElementById(id).value=tema;});
+    const nichoLabel=nichos.find(n=>n.id===nichoAtivo)?.label||'';
+    if(document.getElementById('tt-nicho')&&!document.getElementById('tt-nicho').value)document.getElementById('tt-nicho').value=nichoLabel;
+  }
+}
+
+// ---- login ----
+function fazerLogin(){
+  const code=document.getElementById('login-code').value.trim().toUpperCase();
+  if(!code)return;
+  const users=loadUsers();
+  const user=users.find(u=>u.code===code);
+  const err=document.getElementById('login-err');
+  if(!user){err.textContent='Código não encontrado.';return;}
+  if(Date.now()>user.expiresAt){err.textContent='Acesso expirado. Entre em contato com a LSB Studios.';return;}
+  user.lastAccess=Date.now();saveUsers(users);
+  currentUser=user;abrirEstudio();
+}
+function loginAdmin(){if(document.getElementById('admin-pass').value===ADMIN_PASS){showScreen('screen-admin');renderAdmin();}else document.getElementById('admin-err').textContent='Senha incorreta.';}
+function sairAdmin(){document.getElementById('admin-pass').value='';showScreen('screen-login');}
+
+async function renderAdmin(){
+  const users=await loadUsers();const hoje=Date.now();
+  const at=users.filter(u=>hoje<=u.expiresAt).length,ex=users.filter(u=>hoje>u.expiresAt).length;
+  document.getElementById('stats-row').innerHTML=`<div class="stat-box"><div class="stat-num">${users.length}</div><div class="stat-lbl">Total</div></div><div class="stat-box"><div class="stat-num" style="color:var(--success)">${at}</div><div class="stat-lbl">Ativos</div></div><div class="stat-box"><div class="stat-num" style="color:var(--danger)">${ex}</div><div class="stat-lbl">Expirados</div></div>`;
+  const tbody=document.getElementById('users-tbody');
+  if(!users.length){tbody.innerHTML=`<tr><td colspan="6" class="empty">Nenhum usuário ainda.</td></tr>`;return;}
+  tbody.innerHTML=users.map((u,i)=>{
+    const ok=hoje<=u.expiresAt;
+    const b=!ok?`<span class="sbadge s-exp">Expirado</span>`:u.trial?`<span class="sbadge s-trial">Trial</span>`:`<span class="sbadge s-ok">Ativo</span>`;
+    return`<tr><td>${u.name}</td><td><span class="code-pill">${u.code}</span></td><td>${b}</td><td>${new Date(u.expiresAt).toLocaleDateString('pt-BR')}</td><td style="font-size:.78rem;color:var(--muted)">${u.lastAccess?new Date(u.lastAccess).toLocaleString('pt-BR'):'—'}</td><td><button class="btn-icon ext" onclick="extender(${i})">+30d</button><button class="btn-icon" onclick="excluir(${i})">✕</button></td></tr>`;
+  }).join('');
+}
+async function adicionarUser(){
+  const nome=document.getElementById('u-nome').value.trim(),codigo=document.getElementById('u-codigo').value.trim().toUpperCase(),dias=parseInt(document.getElementById('u-dias').value.trim());
+  const err=document.getElementById('add-err');
+  if(!nome||!codigo||!dias||isNaN(dias)){err.textContent='Preencha todos os campos.';return;}
+  const users=await loadUsers();
+  if(users.find(u=>u.code===codigo)){err.textContent='Código já existe.';return;}
+  users.push({name:nome,code:codigo,createdAt:Date.now(),expiresAt:Date.now()+dias*86400000,trial:dias<=10,lastAccess:null});
+  await saveUsers(users);err.textContent='';
+  ['u-nome','u-codigo','u-dias'].forEach(id=>document.getElementById(id).value='');
+  renderAdmin();
+}
+async function excluir(i){if(!confirm('Excluir?'))return;const u=await loadUsers();u.splice(i,1);await saveUsers(u);renderAdmin();}
+async function extender(i){const u=await loadUsers();u[i].expiresAt+=30*86400000;await saveUsers(u);renderAdmin();}
+
+// ---- estúdio ----
+let claudeKey='';
+
+
+function abrirEstudio(){
+  showScreen('screen-studio');
+  document.getElementById('s-username').textContent=currentUser.name;
+  const d=Math.ceil((currentUser.expiresAt-Date.now())/86400000);
+  const el=document.getElementById('s-days');
+  el.textContent=d+(d===1?' dia restante':' dias restantes');
+  el.className=d<=3?'days-urg':d<=7?'days-warn':'days-ok';
+  try{
+    const ck=localStorage.getItem('lsb_claude_global');
+    const ek=localStorage.getItem('lsb_el_global');
+    const gk=localStorage.getItem('lsb_g_global');
+    if(ck){claudeKey=ck;document.getElementById('claude-key').value=ck;setApiOn('claude');}
+    if(ek){elKey=ek;document.getElementById('el-key').value=ek;setApiOn('el');}
+    if(gk){gKey=gk;document.getElementById('g-key').value=gk;setApiOn('g');}
+  }catch{}
+  carregarProjetosLS();
+  renderNichos();
+  setTimeout(()=>renderProjetos(), 100);
+}
+function sairEstudio(){currentUser=null;elKey='';gKey='';resetarRoteiro();showScreen('screen-login');}
+function salvarKey(t){
+  const v=document.getElementById(t+'-key').value.trim();if(!v)return;
+  if(t==='claude'){claudeKey=v;localStorage.setItem('lsb_claude_global',v);}
+  else if(t==='el'){elKey=v;localStorage.setItem('lsb_el_global',v);}
+  else{gKey=v;localStorage.setItem('lsb_g_global',v);}
+  setApiOn(t);
+  alert('✓ Chave salva permanentemente!');
+}
+function setApiOn(t){const el=document.getElementById(t+'-status');if(el){el.textContent='Conectado ✓';el.className='api-status api-on';}}
+
+// ---- nichos ----
+const ND=[{id:'espiritualidade',label:'✨ Espiritualidade',custom:false},{id:'emocional',label:'💔 Histórias Emocionantes',custom:false},{id:'gospel',label:'🙏 Espiritualidade',custom:false},{id:'autoconhecimento',label:'🧠 Autoconhecimento',custom:false},{id:'geopolitica',label:'🌍 Geopolítica',custom:false},{id:'dark',label:'🌑 Mistério / Dark',custom:false}];
+let nichos=[...ND],nichoAtivo=ND[0].id;
+function renderNichos(){
+  const w=document.getElementById('nichos-wrap');w.innerHTML='';
+  nichos.forEach(n=>{
+    const c=document.createElement('div');c.className='n-chip'+(n.id===nichoAtivo?' active':'')+(n.custom?' custom':'');
+    c.innerHTML=`<span>${n.label}</span>`;
+    if(n.custom){const x=document.createElement('button');x.className='xc';x.textContent='×';x.onclick=e=>{e.stopPropagation();nichos=nichos.filter(y=>y.id!==n.id);if(nichoAtivo===n.id)nichoAtivo=nichos[0].id;renderNichos();};c.appendChild(x);}
+    c.onclick=()=>{nichoAtivo=n.id;renderNichos();};w.appendChild(c);
+  });
+  const form=document.createElement('div');form.className='n-form';form.id='n-form';
+  form.innerHTML=`<input id="n-input" placeholder="Novo nicho..." maxlength="28"><button class="btn-xs" onclick="confirmarNicho()">ok</button><button class="btn-xs" style="background:var(--muted)" onclick="cancelarNicho()">✕</button>`;
+  w.appendChild(form);
+  const btn=document.createElement('button');btn.className='n-add-btn';btn.id='n-add-btn';btn.textContent='+ Nicho';
+  btn.onclick=()=>{document.getElementById('n-form').classList.add('show');btn.style.display='none';document.getElementById('n-input').focus();};
+  w.appendChild(btn);
+}
+function cancelarNicho(){document.getElementById('n-form').classList.remove('show');document.getElementById('n-add-btn').style.display='';document.getElementById('n-input').value='';}
+function confirmarNicho(){const v=document.getElementById('n-input').value.trim();if(!v)return;const id='c_'+Date.now();nichos.push({id,label:v,custom:true});nichoAtivo=id;cancelarNicho();renderNichos();}
+
+// ---- canal ref ----
+let refEstilo='';
+async function analisarCanal(){
+  const canal=document.getElementById('canal-ref').value.trim();
+  const tema=document.getElementById('tema').value.trim();
+  if(!canal){alert('Digite o nome do canal.');return;}
+  const btn=document.querySelector('#tab-roteiro .ref-box .btn-xs');btn.textContent='Analisando...';btn.disabled=true;
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:600,messages:[{role:'user',content:`Analyze the YouTube channel "${canal}" and respond ONLY in valid JSON (no markdown):\n{"estilo":"2-3 sentences about narrative style, tone, pace, hook patterns in Portuguese","titulos":["title1","title2","title3","title4","title5"]}\nTitles inspired by the channel's patterns but for topic: "${tema||'(tema a definir)'}". In ${document.getElementById('idioma').value}. Compelling, not generic.`}]})});
+    const d=await r.json();
+    const txt=d.content?.find(b=>b.type==='text')?.text||'';
+    const p=JSON.parse(txt.replace(/```json|```/g,'').trim());
+    refEstilo=p.estilo||'';
+    document.getElementById('ref-estilo').textContent=refEstilo;
+    const tl=document.getElementById('titles-list');tl.innerHTML='';
+    (p.titulos||[]).forEach(t=>{
+      const item=document.createElement('div');item.className='title-item';
+      item.innerHTML=`<span>${t}</span><span class="use-lbl">usar →</span>`;
+      item.onclick=()=>{document.getElementById('tema').value=t;};
+      tl.appendChild(item);
+    });
+    document.getElementById('ref-suggestions').classList.add('show');
+  }catch(e){alert('Erro: '+e.message);}
+  finally{btn.textContent='🔍 Analisar estilo + sugerir títulos';btn.disabled=false;}
+}
+function limparRef(){document.getElementById('canal-ref').value='';document.getElementById('ref-suggestions').classList.remove('show');refEstilo='';}
+
+// ---- ROTEIRO ----
+const BLOCOS=[
+  {num:1,nome:'Gancho',cor:'#c9a84c',bg:'rgba(201,168,76,.15)'},
+  {num:2,nome:'Desenvolvimento',cor:'#7c9fd4',bg:'rgba(124,159,212,.13)'},
+  {num:3,nome:'Desenvolvimento',cor:'#7c9fd4',bg:'rgba(124,159,212,.13)'},
+  {num:4,nome:'Desenvolvimento',cor:'#7c9fd4',bg:'rgba(124,159,212,.13)'},
+  {num:5,nome:'Desenvolvimento',cor:'#7c9fd4',bg:'rgba(124,159,212,.13)'},
+  {num:6,nome:'Desenvolvimento',cor:'#7c9fd4',bg:'rgba(124,159,212,.13)'},
+  {num:7,nome:'CTA + Conteúdo',cor:'#9b6cd4',bg:'rgba(155,108,212,.15)'},
+  {num:8,nome:'Fechamento',cor:'#4acd8d',bg:'rgba(74,205,141,.13)'},
+];
+let blocoAtual=0,textosGerados=[],gerando=false;
+let temaVal='',faixaVal='',generoVal='',contextoVal='',idiomaVal='';
+
+function buildPrompt(idx,ant){
+  const nl=nichos.find(n=>n.id===nichoAtivo)?.label||nichoAtivo;
+  const ctx=contextoVal||'pessoas que buscam crescimento pessoal e conexão verdadeira';
+  const refInfo=refEstilo?`\n\nESTILO DO CANAL DE REFERÊNCIA: ${refEstilo}`:'';
+  const base=`Roteirista YouTube especializado em "${nl}" para público ${faixaVal}.\n\nEscreva em ${idiomaVal}. Tema: "${temaVal}"\nVoz: ${generoVal} | Público: ${ctx}${refInfo}\n\nREGRAS: conversa direta, linguagem simples, emoção contida, pausas naturais, repetições poéticas, NUNCA soar como IA, mais subtexto que explicação, tom maduro e verdadeiro.\nROTEIRO LIMPO: zero rótulos (sem "Narrador:", "[CENA]", cabeçalhos). Só texto puro.\nPROIBIÇÕES: sem clichês motivacionais, sem coach, sem promessas, sem emojis, sem moral explícita, sem termos místicos infantis.`;
+  const hist=ant.length?`\n\nATÉ AGORA (continue sem repetir):\n${ant.map((t,i)=>`[B${i+1}]\n${t}`).join('\n\n')}`:'';
+  const insts=[
+    `\n\nBLOCO 1 — GANCHO (~1000 chars). Gancho magnético, máxima retenção 3min. Espectador sente que você descobre os pensamentos dele. SÓ texto puro.`,
+    `\n\nBLOCO ${BLOCOS[idx].num} — DESENVOLVIMENTO (~4500 chars). Profundidade, metáforas, reflexões. Tom conversacional. Camadas graduais. Mini-arco próprio. Continue sem repetir. SÓ texto puro.`,
+    `\n\nBLOCO ${BLOCOS[idx].num} — DESENVOLVIMENTO (~4500 chars). Profundidade, metáforas, reflexões. Tom conversacional. Camadas graduais. Mini-arco próprio. Continue sem repetir. SÓ texto puro.`,
+    `\n\nBLOCO ${BLOCOS[idx].num} — DESENVOLVIMENTO (~4500 chars). Profundidade, metáforas, reflexões. Tom conversacional. Camadas graduais. Mini-arco próprio. Continue sem repetir. SÓ texto puro.`,
+    `\n\nBLOCO ${BLOCOS[idx].num} — DESENVOLVIMENTO (~4500 chars). Profundidade, metáforas, reflexões. Tom conversacional. Camadas graduais. Mini-arco próprio. Continue sem repetir. SÓ texto puro.`,
+    `\n\nBLOCO ${BLOCOS[idx].num} — DESENVOLVIMENTO (~4500 chars). Profundidade, metáforas, reflexões. Tom conversacional. Camadas graduais. Mini-arco próprio. Continue sem repetir. SÓ texto puro.`,
+    `\n\nBLOCO 7 — CTA + CONTEÚDO (~4500 chars). 1)CTA natural: convide a se inscrever. 2)Comentário conectado. 3)Gancho rápido de volta. 4)Continue ao fechamento. CTA nunca forçada. SÓ texto puro.`,
+    `\n\nBLOCO 8 — FECHAMENTO MAGISTRAL (~4500 chars). Amarre tudo. Transformação prometida. Reflexão poderosa. NÃO explique a moral. Ecoe na mente. CTA compartilhar+5. Peça comentário e próximo tema. SÓ texto puro.`
+  ];
+  return base+hist+insts[idx];
+}
+
+async function gerarBloco(idx){
+  gerando=true;const cfg=BLOCOS[idx];
+  setStatus(`Gerando Bloco ${cfg.num} — ${cfg.nome}...`,'');
+  updateProg(idx);
+  const area=document.getElementById('blocos-area');
+  const card=document.createElement('div');
+  card.className='bloco-card streaming';card.id=`bc-${idx}`;
+  card.innerHTML=`
+    <div class="bloco-head">
+      <span class="bloco-num">BLOCO ${String(cfg.num).padStart(2,'0')}</span>
+      <span class="bloco-tipo" style="color:${cfg.cor};background:${cfg.bg}">${cfg.nome}</span>
+      <span class="bloco-tit" id="bt-${idx}">Gerando...</span>
+      <button class="btn-copy" id="cb-${idx}" style="display:none" onclick="copiarBloco(${idx})">copiar</button>
+    </div>
+    <div class="bloco-body" id="bb-${idx}"></div>
+    <div class="translate-bar">
+      <span>Traduzir:</span>
+      <button class="lang-btn" onclick="traduzirBloco(${idx},'Português do Brasil')">🇧🇷 PT</button>
+      <button class="lang-btn" onclick="traduzirBloco(${idx},'English')">🇺🇸 EN</button>
+      <button class="lang-btn" onclick="traduzirBloco(${idx},'Español')">🇪🇸 ES</button>
+    </div>
+    <div class="translated-text" id="tr-${idx}"></div>
+    <div class="bloco-footer">
+      <button class="btn-voice el" onclick="gerarVozEL(${idx})" ${!elKey?'disabled':''}>🎙 ElevenLabs</button>
+      <button class="btn-voice gtts" onclick="gerarVozGoogle(${idx})" ${!gKey?'disabled':''}>🔊 Google TTS</button>
+      <a class="btn-voice ai33" href="https://ai33.pro" target="_blank">🇧🇷 ai33.pro</a>
+      <button class="btn-imagen-sm" onclick="gerarImagensBloco(${idx})" ${!gKey?'disabled':''}>🎨 Imagen 3</button>
+    </div>
+    <div id="audio-wrap-${idx}" class="audio-player"></div>
+    <div id="imgs-wrap-${idx}" class="images-strip"></div>`;
+  area.appendChild(card);
+  card.scrollIntoView({behavior:'smooth',block:'start'});
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:2000,messages:[{role:'user',content:buildPrompt(idx,textosGerados)}]})});
+    const data=await resp.json();
+    if(!resp.ok)throw new Error(data.error?.message||`HTTP ${resp.status}`);
+    const texto=data.content?.find(b=>b.type==='text')?.text||'';
+    if(!texto)throw new Error('Resposta vazia');
+    textosGerados.push(texto);
+    card.classList.remove('streaming');
+    document.getElementById(`bt-${idx}`).textContent=cfg.nome+' · Bloco '+cfg.num;
+    await typeText(document.getElementById(`bb-${idx}`),texto,4);
+    document.getElementById(`cb-${idx}`).style.display='';
+    setStatus('','');updateProg(idx+1);
+    if(idx<7){document.getElementById('prox-num').textContent=idx+2;document.getElementById('next-wrap').style.display='block';document.getElementById('next-wrap').scrollIntoView({behavior:'smooth'});}
+    else mostrarConcluido();
+  }catch(e){
+    document.getElementById(`bb-${idx}`).textContent='❌ Erro ao gerar. Tente novamente.';
+    card.classList.remove('streaming');
+    setStatus('Erro: '+e.message,'err');
+    document.getElementById('btn-gerar').disabled=false;
+  }finally{gerando=false;}
+}
+
+async function traduzirBloco(idx,lang){
+  const texto=textosGerados[idx];if(!texto)return;
+  const el=document.getElementById(`tr-${idx}`);
+  el.textContent='Traduzindo...';el.classList.add('show');
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:2000,messages:[{role:'user',content:`Translate to ${lang}. Keep tone and naturalness. ONLY the translated text:\n\n${texto}`}]})});
+    const d=await r.json();
+    el.textContent=d.content?.find(b=>b.type==='text')?.text||'';
+  }catch(e){el.textContent='Erro: '+e.message;}
+}
+
+async function gerarVozEL(idx){
+  if(!elKey)return;
+  const texto=textosGerados[idx];if(!texto)return;
+  const btn=event.target;btn.disabled=true;btn.textContent='Gerando...';
+  try{
+    const r=await fetch('https://api.elevenlabs.io/v1/text-to-speech/21m00Tcm4TlvDq8ikWAM',{method:'POST',headers:{'xi-api-key':elKey,'Content-Type':'application/json','Accept':'audio/mpeg'},body:JSON.stringify({text:texto.slice(0,2500),model_id:'eleven_multilingual_v2',voice_settings:{stability:.5,similarity_boost:.75}})});
+    if(!r.ok)throw new Error('ElevenLabs erro '+r.status);
+    const blob=await r.blob();const url=URL.createObjectURL(blob);
+    const wrap=document.getElementById(`audio-wrap-${idx}`);
+    wrap.style.display='block';wrap.innerHTML=`<audio controls src="${url}"></audio>`;
+  }catch(e){setStatus('Erro voz: '+e.message,'err');}
+  finally{btn.disabled=false;btn.textContent='🎙 ElevenLabs';}
+}
+
+async function gerarVozGoogle(idx){
+  if(!gKey)return;
+  const texto=textosGerados[idx];if(!texto)return;
+  const btn=event.target;btn.disabled=true;btn.textContent='Gerando...';
+  try{
+    const vm={feminina:'pt-BR-Wavenet-A',masculina:'pt-BR-Wavenet-B',neutra:'pt-BR-Wavenet-C'};
+    const r=await fetch(`https://texttospeech.googleapis.com/v1/text:synthesize?key=${gKey}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({input:{text:texto.slice(0,2500)},voice:{languageCode:'pt-BR',name:vm[generoVal]||'pt-BR-Wavenet-A'},audioConfig:{audioEncoding:'MP3'}})});
+    const d=await r.json();if(!r.ok)throw new Error(d.error?.message||'Erro Google TTS');
+    const wrap=document.getElementById(`audio-wrap-${idx}`);
+    wrap.style.display='block';wrap.innerHTML=`<audio controls src="data:audio/mp3;base64,${d.audioContent}"></audio>`;
+  }catch(e){setStatus('Erro TTS: '+e.message,'err');}
+  finally{btn.disabled=false;btn.textContent='🔊 Google TTS';}
+}
+
+async function gerarImagensBloco(idx){
+  if(!gKey)return;
+  const texto=textosGerados[idx];if(!texto)return;
+  const btn=event.target;btn.disabled=true;btn.textContent='Gerando...';
+  const wrap=document.getElementById(`imgs-wrap-${idx}`);
+  wrap.style.display='flex';wrap.innerHTML='';
+  for(let i=0;i<3;i++){const t=document.createElement('div');t.className='img-thumb';t.innerHTML=`<span class="img-loading">Gerando...</span>`;wrap.appendChild(t);}
+  try{
+    const pr=await callClaude(`Based on this script, write ONE cinematic Imagen 3 prompt in English. Ultra-realistic, dramatic lighting, 16:9. Max 2 sentences. ONLY the prompt:\n\n${texto.slice(0,400)}`);
+    const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-001:predict?key=${gKey}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({instances:[{prompt:pr}],parameters:{sampleCount:3,aspectRatio:'16:9',safetyFilterLevel:'block_few'}})});
+    const d=await r.json();if(!r.ok)throw new Error(d.error?.message||'Erro Imagen');
+    wrap.innerHTML='';
+    (d.predictions||[]).forEach((p,i)=>{
+      const src=`data:${p.mimeType||'image/png'};base64,${p.bytesBase64Encoded}`;
+      const t=document.createElement('div');t.className='img-thumb';
+      t.innerHTML=`<img src="${src}"><button class="dl-btn" onclick="dlImg('${src}',${i+1})">⬇</button>`;
+      wrap.appendChild(t);
+    });
+  }catch(e){wrap.innerHTML=`<span style="color:var(--danger);font-size:.78rem">Erro: ${e.message}</span>`;}
+  finally{btn.disabled=false;btn.textContent='🎨 Imagen 3';}
+}
+function dlImg(src,n){const a=document.createElement('a');a.href=src;a.download=`lsb-img-${n}.png`;a.click();}
+
+// ---- TÍTULOS & THUMB ----
+async function gerarTitulosThumb(){
+  const tema=document.getElementById('tt-tema').value.trim();
+  if(!tema){alert('Descreva o tema do vídeo.');return;}
+  const nicho=document.getElementById('tt-nicho').value.trim()||'YouTube';
+  const idioma=document.getElementById('tt-idioma').value;
+  const canal=document.getElementById('tt-canal').value.trim();
+  const btn=document.getElementById('btn-tt-gerar');
+  btn.disabled=true;btn.textContent='Gerando...';
+  document.getElementById('tt-results').style.display='none';
+  try{
+    const prompt=`You are a top YouTube title and thumbnail strategist for the "${nicho}" niche.
+Topic: "${tema}"
+${canal?`Reference channel style: ${canal}`:''}
+Language for titles: ${idioma}
+
+Respond ONLY in valid JSON (no markdown):
+{
+  "titulos": [
+    {"texto":"title","porque":"why it works in Portuguese","tags":["hook","emotion","curiosity","benefit","aggressive"]},
+    {"texto":"title","porque":"...","tags":[...]},
+    {"texto":"title","porque":"...","tags":[...]},
+    {"texto":"title","porque":"...","tags":[...]},
+    {"texto":"title","porque":"...","tags":[...]}
+  ],
+  "thumbnails": [
+    {
+      "conceito":"Short concept name in Portuguese",
+      "descricao":"Visual description of the thumbnail in Portuguese (2-3 sentences)",
+      "elementos":["element 1","element 2","element 3"],
+      "prompt":"Detailed Imagen 3 prompt in English, cinematic, emotional, ultra-realistic photography, 16:9 aspect ratio, dramatic lighting"
+    },
+    {
+      "conceito":"...",
+      "descricao":"...",
+      "elementos":["..."],
+      "prompt":"..."
+    },
+    {
+      "conceito":"...",
+      "descricao":"...",
+      "elementos":["..."],
+      "prompt":"..."
+    }
+  ]
+}`;
+    const txt=await callClaude(prompt,1200);
+    const data=JSON.parse(txt.replace(/```json|```/g,'').trim());
+    // Render títulos
+    const tl=document.getElementById('tt-titles-list');tl.innerHTML='';
+    (data.titulos||[]).forEach((t,i)=>{
+      const tagMap={hook:'tg-hook',emotion:'tg-emo',curiosity:'tg-cur',benefit:'tg-ben',aggressive:'tg-agg'};
+      const tags=(t.tags||[]).map(tg=>`<span class="tt-tag ${tagMap[tg]||'tg-hook'}">${tg}</span>`).join('');
+      const card=document.createElement('div');card.className='tt-card';
+      card.innerHTML=`<div class="tt-rank">OPÇÃO ${i+1}</div><div class="tt-title-text">${t.texto}</div><div class="tt-why">${t.porque}</div><div class="tt-tags">${tags}</div><button class="tt-copy" onclick="event.stopPropagation();copiarTextoBtn('${escQ(t.texto)}',this)">copiar</button>`;
+      tl.appendChild(card);
+    });
+    // Render thumbs
+    const thr=document.getElementById('tt-thumbs-list');thr.innerHTML='';
+    (data.thumbnails||[]).forEach((th,i)=>{
+      const els=(th.elementos||[]).map(e=>`<div class="thumb-el">${e}</div>`).join('');
+      const card=document.createElement('div');card.className='thumb-card';
+      card.innerHTML=`
+        <div class="thumb-preview" id="tp-${i}">
+          <div class="thumb-no-img">Clique em "Gerar" para<br>visualizar a thumbnail</div>
+        </div>
+        <div class="thumb-info">
+          <div class="thumb-concept">${th.conceito}</div>
+          <div class="thumb-desc">${th.descricao}</div>
+          <div class="thumb-elements"><div class="thumb-elements-title">Elementos visuais</div><div class="thumb-el-list">${els}</div></div>
+          <div style="font-size:.68rem;color:var(--muted);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem;margin-top:.75rem;">Prompt Imagen 3</div>
+          <div class="prompt-box" id="tp-prompt-${i}">${th.prompt}<button class="prompt-copy" onclick="copiarTextoBtn('${escQ(th.prompt)}',this)">copiar</button></div>
+          <button class="btn-gen-img" ${!gKey?'disabled':''} onclick="gerarThumbImagem(${i},'${escQ(th.prompt)}')">🎨 Gerar com Imagen 3</button>
+        </div>`;
+      thr.appendChild(card);
+    });
+    document.getElementById('tt-results').style.display='block';
+    document.getElementById('tt-results').scrollIntoView({behavior:'smooth'});
+  }catch(e){alert('Erro: '+e.message);}
+  finally{btn.disabled=false;btn.textContent='✦ Gerar Títulos + Thumbnails';}
+}
+
+async function gerarThumbImagem(i,prompt){
+  if(!gKey)return;
+  const btn=document.querySelector(`#tt-thumbs-list .thumb-card:nth-child(${i+1}) .btn-gen-img`);
+  if(btn){btn.disabled=true;btn.textContent='Gerando...';}
+  const preview=document.getElementById(`tp-${i}`);
+  preview.innerHTML=`<span style="color:var(--muted);font-size:.75rem;font-family:'DM Mono',monospace;" class="shimmer">Gerando imagem...</span>`;
+  try{
+    const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-001:predict?key=${gKey}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({instances:[{prompt}],parameters:{sampleCount:1,aspectRatio:'16:9',safetyFilterLevel:'block_few'}})});
+    const d=await r.json();if(!r.ok)throw new Error(d.error?.message||'Erro Imagen');
+    const p=d.predictions?.[0];
+    if(p){const src=`data:${p.mimeType||'image/png'};base64,${p.bytesBase64Encoded}`;preview.innerHTML=`<img src="${src}" style="width:100%;height:100%;object-fit:cover;">`;}
+  }catch(e){preview.innerHTML=`<span style="color:var(--danger);font-size:.75rem;padding:1rem;">${e.message}</span>`;}
+  finally{if(btn){btn.disabled=false;btn.textContent='🎨 Gerar novamente';}}
+}
+
+// ---- DESCRIÇÃO ----
+async function gerarDescricao(){
+  const tema=document.getElementById('desc-tema').value.trim();
+  if(!tema){alert('Descreva o tema do vídeo.');return;}
+  const tom=document.getElementById('desc-tom').value;
+  const idioma=document.getElementById('desc-idioma').value;
+  const links=document.getElementById('desc-links').value.trim();
+  const btn=document.getElementById('btn-desc-gerar');
+  btn.disabled=true;btn.textContent='Gerando...';
+  try{
+    const prompt=`You are a YouTube SEO and description expert. Create a complete video description in ${idioma}.
+
+Video topic: "${tema}"
+Tone: ${tom}
+${links?`Channel links to include: ${links}`:''}
+
+Respond ONLY in valid JSON (no markdown):
+{
+  "descricao_principal": "Compelling 150-200 word description. Start with a hook. Describe what viewer will feel/learn. Natural, not robotic. End with soft CTA.",
+  "links_capitulos": "Timestamps and links section:\\n00:00 - Intro\\n02:30 - [chapter]\\n...\\n\\nLinks:\\n${links||'[Coloque seus links aqui]'}",
+  "hashtags": ["hashtag1","hashtag2","hashtag3","hashtag4","hashtag5","hashtag6","hashtag7","hashtag8","hashtag9","hashtag10"]
+}`;
+    const txt=await callClaude(prompt,800);
+    const data=JSON.parse(txt.replace(/```json|```/g,'').trim());
+    document.getElementById('desc-principal').textContent=data.descricao_principal||'';
+    document.getElementById('desc-links-out').textContent=data.links_capitulos||'';
+    const hw=document.getElementById('desc-hashtags');hw.innerHTML='';
+    (data.hashtags||[]).forEach(h=>{const s=document.createElement('span');s.className='hashtag';s.textContent='#'+h.replace('#','');hw.appendChild(s);});
+    document.getElementById('desc-result').classList.add('show');
+    document.getElementById('desc-result').scrollIntoView({behavior:'smooth'});
+  }catch(e){alert('Erro: '+e.message);}
+  finally{btn.disabled=false;btn.textContent='✦ Gerar Descrição Completa';}
+}
+
+// ---- COMUNIDADE ----
+let commImgPrompt='';
+async function gerarComunidade(){
+  const tema=document.getElementById('comm-tema').value.trim();
+  if(!tema){alert('Descreva o tema do próximo vídeo.');return;}
+  const tom=document.getElementById('comm-tom').value;
+  const idioma=document.getElementById('comm-idioma').value;
+  const canal=document.getElementById('comm-canal').value.trim()||'nosso canal';
+  const btn=document.getElementById('btn-comm-gerar');
+  btn.disabled=true;btn.textContent='Gerando...';
+  try{
+    const prompt=`You are a YouTube community manager. Create community posts in ${idioma}.
+
+Next video topic: "${tema}"
+Tone: ${tom}
+Channel name: "${canal}"
+
+Respond ONLY in valid JSON (no markdown):
+{
+  "post_convite": "Compelling community post (4-6 lines) inviting subscribers to watch the next video. Create mystery/anticipation. No emojis unless natural. End asking them to turn on notifications.",
+  "post_pergunta": "Engagement post (3-5 lines) with a thought-provoking question related to the video theme. Make it personal and emotional. End with the question clearly stated.",
+  "imagem_conceito": "Brief description of the community image concept in Portuguese (1-2 sentences)",
+  "imagem_prompt": "Detailed Imagen 3 image prompt in English for a 1:1 square community post image. Cinematic, emotional, eye-catching. Should represent the video theme without text."
+}`;
+    const txt=await callClaude(prompt,800);
+    const data=JSON.parse(txt.replace(/```json|```/g,'').trim());
+    document.getElementById('comm-post-convite').textContent=data.post_convite||'';
+    document.getElementById('comm-post-pergunta').textContent=data.post_pergunta||'';
+    document.getElementById('comm-img-conceito').textContent=data.imagem_conceito||'';
+    document.getElementById('comm-img-prompt').innerHTML=data.imagem_prompt||'';
+    commImgPrompt=data.imagem_prompt||'';
+    document.getElementById('btn-gen-comm-img').disabled=!gKey;
+    document.getElementById('comm-result').classList.add('show');
+    document.getElementById('comm-result').scrollIntoView({behavior:'smooth'});
+  }catch(e){alert('Erro: '+e.message);}
+  finally{btn.disabled=false;btn.textContent='✦ Gerar Post + Imagem de Comunidade';}
+}
+
+async function gerarImagemComunidade(){
+  if(!gKey||!commImgPrompt)return;
+  const btn=document.getElementById('btn-gen-comm-img');
+  btn.disabled=true;btn.textContent='Gerando...';
+  const preview=document.getElementById('comm-img-preview');
+  preview.style.display='flex';preview.innerHTML=`<span style="color:var(--muted);font-size:.75rem;font-family:'DM Mono',monospace;" class="shimmer">Gerando imagem...</span>`;
+  try{
+    const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-001:predict?key=${gKey}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({instances:[{prompt:commImgPrompt}],parameters:{sampleCount:1,aspectRatio:'1:1',safetyFilterLevel:'block_few'}})});
+    const d=await r.json();if(!r.ok)throw new Error(d.error?.message||'Erro Imagen');
+    const p=d.predictions?.[0];
+    if(p){
+      const src=`data:${p.mimeType||'image/png'};base64,${p.bytesBase64Encoded}`;
+      preview.innerHTML=`<img src="${src}" style="width:100%;height:100%;object-fit:cover;">`;
+      // add download
+      const a=document.createElement('a');a.href=src;a.download='lsb-comunidade.png';
+      a.style.cssText='display:block;text-align:center;padding:.5rem;font-size:.75rem;color:var(--gold);cursor:pointer;';
+      a.textContent='⬇ Baixar imagem';
+      preview.parentElement.appendChild(a);
+    }
+  }catch(e){preview.innerHTML=`<span style="color:var(--danger);font-size:.75rem;padding:1rem;">${e.message}</span>`;}
+  finally{btn.disabled=false;btn.textContent='🎨 Gerar novamente';}
+}
+
+// ---- PROJETOS ----
+let _projetos = [];
+let _projetoAberto = null;
+
+function salvarProjeto(){
+  if(!textosGerados.length) return;
+  const titulo = temaVal.slice(0,60) || 'Sem título';
+  const nicho = nichos.find(n=>n.id===nichoAtivo)?.label||'';
+  const projeto = {
+    id: Date.now(),
+    titulo,
+    nicho,
+    idioma: idiomaVal,
+    data: new Date().toLocaleString('pt-BR'),
+    blocos: textosGerados.map((t,i)=>({num:BLOCOS[i].num, nome:BLOCOS[i].nome, texto:t}))
+  };
+  _projetos.unshift(projeto);
+  // Salva no localStorage quando rodar no notebook
+  try{ localStorage.setItem('lsb_projetos', JSON.stringify(_projetos)); }catch{}
+  renderProjetos();
+  setStatus('✓ Projeto salvo em "Meus Projetos"!','ok');
+}
+
+function carregarProjetosLS(){
+  try{
+    const r = localStorage.getItem('lsb_projetos');
+    if(r) _projetos = JSON.parse(r);
+  }catch{}
+}
+
+function renderProjetos(){
+  const lista = document.getElementById('projetos-lista');
+  if(!lista) return;
+  if(!_projetos.length){
+    lista.innerHTML=`<div class="proj-empty">Nenhum projeto salvo ainda.<br><br>Gere um roteiro e ele será salvo aqui automaticamente.</div>`;
+    return;
+  }
+  lista.innerHTML = _projetos.map((p,i)=>`
+    <div class="projeto-card">
+      <div class="projeto-info">
+        <div class="projeto-titulo">${p.titulo}</div>
+        <div class="projeto-meta">
+          <span>${p.nicho}</span>
+          <span>${p.idioma}</span>
+          <span>${p.blocos.length} bloco${p.blocos.length!==1?'s':''}</span>
+          <span>${p.data}</span>
+        </div>
+      </div>
+      <div class="projeto-acoes">
+        <button class="btn-proj" onclick="abrirProjeto(${i})">Abrir</button>
+        <button class="btn-proj del" onclick="excluirProjeto(${i})">✕</button>
+      </div>
+    </div>`).join('');
+}
+
+function abrirProjeto(i){
+  _projetoAberto = _projetos[i];
+  document.getElementById('modal-titulo').textContent = _projetoAberto.titulo;
+  const body = document.getElementById('modal-body');
+  body.innerHTML = _projetoAberto.blocos.map(b=>`
+    <div class="modal-bloco">
+      <div class="modal-bloco-label">Bloco ${b.num} — ${b.nome}</div>
+      <div class="modal-bloco-text">${b.texto}</div>
+    </div>`).join('');
+  document.getElementById('modal-projeto').classList.add('show');
+}
+
+function fecharModal(){
+  document.getElementById('modal-projeto').classList.remove('show');
+  _projetoAberto = null;
+}
+
+function copiarProjeto(){
+  if(!_projetoAberto) return;
+  const txt = _projetoAberto.blocos.map(b=>b.texto).join('\n\n');
+  navigator.clipboard.writeText(txt).then(()=>setStatus('✓ Roteiro copiado!','ok'));
+}
+
+function excluirProjeto(i){
+  if(!confirm('Excluir este projeto?')) return;
+  _projetos.splice(i,1);
+  try{ localStorage.setItem('lsb_projetos', JSON.stringify(_projetos)); }catch{}
+  renderProjetos();
+}
+
+function limparProjetos(){
+  if(!confirm('Apagar todos os projetos salvos?')) return;
+  _projetos=[];
+  try{ localStorage.removeItem('lsb_projetos'); }catch{}
+  renderProjetos();
+}
+
+async function callClaude(prompt,maxTokens=1000){
+  const key = claudeKey || '';
+  const headers = {'Content-Type':'application/json'};
+  if(key) headers['x-api-key'] = key;
+  const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers,body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:maxTokens,messages:[{role:'user',content:prompt}]})});
+  const d=await r.json();
+  if(!r.ok)throw new Error(d.error?.message||`HTTP ${r.status}`);
+  return d.content?.find(b=>b.type==='text')?.text||'';
+}
+
+function escQ(s){return(s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;').replace(/\n/g,' ');}
+
+function copiarEl(id){
+  const el=document.getElementById(id);
+  const txt=el.textContent||el.innerText||'';
+  navigator.clipboard.writeText(txt).then(()=>setStatus('✓ Copiado!','ok'));
+}
+function copiarHashtags(){
+  const tags=[...document.querySelectorAll('#desc-hashtags .hashtag')].map(t=>t.textContent).join(' ');
+  navigator.clipboard.writeText(tags).then(()=>setStatus('✓ Hashtags copiadas!','ok'));
+}
+function copiarTextoBtn(txt,btn){
+  navigator.clipboard.writeText(txt).then(()=>{const o=btn.textContent;btn.textContent='✓';setTimeout(()=>btn.textContent=o,1500);});
+}
+
+async function typeText(el,text,ms){
+  const words=text.split(' ');let cur='';
+  for(let i=0;i<words.length;i+=5){cur+=(i>0?' ':'')+words.slice(i,i+5).join(' ');el.textContent=cur;await new Promise(r=>setTimeout(r,ms));}
+  el.textContent=text;
+}
+
+function iniciarRoteiro(){
+  temaVal=document.getElementById('tema').value.trim();
+  if(!temaVal){setStatus('Descreva o tema.','err');return;}
+  faixaVal=document.getElementById('faixa').value;
+  generoVal=document.getElementById('genero').value;
+  contextoVal=document.getElementById('contexto').value.trim();
+  idiomaVal=document.getElementById('idioma').value;
+  blocoAtual=0;textosGerados=[];
+  document.getElementById('blocos-area').innerHTML='';
+  document.getElementById('next-wrap').style.display='none';
+  document.getElementById('done-area').innerHTML='';
+  document.getElementById('actions-bar').style.display='none';
+  document.getElementById('btn-gerar').disabled=true;
+  document.getElementById('prog-wrap').classList.add('show');
+  gerarBloco(0);
+}
+function proximoBloco(){if(gerando)return;blocoAtual++;document.getElementById('next-wrap').style.display='none';gerarBloco(blocoAtual);}
+function updateProg(done){
+  document.getElementById('prog-fill').style.width=Math.round((done/8)*100)+'%';
+  document.getElementById('prog-frac').textContent=done+' / 8';
+  const c=BLOCOS[Math.min(done,7)];
+  document.getElementById('prog-txt').textContent=done<8?`Bloco ${c.num} — ${c.nome}`:'Roteiro completo ✓';
+  if(done>=8)document.getElementById('prog-txt').classList.remove('shimmer');
+}
+function mostrarConcluido(){
+  salvarProjeto();
+  document.getElementById('done-area').innerHTML=`<div class="done-banner"><h3>✦ Roteiro Completo</h3><p>Todos os 8 blocos gerados e salvos em "Meus Projetos".</p><div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;"><button class="btn-sec" onclick="copiarTudo()">📋 Copiar tudo</button><button class="btn-sec" onclick="setTab('projetos')">📁 Ver projetos</button><button class="btn-sec" onclick="resetarRoteiro()">↺ Novo roteiro</button></div></div>`;
+  document.getElementById('actions-bar').style.display='flex';
+  document.getElementById('done-area').scrollIntoView({behavior:'smooth'});
+  setStatus('','');
+}
+function copiarBloco(i){navigator.clipboard.writeText(textosGerados[i]||'').then(()=>{const b=document.getElementById(`cb-${i}`);b.textContent='✓';setTimeout(()=>b.textContent='copiar',1800);});}
+function copiarTudo(){navigator.clipboard.writeText(textosGerados.join('\n\n')).then(()=>setStatus('✓ Roteiro puro copiado!','ok'));}
+function resetarRoteiro(){blocoAtual=0;textosGerados=[];document.getElementById('blocos-area').innerHTML='';document.getElementById('next-wrap').style.display='none';document.getElementById('done-area').innerHTML='';document.getElementById('actions-bar').style.display='none';document.getElementById('prog-wrap').classList.remove('show');document.getElementById('prog-fill').style.width='0%';document.getElementById('btn-gerar').disabled=false;document.getElementById('btn-gerar').textContent='✦ Gerar Bloco 1 — Gancho';setStatus('','');}
+function setStatus(m,t){
+  const el=document.getElementById('status');
+  if(!el) return;
+  el.textContent=m;el.className='status-bar'+(t?' '+t:'');
+}
+</script>
+</body>
+</html>
