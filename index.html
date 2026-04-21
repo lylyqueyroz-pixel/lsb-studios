@@ -721,7 +721,7 @@ async function analisarCanal(){
   if(!canal){alert('Digite o nome do canal.');return;}
   const btn=document.querySelector('#tab-roteiro .ref-box .btn-xs');btn.textContent='Analisando...';btn.disabled=true;
   try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:600,messages:[{role:'user',content:`Analyze the YouTube channel "${canal}" and respond ONLY in valid JSON (no markdown):\n{"estilo":"2-3 sentences about narrative style, tone, pace, hook patterns in Portuguese","titulos":["title1","title2","title3","title4","title5"]}\nTitles inspired by the channel's patterns but for topic: "${tema||'(tema a definir)'}". In ${document.getElementById('idioma').value}. Compelling, not generic.`}]})});
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':claudeKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:600,messages:[{role:'user',content:`Analyze the YouTube channel "${canal}" and respond ONLY in valid JSON (no markdown):\n{"estilo":"2-3 sentences about narrative style, tone, pace, hook patterns in Portuguese","titulos":["title1","title2","title3","title4","title5"]}\nTitles inspired by the channel's patterns but for topic: "${tema||'(tema a definir)'}". In ${document.getElementById('idioma').value}. Compelling, not generic.`}]})});
     const d=await r.json();
     const txt=d.content?.find(b=>b.type==='text')?.text||'';
     const p=JSON.parse(txt.replace(/```json|```/g,'').trim());
