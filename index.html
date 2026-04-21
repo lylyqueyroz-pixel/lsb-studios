@@ -659,8 +659,9 @@ async function extender(i){const u=await loadUsers();u[i].expiresAt+=30*86400000
 
 // ---- estúdio ----
 let claudeKey='';
-
-
+let elKey='';
+let gKey='';
+let currentUser=null;
 function abrirEstudio(){
   showScreen('screen-studio');
   document.getElementById('s-username').textContent=currentUser.name;
