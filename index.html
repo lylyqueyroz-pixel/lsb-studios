@@ -175,6 +175,20 @@ tr:hover td{background:var(--surface2);}
 .btn-voice:disabled{opacity:.35;cursor:not-allowed;}
 .btn-imagen-sm{display:inline-flex;align-items:center;gap:.4rem;padding:.38rem .88rem;border-radius:.4rem;font-size:.75rem;font-weight:600;cursor:pointer;background:rgba(201,168,76,.1);color:var(--gold);border:1px solid rgba(201,168,76,.25);font-family:'DM Sans',sans-serif;transition:all .2s;}
 .btn-imagen-sm:disabled{opacity:.35;cursor:not-allowed;}
+.btn-voice.capcut{background:rgba(0,200,100,.1);color:#40e080;border:1px solid rgba(0,200,100,.25);}
+.btn-veo3{display:inline-flex;align-items:center;gap:.4rem;padding:.38rem .88rem;border-radius:.4rem;font-size:.75rem;font-weight:600;cursor:pointer;background:rgba(66,133,244,.12);color:#7ab4ff;border:1px solid rgba(66,133,244,.25);font-family:'DM Sans',sans-serif;transition:all .2s;}
+.btn-veo3:disabled{opacity:.35;cursor:not-allowed;}
+.veo3-panel{display:none;padding:1rem 1.4rem;border-top:1px solid var(--border);background:rgba(66,133,244,.04);}
+.veo3-panel.show{display:block;}
+.veo3-master{background:var(--surface2);border:1px solid rgba(201,168,76,.3);border-radius:.5rem;padding:.85rem;margin-bottom:.85rem;font-size:.8rem;line-height:1.7;color:var(--gold2);}
+.veo3-cenas{display:flex;flex-direction:column;gap:.6rem;}
+.veo3-cena{background:var(--surface2);border:1px solid var(--border);border-radius:.45rem;padding:.75rem;}
+.veo3-cena-num{font-size:.62rem;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:.3rem;letter-spacing:.1em;text-transform:uppercase;}
+.veo3-cena-txt{font-size:.8rem;color:#a0c4ff;line-height:1.6;font-family:'DM Mono',monospace;margin-bottom:.4rem;white-space:pre-wrap;}
+.veo3-cena-actions{display:flex;gap:.4rem;}
+.btn-veo3-copy{background:none;border:1px solid var(--border);color:var(--muted);padding:.2rem .55rem;border-radius:4px;font-size:.63rem;cursor:pointer;font-family:'DM Mono',monospace;transition:all .15s;}
+.btn-veo3-copy:hover{color:var(--gold);border-color:var(--gold);}
+.btn-veo3-flow{background:rgba(66,133,244,.1);border:1px solid rgba(66,133,244,.25);color:#7ab4ff;padding:.2rem .55rem;border-radius:4px;font-size:.63rem;cursor:pointer;font-family:'DM Mono',monospace;text-decoration:none;display:inline-flex;align-items:center;gap:.25rem;}
 .audio-player{display:none;padding:.5rem 1.2rem .75rem;}
 audio{width:100%;height:32px;}
 .images-strip{display:none;gap:.6rem;flex-wrap:wrap;padding:.6rem 1.2rem 1rem;}
@@ -274,10 +288,16 @@ audio{width:100%;height:32px;}
 .modal-bloco-text{font-size:.88rem;line-height:1.85;color:var(--text);white-space:pre-wrap;background:var(--surface2);border-radius:.4rem;padding:.85rem;}
 .modal-foot{padding:.85rem 1.25rem;border-top:1px solid var(--border);display:flex;gap:.6rem;flex-wrap:wrap;}
 
-
+/* Toast feedback */
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(20px);background:var(--surface);border:1px solid var(--success);color:var(--success);padding:.6rem 1.4rem;border-radius:100px;font-size:.82rem;font-family:'DM Mono',monospace;z-index:999;opacity:0;transition:all .25s;pointer-events:none;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast.err{border-color:var(--danger);color:var(--danger);}
 </style>
 </head>
 <body>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
 
 <!-- LOGIN -->
 <div class="screen active" id="screen-login">
@@ -393,7 +413,7 @@ audio{width:100%;height:32px;}
         </div>
         <button class="btn-gerar gold" id="btn-gerar" onclick="iniciarRoteiro()">✦ Gerar Bloco 1 — Gancho</button>
         <div class="prog-wrap" id="prog-wrap">
-          <div class="prog-lbl"><span id="prog-txt" class="shimmer">Gerando...</span><span id="prog-frac">0 / 8</span></div>
+          <div class="prog-lbl"><span id="prog-txt">Gerando...</span><span id="prog-frac">0 / 8</span></div>
           <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
         </div>
       </div>
@@ -425,10 +445,8 @@ audio{width:100%;height:32px;}
       </div>
 
       <div id="tt-results" style="display:none;animation:fadeUp .4s ease;">
-        <!-- Títulos -->
         <div style="font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'DM Mono',monospace;margin-bottom:1rem;display:flex;align-items:center;gap:.6rem;">Títulos sugeridos<span style="flex:1;height:1px;background:var(--border);display:block;"></span></div>
         <div id="tt-titles-list" style="margin-bottom:1.75rem;display:flex;flex-direction:column;gap:.65rem;"></div>
-        <!-- Thumbnails -->
         <div style="font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'DM Mono',monospace;margin-bottom:1rem;display:flex;align-items:center;gap:.6rem;">Conceitos de Thumbnail<span style="flex:1;height:1px;background:var(--border);display:block;"></span></div>
         <div id="tt-thumbs-list"></div>
       </div>
@@ -494,7 +512,6 @@ audio{width:100%;height:32px;}
       </div>
 
       <div class="comm-result" id="comm-result">
-        <!-- Post convite -->
         <div class="comm-post-card">
           <div class="comm-post-head">
             <span class="comm-post-label">📢 Post — Convite para o vídeo</span>
@@ -502,7 +519,6 @@ audio{width:100%;height:32px;}
           </div>
           <div class="comm-post-body" id="comm-post-convite"></div>
         </div>
-        <!-- Post pergunta -->
         <div class="comm-post-card">
           <div class="comm-post-head">
             <span class="comm-post-label">💬 Post — Pergunta de engajamento</span>
@@ -510,7 +526,6 @@ audio{width:100%;height:32px;}
           </div>
           <div class="comm-post-body" id="comm-post-pergunta"></div>
         </div>
-        <!-- Imagem comunidade -->
         <div class="comm-img-card">
           <div class="comm-post-head" style="border-bottom:1px solid var(--border);">
             <span class="comm-post-label">🎨 Imagem para a Comunidade</span>
@@ -522,7 +537,7 @@ audio{width:100%;height:32px;}
             <div class="prompt-box" id="comm-img-prompt" style="padding-right:2.5rem;"></div>
             <button class="btn-copy" style="margin-bottom:.65rem;" onclick="copiarEl('comm-img-prompt')">copiar prompt</button>
             <div class="comm-img-preview" id="comm-img-preview" style="display:none;border-radius:.6rem;overflow:hidden;max-width:400px;margin-bottom:.65rem;aspect-ratio:1/1;background:var(--surface2);align-items:center;justify-content:center;">
-              <span style="font-size:.75rem;color:var(--muted);font-family:'DM Mono',monospace;" class="shimmer">Gerando imagem...</span>
+              <span style="font-size:.75rem;color:var(--muted);font-family:'DM Mono',monospace;">Gerando imagem...</span>
             </div>
             <button class="btn-gen-img" id="btn-gen-comm-img" onclick="gerarImagemComunidade()" style="max-width:300px;">🎨 Gerar imagem com Imagen 3</button>
           </div>
@@ -582,9 +597,25 @@ audio{width:100%;height:32px;}
         <div style="font-size:.85rem;color:var(--muted);line-height:1.8;">
           <strong style="color:var(--text);">LSB Studios</strong> — Plataforma de produção de conteúdo YouTube com IA.<br>
           Roteiros longos · Títulos & Thumbnails · Descrições · Posts de Comunidade<br><br>
-          <span style="font-size:.75rem;font-family:'DM Mono',monospace;">Versão 1.0 · by Liliane S.B.</span>
+          <span style="font-size:.75rem;font-family:'DM Mono',monospace;">Versão 1.1 · by Liliane S.B.</span>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL PROJETO -->
+<div class="modal-overlay" id="modal-projeto">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3 id="modal-titulo">Projeto</h3>
+      <button class="modal-close" onclick="fecharModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-foot">
+      <button class="btn-sec" onclick="copiarProjeto()">📋 Copiar roteiro completo</button>
+      <button class="btn-sec" onclick="usarProjeto()">🎬 Usar como base</button>
+      <button class="btn-sec" onclick="fecharModal()" style="margin-left:auto;">Fechar</button>
     </div>
   </div>
 </div>
@@ -593,12 +624,21 @@ audio{width:100%;height:32px;}
 const ADMIN_PASS='LSB@2024';
 
 // ---- storage ----
-// Usuários em memória
 let _users = [
   {name:'Liliane',code:'LSB2024',createdAt:Date.now(),expiresAt:Date.now()+365*86400000,trial:false,lastAccess:null}
 ];
 function loadUsers(){return _users;}
 function saveUsers(u){_users=u;}
+
+// ---- toast ----
+let _toastTimer=null;
+function toast(msg,tipo='ok'){
+  const el=document.getElementById('toast');
+  el.textContent=msg;
+  el.className='toast show'+(tipo==='err'?' err':'');
+  if(_toastTimer)clearTimeout(_toastTimer);
+  _toastTimer=setTimeout(()=>el.classList.remove('show'),2500);
+}
 
 // ---- nav ----
 function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -607,7 +647,7 @@ function setTab(name){
   document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
   document.getElementById('tab-btn-'+name).classList.add('active');
   document.getElementById('tab-'+name).classList.add('active');
-  // Sincronizar tema entre abas
+  if(name==='projetos')renderProjetos();
   const tema=document.getElementById('tema').value.trim();
   if(tema){
     ['tt-tema','desc-tema','comm-tema'].forEach(id=>{if(document.getElementById(id)&&!document.getElementById(id).value)document.getElementById(id).value=tema;});
@@ -663,7 +703,6 @@ var gKey='';
 var currentUser=null;
 var claudeKey='';
 
-
 function abrirEstudio(){
   showScreen('screen-studio');
   document.getElementById('s-username').textContent=currentUser.name;
@@ -681,7 +720,7 @@ function abrirEstudio(){
   }catch{}
   carregarProjetosLS();
   renderNichos();
-  setTimeout(()=>renderProjetos(), 100);
+  renderProjetos();
 }
 function sairEstudio(){currentUser=null;elKey='';gKey='';resetarRoteiro();showScreen('screen-login');}
 function salvarKey(t){
@@ -690,12 +729,12 @@ function salvarKey(t){
   else if(t==='el'){elKey=v;localStorage.setItem('lsb_el_global',v);}
   else{gKey=v;localStorage.setItem('lsb_g_global',v);}
   setApiOn(t);
-  alert('✓ Chave salva permanentemente!');
+  toast('✓ Chave salva!');
 }
 function setApiOn(t){const el=document.getElementById(t+'-status');if(el){el.textContent='Conectado ✓';el.className='api-status api-on';}}
 
 // ---- nichos ----
-const ND=[{id:'espiritualidade',label:'✨ Espiritualidade',custom:false},{id:'emocional',label:'💔 Histórias Emocionantes',custom:false},{id:'gospel',label:'🙏 Espiritualidade',custom:false},{id:'autoconhecimento',label:'🧠 Autoconhecimento',custom:false},{id:'geopolitica',label:'🌍 Geopolítica',custom:false},{id:'dark',label:'🌑 Mistério / Dark',custom:false}];
+const ND=[{id:'espiritualidade',label:'✨ Espiritualidade',custom:false},{id:'emocional',label:'💔 Histórias Emocionantes',custom:false},{id:'gospel',label:'🙏 Gospel',custom:false},{id:'autoconhecimento',label:'🧠 Autoconhecimento',custom:false},{id:'geopolitica',label:'🌍 Geopolítica',custom:false},{id:'dark',label:'🌑 Mistério / Dark',custom:false}];
 let nichos=[...ND],nichoAtivo=ND[0].id;
 function renderNichos(){
   const w=document.getElementById('nichos-wrap');w.innerHTML='';
@@ -718,14 +757,13 @@ function confirmarNicho(){const v=document.getElementById('n-input').value.trim(
 // ---- canal ref ----
 let refEstilo='';
 async function analisarCanal(){
+  if(!claudeKey){toast('Configure a chave Claude em ⚙️ Config primeiro.','err');return;}
   const canal=document.getElementById('canal-ref').value.trim();
   const tema=document.getElementById('tema').value.trim();
-  if(!canal){alert('Digite o nome do canal.');return;}
+  if(!canal){toast('Digite o nome do canal.','err');return;}
   const btn=document.querySelector('#tab-roteiro .ref-box .btn-xs');btn.textContent='Analisando...';btn.disabled=true;
   try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:600,messages:[{role:'user',content:`Analyze the YouTube channel "${canal}" and respond ONLY in valid JSON (no markdown):\n{"estilo":"2-3 sentences about narrative style, tone, pace, hook patterns in Portuguese","titulos":["title1","title2","title3","title4","title5"]}\nTitles inspired by the channel's patterns but for topic: "${tema||'(tema a definir)'}". In ${document.getElementById('idioma').value}. Compelling, not generic.`}]})});
-    const d=await r.json();
-    const txt=d.content?.find(b=>b.type==='text')?.text||'';
+    const txt=await callClaude(`Analyze the YouTube channel "${canal}" and respond ONLY in valid JSON (no markdown):\n{"estilo":"2-3 sentences about narrative style, tone, pace, hook patterns in Portuguese","titulos":["title1","title2","title3","title4","title5"]}\nTitles inspired by the channel's patterns but for topic: "${tema||'(tema a definir)'}". In ${document.getElementById('idioma').value}. Compelling, not generic.`,700);
     const p=JSON.parse(txt.replace(/```json|```/g,'').trim());
     refEstilo=p.estilo||'';
     document.getElementById('ref-estilo').textContent=refEstilo;
@@ -737,7 +775,7 @@ async function analisarCanal(){
       tl.appendChild(item);
     });
     document.getElementById('ref-suggestions').classList.add('show');
-  }catch(e){alert('Erro: '+e.message);}
+  }catch(e){toast('Erro: '+e.message,'err');}
   finally{btn.textContent='🔍 Analisar estilo + sugerir títulos';btn.disabled=false;}
 }
 function limparRef(){document.getElementById('canal-ref').value='';document.getElementById('ref-suggestions').classList.remove('show');refEstilo='';}
@@ -799,19 +837,18 @@ async function gerarBloco(idx){
     <div class="translated-text" id="tr-${idx}"></div>
     <div class="bloco-footer">
       <button class="btn-voice el" onclick="gerarVozEL(${idx})" ${!elKey?'disabled':''}>🎙 ElevenLabs</button>
-      <button class="btn-voice gtts" onclick="gerarVozGoogle(${idx})" ${!gKey?'disabled':''}>🔊 Google TTS</button>
-      <a class="btn-voice ai33" href="https://ai33.pro" target="_blank">🇧🇷 ai33.pro</a>
-      <button class="btn-imagen-sm" onclick="gerarImagensBloco(${idx})" ${!gKey?'disabled':''}>🎨 Imagen 3</button>
+      <button class="btn-voice ai33" onclick="copiarParaAi33(${idx})">🇧🇷 ai33.pro</button>
+      <button class="btn-voice capcut" onclick="abrirCapCut(${idx})">🎬 CapCut</button>
+      <button class="btn-imagen-sm" onclick="gerarImagensBloco(${idx})" ${!gKey?'disabled':''}>🖼️ Gemini Img</button>
+      <button class="btn-veo3" onclick="gerarPromptsVeo3(${idx})">🎥 Prompts Veo3</button>
     </div>
     <div id="audio-wrap-${idx}" class="audio-player"></div>
-    <div id="imgs-wrap-${idx}" class="images-strip"></div>`;
+    <div id="imgs-wrap-${idx}" class="images-strip"></div>
+    <div id="veo3-panel-${idx}" class="veo3-panel"></div>`;
   area.appendChild(card);
   card.scrollIntoView({behavior:'smooth',block:'start'});
   try{
-    const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:2000,messages:[{role:'user',content:buildPrompt(idx,textosGerados)}]})});
-    const data=await resp.json();
-    if(!resp.ok)throw new Error(data.error?.message||`HTTP ${resp.status}`);
-    const texto=data.content?.find(b=>b.type==='text')?.text||'';
+    const texto=await callClaude(buildPrompt(idx,textosGerados),2000);
     if(!texto)throw new Error('Resposta vazia');
     textosGerados.push(texto);
     card.classList.remove('streaming');
@@ -834,9 +871,8 @@ async function traduzirBloco(idx,lang){
   const el=document.getElementById(`tr-${idx}`);
   el.textContent='Traduzindo...';el.classList.add('show');
   try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:2000,messages:[{role:'user',content:`Translate to ${lang}. Keep tone and naturalness. ONLY the translated text:\n\n${texto}`}]})});
-    const d=await r.json();
-    el.textContent=d.content?.find(b=>b.type==='text')?.text||'';
+    const txt=await callClaude(`Translate to ${lang}. Keep tone and naturalness. ONLY the translated text:\n\n${texto}`,2000);
+    el.textContent=txt||'';
   }catch(e){el.textContent='Erro: '+e.message;}
 }
 
@@ -854,47 +890,114 @@ async function gerarVozEL(idx){
   finally{btn.disabled=false;btn.textContent='🎙 ElevenLabs';}
 }
 
-async function gerarVozGoogle(idx){
-  if(!gKey)return;
-  const texto=textosGerados[idx];if(!texto)return;
-  const btn=event.target;btn.disabled=true;btn.textContent='Gerando...';
-  try{
-    const vm={feminina:'pt-BR-Wavenet-A',masculina:'pt-BR-Wavenet-B',neutra:'pt-BR-Wavenet-C'};
-    const r=await fetch(`https://texttospeech.googleapis.com/v1/text:synthesize?key=${gKey}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({input:{text:texto.slice(0,2500)},voice:{languageCode:'pt-BR',name:vm[generoVal]||'pt-BR-Wavenet-A'},audioConfig:{audioEncoding:'MP3'}})});
-    const d=await r.json();if(!r.ok)throw new Error(d.error?.message||'Erro Google TTS');
-    const wrap=document.getElementById(`audio-wrap-${idx}`);
-    wrap.style.display='block';wrap.innerHTML=`<audio controls src="data:audio/mp3;base64,${d.audioContent}"></audio>`;
-  }catch(e){setStatus('Erro TTS: '+e.message,'err');}
-  finally{btn.disabled=false;btn.textContent='🔊 Google TTS';}
-}
+// Google TTS removido — use ElevenLabs ou ai33.pro
 
 async function gerarImagensBloco(idx){
-  if(!gKey)return;
+  if(!gKey){toast('Configure a chave Google AI em ⚙️ Config.','err');return;}
   const texto=textosGerados[idx];if(!texto)return;
   const btn=event.target;btn.disabled=true;btn.textContent='Gerando...';
   const wrap=document.getElementById(`imgs-wrap-${idx}`);
-  wrap.style.display='flex';wrap.innerHTML='';
-  for(let i=0;i<3;i++){const t=document.createElement('div');t.className='img-thumb';t.innerHTML=`<span class="img-loading">Gerando...</span>`;wrap.appendChild(t);}
+  wrap.style.display='flex';wrap.innerHTML='<div class="img-thumb"><span class="img-loading">Gerando...</span></div>';
   try{
-    const pr=await callClaude(`Based on this script, write ONE cinematic Imagen 3 prompt in English. Ultra-realistic, dramatic lighting, 16:9. Max 2 sentences. ONLY the prompt:\n\n${texto.slice(0,400)}`);
-    const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-001:predict?key=${gKey}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({instances:[{prompt:pr}],parameters:{sampleCount:3,aspectRatio:'16:9',safetyFilterLevel:'block_few'}})});
-    const d=await r.json();if(!r.ok)throw new Error(d.error?.message||'Erro Imagen');
-    wrap.innerHTML='';
-    (d.predictions||[]).forEach((p,i)=>{
-      const src=`data:${p.mimeType||'image/png'};base64,${p.bytesBase64Encoded}`;
-      const t=document.createElement('div');t.className='img-thumb';
-      t.innerHTML=`<img src="${src}"><button class="dl-btn" onclick="dlImg('${src}',${i+1})">⬇</button>`;
-      wrap.appendChild(t);
+    // Gera prompt cinematográfico via Claude
+    const pr=await callClaude(`Based on this script excerpt, write ONE cinematic image generation prompt in English. Ultra-realistic, dramatic lighting, 16:9 aspect ratio, photographic quality. Max 2 sentences. ONLY the prompt text, nothing else:\n\n${texto.slice(0,500)}`);
+    // Usa Gemini 2.0 Flash para gerar imagem (funciona com chave AI Studio)
+    const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-preview-image-generation:generateContent?key=${gKey}`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        contents:[{parts:[{text:pr}]}],
+        generationConfig:{responseModalities:['IMAGE','TEXT']}
+      })
     });
-  }catch(e){wrap.innerHTML=`<span style="color:var(--danger);font-size:.78rem">Erro: ${e.message}</span>`;}
-  finally{btn.disabled=false;btn.textContent='🎨 Imagen 3';}
+    const d=await r.json();
+    if(!r.ok)throw new Error(d.error?.message||'Erro Gemini Image');
+    wrap.innerHTML='';
+    const parts=d.candidates?.[0]?.content?.parts||[];
+    let found=false;
+    parts.forEach((p,i)=>{
+      if(p.inlineData){
+        found=true;
+        const src=`data:${p.inlineData.mimeType};base64,${p.inlineData.data}`;
+        const t=document.createElement('div');t.className='img-thumb';t.style.cssText='width:220px;height:124px;';
+        t.innerHTML=`<img src="${src}" style="width:100%;height:100%;object-fit:cover;"><button class="dl-btn" onclick="dlImg('${src}',${i+1})">⬇</button>`;
+        wrap.appendChild(t);
+      }
+    });
+    if(!found)throw new Error('Nenhuma imagem retornada. Tente novamente.');
+  }catch(e){wrap.innerHTML=`<span style="color:var(--danger);font-size:.78rem;padding:.5rem;">Erro: ${e.message}</span>`;}
+  finally{btn.disabled=false;btn.textContent='🖼️ Gemini Img';}
 }
 function dlImg(src,n){const a=document.createElement('a');a.href=src;a.download=`lsb-img-${n}.png`;a.click();}
 
+function copiarParaAi33(idx){
+  const texto=textosGerados[idx];if(!texto)return;
+  copiarTexto(texto).then(()=>{
+    toast('✓ Texto copiado! Abrindo ai33.pro...');
+    setTimeout(()=>window.open('https://ai33.pro','_blank'),600);
+  });
+}
+
+function abrirCapCut(idx){
+  window.open('https://www.capcut.com','_blank');
+}
+
+async function gerarPromptsVeo3(idx){
+  if(!claudeKey){toast('Configure a chave Claude em ⚙️ Config.','err');return;}
+  const texto=textosGerados[idx];if(!texto)return;
+  const btn=event.target;btn.disabled=true;btn.textContent='Gerando...';
+  const panel=document.getElementById(`veo3-panel-${idx}`);
+  panel.innerHTML='<div style="font-size:.75rem;color:var(--muted);padding:.5rem;">Analisando cenas...</div>';
+  panel.classList.add('show');
+  try{
+    const personagemMestre=temaVal?`Tema: ${temaVal}.`:'';
+    const txt=await callClaude(`You are a Veo3 video director. Analyze this script and:
+1. Create ONE "Master Character/Style Reference" prompt in English that will be used consistently across ALL scenes (describe the main character appearance, art style, lighting style, color palette — be very specific so character stays consistent).
+2. Divide the script into 4-6 cinematic scenes and write a Veo3 prompt for each scene IN ENGLISH. Each scene prompt must reference the master style and character description for consistency.
+
+${personagemMestre}
+
+Script:
+${texto.slice(0,1200)}
+
+Respond ONLY in valid JSON (no markdown):
+{
+  "master": "Master character and style reference prompt (2-3 sentences, very detailed)",
+  "cenas": [
+    {"num":1,"duracao":"5s","prompt":"Full Veo3 prompt for this scene, referencing master style"},
+    {"num":2,"duracao":"5s","prompt":"..."},
+    {"num":3,"duracao":"5s","prompt":"..."},
+    {"num":4,"duracao":"5s","prompt":"..."}
+  ]
+}`,1200);
+    const data=JSON.parse(txt.replace(/```json|```/g,'').trim());
+    let html=`<div style="font-size:.65rem;color:var(--gold);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem;">🎥 Prompts Veo3 — Bloco ${idx+1}</div>`;
+    html+=`<div style="font-size:.65rem;color:var(--muted);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem;">📌 Referência mestre (use em todas as cenas)</div>`;
+    html+=`<div class="veo3-master">${data.master}<br><br><div style="display:flex;gap:.4rem;margin-top:.4rem;"><button class="btn-veo3-copy" onclick="copiarTextoBtn('${escQ(data.master)}',this)">copiar</button><a class="btn-veo3-flow" href="https://labs.google/flow" target="_blank">↗ Abrir Flow</a></div></div>`;
+    html+=`<div style="font-size:.65rem;color:var(--muted);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem;">🎬 Cenas</div>`;
+    html+=`<div class="veo3-cenas">`;
+    (data.cenas||[]).forEach(c=>{
+      const pEsc=escQ(c.prompt);
+      html+=`<div class="veo3-cena">
+        <div class="veo3-cena-num">Cena ${c.num} · ${c.duracao||'5s'}</div>
+        <div class="veo3-cena-txt">${c.prompt}</div>
+        <div class="veo3-cena-actions">
+          <button class="btn-veo3-copy" onclick="copiarTextoBtn('${pEsc}',this)">copiar prompt</button>
+          <a class="btn-veo3-flow" href="https://labs.google/flow" target="_blank">↗ Abrir Flow</a>
+        </div>
+      </div>`;
+    });
+    html+=`</div>`;
+    panel.innerHTML=html;
+  }catch(e){panel.innerHTML=`<span style="color:var(--danger);font-size:.78rem;">Erro: ${e.message}</span>`;}
+  finally{btn.disabled=false;btn.textContent='🎥 Prompts Veo3';}
+}
+
 // ---- TÍTULOS & THUMB ----
 async function gerarTitulosThumb(){
+  if(!claudeKey){toast('Configure a chave Claude em ⚙️ Config primeiro.','err');return;}
   const tema=document.getElementById('tt-tema').value.trim();
-  if(!tema){alert('Descreva o tema do vídeo.');return;}
+  if(!tema){toast('Descreva o tema do vídeo.','err');return;}
   const nicho=document.getElementById('tt-nicho').value.trim()||'YouTube';
   const idioma=document.getElementById('tt-idioma').value;
   const canal=document.getElementById('tt-canal').value.trim();
@@ -939,7 +1042,6 @@ Respond ONLY in valid JSON (no markdown):
 }`;
     const txt=await callClaude(prompt,1200);
     const data=JSON.parse(txt.replace(/```json|```/g,'').trim());
-    // Render títulos
     const tl=document.getElementById('tt-titles-list');tl.innerHTML='';
     (data.titulos||[]).forEach((t,i)=>{
       const tagMap={hook:'tg-hook',emotion:'tg-emo',curiosity:'tg-cur',benefit:'tg-ben',aggressive:'tg-agg'};
@@ -948,7 +1050,6 @@ Respond ONLY in valid JSON (no markdown):
       card.innerHTML=`<div class="tt-rank">OPÇÃO ${i+1}</div><div class="tt-title-text">${t.texto}</div><div class="tt-why">${t.porque}</div><div class="tt-tags">${tags}</div><button class="tt-copy" onclick="event.stopPropagation();copiarTextoBtn('${escQ(t.texto)}',this)">copiar</button>`;
       tl.appendChild(card);
     });
-    // Render thumbs
     const thr=document.getElementById('tt-thumbs-list');thr.innerHTML='';
     (data.thumbnails||[]).forEach((th,i)=>{
       const els=(th.elementos||[]).map(e=>`<div class="thumb-el">${e}</div>`).join('');
@@ -969,29 +1070,42 @@ Respond ONLY in valid JSON (no markdown):
     });
     document.getElementById('tt-results').style.display='block';
     document.getElementById('tt-results').scrollIntoView({behavior:'smooth'});
-  }catch(e){alert('Erro: '+e.message);}
+  }catch(e){toast('Erro: '+e.message,'err');}
   finally{btn.disabled=false;btn.textContent='✦ Gerar Títulos + Thumbnails';}
 }
 
 async function gerarThumbImagem(i,prompt){
-  if(!gKey)return;
+  if(!gKey){toast('Configure a chave Google AI em ⚙️ Config.','err');return;}
   const btn=document.querySelector(`#tt-thumbs-list .thumb-card:nth-child(${i+1}) .btn-gen-img`);
   if(btn){btn.disabled=true;btn.textContent='Gerando...';}
   const preview=document.getElementById(`tp-${i}`);
-  preview.innerHTML=`<span style="color:var(--muted);font-size:.75rem;font-family:'DM Mono',monospace;" class="shimmer">Gerando imagem...</span>`;
+  preview.innerHTML=`<span style="color:var(--muted);font-size:.75rem;font-family:'DM Mono',monospace;">Gerando imagem...</span>`;
   try{
-    const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-001:predict?key=${gKey}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({instances:[{prompt}],parameters:{sampleCount:1,aspectRatio:'16:9',safetyFilterLevel:'block_few'}})});
-    const d=await r.json();if(!r.ok)throw new Error(d.error?.message||'Erro Imagen');
-    const p=d.predictions?.[0];
-    if(p){const src=`data:${p.mimeType||'image/png'};base64,${p.bytesBase64Encoded}`;preview.innerHTML=`<img src="${src}" style="width:100%;height:100%;object-fit:cover;">`;}
+    const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-preview-image-generation:generateContent?key=${gKey}`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        contents:[{parts:[{text:prompt+'. YouTube thumbnail, 16:9, cinematic, dramatic lighting, ultra realistic.'}]}],
+        generationConfig:{responseModalities:['IMAGE','TEXT']}
+      })
+    });
+    const d=await r.json();
+    if(!r.ok)throw new Error(d.error?.message||'Erro Gemini Image');
+    const parts=d.candidates?.[0]?.content?.parts||[];
+    const img=parts.find(p=>p.inlineData);
+    if(img){
+      const src=`data:${img.inlineData.mimeType};base64,${img.inlineData.data}`;
+      preview.innerHTML=`<img src="${src}" style="width:100%;height:100%;object-fit:cover;">`;
+    }else{throw new Error('Nenhuma imagem retornada.');}
   }catch(e){preview.innerHTML=`<span style="color:var(--danger);font-size:.75rem;padding:1rem;">${e.message}</span>`;}
-  finally{if(btn){btn.disabled=false;btn.textContent='🎨 Gerar novamente';}}
+  finally{if(btn){btn.disabled=false;btn.textContent='🖼️ Gerar novamente';}}
 }
 
 // ---- DESCRIÇÃO ----
 async function gerarDescricao(){
+  if(!claudeKey){toast('Configure a chave Claude em ⚙️ Config primeiro.','err');return;}
   const tema=document.getElementById('desc-tema').value.trim();
-  if(!tema){alert('Descreva o tema do vídeo.');return;}
+  if(!tema){toast('Descreva o tema do vídeo.','err');return;}
   const tom=document.getElementById('desc-tom').value;
   const idioma=document.getElementById('desc-idioma').value;
   const links=document.getElementById('desc-links').value.trim();
@@ -1018,15 +1132,16 @@ Respond ONLY in valid JSON (no markdown):
     (data.hashtags||[]).forEach(h=>{const s=document.createElement('span');s.className='hashtag';s.textContent='#'+h.replace('#','');hw.appendChild(s);});
     document.getElementById('desc-result').classList.add('show');
     document.getElementById('desc-result').scrollIntoView({behavior:'smooth'});
-  }catch(e){alert('Erro: '+e.message);}
+  }catch(e){toast('Erro: '+e.message,'err');}
   finally{btn.disabled=false;btn.textContent='✦ Gerar Descrição Completa';}
 }
 
 // ---- COMUNIDADE ----
 let commImgPrompt='';
 async function gerarComunidade(){
+  if(!claudeKey){toast('Configure a chave Claude em ⚙️ Config primeiro.','err');return;}
   const tema=document.getElementById('comm-tema').value.trim();
-  if(!tema){alert('Descreva o tema do próximo vídeo.');return;}
+  if(!tema){toast('Descreva o tema do próximo vídeo.','err');return;}
   const tom=document.getElementById('comm-tom').value;
   const idioma=document.getElementById('comm-idioma').value;
   const canal=document.getElementById('comm-canal').value.trim()||'nosso canal';
@@ -1051,12 +1166,12 @@ Respond ONLY in valid JSON (no markdown):
     document.getElementById('comm-post-convite').textContent=data.post_convite||'';
     document.getElementById('comm-post-pergunta').textContent=data.post_pergunta||'';
     document.getElementById('comm-img-conceito').textContent=data.imagem_conceito||'';
-    document.getElementById('comm-img-prompt').innerHTML=data.imagem_prompt||'';
+    document.getElementById('comm-img-prompt').textContent=data.imagem_prompt||'';
     commImgPrompt=data.imagem_prompt||'';
     document.getElementById('btn-gen-comm-img').disabled=!gKey;
     document.getElementById('comm-result').classList.add('show');
     document.getElementById('comm-result').scrollIntoView({behavior:'smooth'});
-  }catch(e){alert('Erro: '+e.message);}
+  }catch(e){toast('Erro: '+e.message,'err');}
   finally{btn.disabled=false;btn.textContent='✦ Gerar Post + Imagem de Comunidade';}
 }
 
@@ -1065,124 +1180,58 @@ async function gerarImagemComunidade(){
   const btn=document.getElementById('btn-gen-comm-img');
   btn.disabled=true;btn.textContent='Gerando...';
   const preview=document.getElementById('comm-img-preview');
-  preview.style.display='flex';preview.innerHTML=`<span style="color:var(--muted);font-size:.75rem;font-family:'DM Mono',monospace;" class="shimmer">Gerando imagem...</span>`;
+  preview.style.display='flex';preview.innerHTML=`<span style="color:var(--muted);font-size:.75rem;font-family:'DM Mono',monospace;">Gerando imagem...</span>`;
   try{
-    const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-001:predict?key=${gKey}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({instances:[{prompt:commImgPrompt}],parameters:{sampleCount:1,aspectRatio:'1:1',safetyFilterLevel:'block_few'}})});
-    const d=await r.json();if(!r.ok)throw new Error(d.error?.message||'Erro Imagen');
-    const p=d.predictions?.[0];
-    if(p){
-      const src=`data:${p.mimeType||'image/png'};base64,${p.bytesBase64Encoded}`;
+    const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-preview-image-generation:generateContent?key=${gKey}`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        contents:[{parts:[{text:commImgPrompt+'. Square 1:1, cinematic, emotional, high quality.'}]}],
+        generationConfig:{responseModalities:['IMAGE','TEXT']}
+      })
+    });
+    const d=await r.json();
+    if(!r.ok)throw new Error(d.error?.message||'Erro Gemini Image');
+    const parts=d.candidates?.[0]?.content?.parts||[];
+    const img=parts.find(p=>p.inlineData);
+    if(img){
+      const src=`data:${img.inlineData.mimeType};base64,${img.inlineData.data}`;
       preview.innerHTML=`<img src="${src}" style="width:100%;height:100%;object-fit:cover;">`;
-      // add download
       const a=document.createElement('a');a.href=src;a.download='lsb-comunidade.png';
       a.style.cssText='display:block;text-align:center;padding:.5rem;font-size:.75rem;color:var(--gold);cursor:pointer;';
       a.textContent='⬇ Baixar imagem';
       preview.parentElement.appendChild(a);
-    }
+    }else{throw new Error('Nenhuma imagem retornada.');}
   }catch(e){preview.innerHTML=`<span style="color:var(--danger);font-size:.75rem;padding:1rem;">${e.message}</span>`;}
-  finally{btn.disabled=false;btn.textContent='🎨 Gerar novamente';}
+  finally{btn.disabled=false;btn.textContent='🖼️ Gerar novamente';}
 }
 
-// ---- PROJETOS ----
-let _projetos = [];
-let _projetoAberto = null;
-
-function salvarProjeto(){
-  if(!textosGerados.length) return;
-  const titulo = temaVal.slice(0,60) || 'Sem título';
-  const nicho = nichos.find(n=>n.id===nichoAtivo)?.label||'';
-  const projeto = {
-    id: Date.now(),
-    titulo,
-    nicho,
-    idioma: idiomaVal,
-    data: new Date().toLocaleString('pt-BR'),
-    blocos: textosGerados.map((t,i)=>({num:BLOCOS[i].num, nome:BLOCOS[i].nome, texto:t}))
-  };
-  _projetos.unshift(projeto);
-  // Salva no localStorage quando rodar no notebook
-  try{ localStorage.setItem('lsb_projetos', JSON.stringify(_projetos)); }catch{}
-  renderProjetos();
-  setStatus('✓ Projeto salvo em "Meus Projetos"!','ok');
-}
-
-function carregarProjetosLS(){
-  try{
-    const r = localStorage.getItem('lsb_projetos');
-    if(r) _projetos = JSON.parse(r);
-  }catch{}
-}
-
-function renderProjetos(){
-  const lista = document.getElementById('projetos-lista');
-  if(!lista) return;
-  if(!_projetos.length){
-    lista.innerHTML=`<div class="proj-empty">Nenhum projeto salvo ainda.<br><br>Gere um roteiro e ele será salvo aqui automaticamente.</div>`;
-    return;
-  }
-  lista.innerHTML = _projetos.map((p,i)=>`
-    <div class="projeto-card">
-      <div class="projeto-info">
-        <div class="projeto-titulo">${p.titulo}</div>
-        <div class="projeto-meta">
-          <span>${p.nicho}</span>
-          <span>${p.idioma}</span>
-          <span>${p.blocos.length} bloco${p.blocos.length!==1?'s':''}</span>
-          <span>${p.data}</span>
-        </div>
-      </div>
-      <div class="projeto-acoes">
-        <button class="btn-proj" onclick="abrirProjeto(${i})">Abrir</button>
-        <button class="btn-proj del" onclick="excluirProjeto(${i})">✕</button>
-      </div>
-    </div>`).join('');
-}
-
-function abrirProjeto(i){
-  _projetoAberto = _projetos[i];
-  if(!_projetoAberto) return;
-  document.getElementById('modal-titulo').textContent = _projetoAberto.titulo;
-  const body = document.getElementById('modal-body');
-  if(!body) return;
-  body.innerHTML = _projetoAberto.blocos.map(b=>`
-    <div class="modal-bloco">
-      <div class="modal-bloco-label">Bloco ${b.num} — ${b.nome}</div>
-      <div class="modal-bloco-text">${b.texto}</div>
-    </div>`).join('');
-  const modal = document.getElementById('modal-projeto');
-  if(modal) modal.classList.add('show');
-}
-
-function fecharModal(){
-  document.getElementById('modal-projeto').classList.remove('show');
-  _projetoAberto = null;
-}
-
-function copiarProjeto(){
-  if(!_projetoAberto) return;
-  const txt = _projetoAberto.blocos.map(b=>b.texto).join('\n\n');
-  navigator.clipboard.writeText(txt).then(()=>setStatus('✓ Roteiro copiado!','ok'));
-}
-
-function excluirProjeto(i){
-  if(!confirm('Excluir este projeto?')) return;
-  _projetos.splice(i,1);
-  try{ localStorage.setItem('lsb_projetos', JSON.stringify(_projetos)); }catch{}
-  renderProjetos();
-}
-
-function limparProjetos(){
-  if(!confirm('Apagar todos os projetos salvos?')) return;
-  _projetos=[];
-  try{ localStorage.removeItem('lsb_projetos'); }catch{}
-  renderProjetos();
-}
-
+// ====================================================
+// FIX 1: callClaude — sem x-api-key no header (CORS)
+// O header 'anthropic-version' também causa CORS
+// A chave vai no body via proxy não é suportado —
+// mas como é GitHub Pages, a chave deve ir no header
+// com o fetch simples (o CORS da Anthropic permite
+// x-api-key em requests de browser quando a key é válida)
+// ====================================================
 async function callClaude(prompt,maxTokens=1000){
-  const key = claudeKey || '';
-  const headers = {'Content-Type':'application/json'};
-  if(key) headers['x-api-key'] = key;
-  const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers,body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:maxTokens,messages:[{role:'user',content:prompt}]})});
+  if(!claudeKey){
+    throw new Error('Chave Claude não configurada. Vá em ⚙️ Config e conecte sua chave.');
+  }
+  const r=await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json',
+      'x-api-key': claudeKey,
+      'anthropic-version': '2023-06-01',
+      'anthropic-dangerous-direct-browser-access': 'true'
+    },
+    body:JSON.stringify({
+      model:'claude-sonnet-4-6',
+      max_tokens:maxTokens,
+      messages:[{role:'user',content:prompt}]
+    })
+  });
   const d=await r.json();
   if(!r.ok)throw new Error(d.error?.message||`HTTP ${r.status}`);
   return d.content?.find(b=>b.type==='text')?.text||'';
@@ -1190,17 +1239,39 @@ async function callClaude(prompt,maxTokens=1000){
 
 function escQ(s){return(s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;').replace(/\n/g,' ');}
 
-function copiarEl(id){
+// ====================================================
+// FIX 2: copiarEl com fallback para navegadores sem permissão
+// ====================================================
+async function copiarEl(id){
   const el=document.getElementById(id);
-  const txt=el.textContent||el.innerText||'';
-  navigator.clipboard.writeText(txt).then(()=>setStatus('✓ Copiado!','ok'));
+  if(!el)return;
+  const txt=(el.textContent||el.innerText||'').trim();
+  await copiarTexto(txt);
 }
+
+async function copiarTexto(txt){
+  try{
+    await navigator.clipboard.writeText(txt);
+    toast('✓ Copiado!');
+  }catch{
+    // fallback para Safari / iframe restrito
+    const ta=document.createElement('textarea');
+    ta.value=txt;
+    ta.style.cssText='position:fixed;opacity:0;top:0;left:0;';
+    document.body.appendChild(ta);
+    ta.focus();ta.select();
+    try{document.execCommand('copy');toast('✓ Copiado!');}
+    catch{toast('Não foi possível copiar.','err');}
+    document.body.removeChild(ta);
+  }
+}
+
 function copiarHashtags(){
   const tags=[...document.querySelectorAll('#desc-hashtags .hashtag')].map(t=>t.textContent).join(' ');
-  navigator.clipboard.writeText(tags).then(()=>setStatus('✓ Hashtags copiadas!','ok'));
+  copiarTexto(tags);
 }
 function copiarTextoBtn(txt,btn){
-  navigator.clipboard.writeText(txt).then(()=>{const o=btn.textContent;btn.textContent='✓';setTimeout(()=>btn.textContent=o,1500);});
+  copiarTexto(txt).then(()=>{const o=btn.textContent;btn.textContent='✓';setTimeout(()=>btn.textContent=o,1500);});
 }
 
 async function typeText(el,text,ms){
@@ -1210,6 +1281,7 @@ async function typeText(el,text,ms){
 }
 
 function iniciarRoteiro(){
+  if(!claudeKey){toast('Configure a chave Claude em ⚙️ Config primeiro.','err');setTab('config');return;}
   temaVal=document.getElementById('tema').value.trim();
   if(!temaVal){setStatus('Descreva o tema.','err');return;}
   faixaVal=document.getElementById('faixa').value;
@@ -1231,7 +1303,6 @@ function updateProg(done){
   document.getElementById('prog-frac').textContent=done+' / 8';
   const c=BLOCOS[Math.min(done,7)];
   document.getElementById('prog-txt').textContent=done<8?`Bloco ${c.num} — ${c.nome}`:'Roteiro completo ✓';
-  if(done>=8)document.getElementById('prog-txt').classList.remove('shimmer');
 }
 function mostrarConcluido(){
   salvarProjeto();
@@ -1240,14 +1311,139 @@ function mostrarConcluido(){
   document.getElementById('done-area').scrollIntoView({behavior:'smooth'});
   setStatus('','');
 }
-function copiarBloco(i){navigator.clipboard.writeText(textosGerados[i]||'').then(()=>{const b=document.getElementById(`cb-${i}`);b.textContent='✓';setTimeout(()=>b.textContent='copiar',1800);});}
-function copiarTudo(){navigator.clipboard.writeText(textosGerados.join('\n\n')).then(()=>setStatus('✓ Roteiro puro copiado!','ok'));}
+function copiarBloco(i){
+  copiarTexto(textosGerados[i]||'').then(()=>{
+    const b=document.getElementById(`cb-${i}`);
+    if(b){b.textContent='✓';setTimeout(()=>b.textContent='copiar',1800);}
+  });
+}
+
+// ====================================================
+// FIX 2: copiarTudo — também usa copiarTexto com fallback
+// ====================================================
+function copiarTudo(){
+  if(!textosGerados.length){toast('Nenhum roteiro gerado ainda.','err');return;}
+  const txt=textosGerados.join('\n\n---\n\n');
+  copiarTexto(txt).then(()=>toast('✓ Roteiro completo copiado!'));
+}
+
 function resetarRoteiro(){blocoAtual=0;textosGerados=[];document.getElementById('blocos-area').innerHTML='';document.getElementById('next-wrap').style.display='none';document.getElementById('done-area').innerHTML='';document.getElementById('actions-bar').style.display='none';document.getElementById('prog-wrap').classList.remove('show');document.getElementById('prog-fill').style.width='0%';document.getElementById('btn-gerar').disabled=false;document.getElementById('btn-gerar').textContent='✦ Gerar Bloco 1 — Gancho';setStatus('','');}
 function setStatus(m,t){
   const el=document.getElementById('status');
-  if(!el) return;
+  if(!el)return;
   el.textContent=m;el.className='status-bar'+(t?' '+t:'');
 }
+
+// ====================================================
+// FIX 3: Projetos — salvar, carregar, abrir modal
+// ====================================================
+let _projetos=[];
+let _projetoAberto=null;
+
+function salvarProjeto(){
+  if(!textosGerados.length)return;
+  const titulo=temaVal.slice(0,60)||'Sem título';
+  const nicho=nichos.find(n=>n.id===nichoAtivo)?.label||'';
+  const id=Date.now();
+  const projeto={
+    id,
+    titulo,
+    nicho,
+    idioma:idiomaVal,
+    data:new Date().toLocaleString('pt-BR'),
+    blocos:textosGerados.map((t,i)=>({num:BLOCOS[i].num,nome:BLOCOS[i].nome,texto:t}))
+  };
+  _projetos.unshift(projeto);
+  try{localStorage.setItem('lsb_projetos',JSON.stringify(_projetos));}catch{}
+  renderProjetos();
+  toast('✓ Projeto salvo em "Meus Projetos"!');
+}
+
+function carregarProjetosLS(){
+  try{
+    const r=localStorage.getItem('lsb_projetos');
+    if(r)_projetos=JSON.parse(r);
+  }catch{}
+}
+
+function renderProjetos(){
+  const lista=document.getElementById('projetos-lista');
+  if(!lista)return;
+  if(!_projetos.length){
+    lista.innerHTML=`<div class="proj-empty">Nenhum projeto salvo ainda.<br><br>Gere um roteiro e ele será salvo aqui automaticamente.</div>`;
+    return;
+  }
+  lista.innerHTML=_projetos.map((p,i)=>`
+    <div class="projeto-card">
+      <div class="projeto-info">
+        <div class="projeto-titulo">${p.titulo}</div>
+        <div class="projeto-meta">
+          <span>${p.nicho||'—'}</span>
+          <span>${p.idioma||'—'}</span>
+          <span>${p.blocos.length} bloco${p.blocos.length!==1?'s':''}</span>
+          <span>${p.data}</span>
+        </div>
+      </div>
+      <div class="projeto-acoes">
+        <button class="btn-proj" onclick="abrirProjeto(${i})">📂 Abrir</button>
+        <button class="btn-proj del" onclick="excluirProjeto(${i})">✕</button>
+      </div>
+    </div>`).join('');
+}
+
+// FIX 3: abrirProjeto agora renderiza o modal corretamente
+function abrirProjeto(i){
+  const p=_projetos[i];
+  if(!p)return;
+  _projetoAberto=p;
+  document.getElementById('modal-titulo').textContent=p.titulo;
+  const body=document.getElementById('modal-body');
+  body.innerHTML=p.blocos.map(b=>`
+    <div class="modal-bloco">
+      <div class="modal-bloco-label">Bloco ${b.num} — ${b.nome}</div>
+      <div class="modal-bloco-text">${b.texto.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
+    </div>`).join('');
+  document.getElementById('modal-projeto').classList.add('show');
+}
+
+function fecharModal(){
+  document.getElementById('modal-projeto').classList.remove('show');
+  _projetoAberto=null;
+}
+
+function copiarProjeto(){
+  if(!_projetoAberto)return;
+  const txt=_projetoAberto.blocos.map(b=>b.texto).join('\n\n---\n\n');
+  copiarTexto(txt).then(()=>toast('✓ Roteiro copiado!'));
+}
+
+function usarProjeto(){
+  if(!_projetoAberto)return;
+  // preenche o campo de tema com o título do projeto
+  document.getElementById('tema').value=_projetoAberto.titulo;
+  fecharModal();
+  setTab('roteiro');
+  toast('✓ Tema carregado. Configure e gere um novo roteiro!');
+}
+
+function excluirProjeto(i){
+  if(!confirm('Excluir este projeto?'))return;
+  _projetos.splice(i,1);
+  try{localStorage.setItem('lsb_projetos',JSON.stringify(_projetos));}catch{}
+  renderProjetos();
+}
+
+function limparProjetos(){
+  if(!confirm('Apagar todos os projetos salvos?'))return;
+  _projetos=[];
+  try{localStorage.removeItem('lsb_projetos');}catch{}
+  renderProjetos();
+}
+
+// Fechar modal clicando fora
+document.getElementById('modal-projeto').addEventListener('click',function(e){
+  if(e.target===this)fecharModal();
+});
 </script>
 </body>
 </html>
