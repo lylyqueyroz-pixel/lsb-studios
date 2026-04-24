@@ -11,7 +11,6 @@
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
 .screen{display:none;}.screen.active{display:block;}
 
-/* LOGIN */
 .splash{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;}
 .brand-mono{width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,#c9a84c,#7c5ca0);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:1rem;}
 .brand-name-lg{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold2);letter-spacing:.05em;margin-bottom:.3rem;}
@@ -29,7 +28,6 @@ select option{background:var(--surface2);}
 .login-link{font-size:.78rem;color:var(--muted);text-align:center;margin-top:1.25rem;}
 .login-link span{color:var(--gold);cursor:pointer;}
 
-/* ADMIN */
 .admin-wrap{max-width:900px;margin:0 auto;padding:2rem 1.5rem 5rem;}
 .admin-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
 .admin-title{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold2);}
@@ -62,7 +60,6 @@ tr:hover td{background:var(--surface2);}
 .stat-num{font-family:'Playfair Display',serif;font-size:1.75rem;color:var(--gold2);line-height:1;}
 .stat-lbl{font-size:.68rem;color:var(--muted);margin-top:.3rem;font-family:'DM Mono',monospace;text-transform:uppercase;}
 
-/* STUDIO SHELL */
 .studio-shell{display:flex;flex-direction:column;min-height:100vh;}
 .studio-topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:.8rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
 .topbar-brand{display:flex;align-items:center;gap:.65rem;}
@@ -74,7 +71,6 @@ tr:hover td{background:var(--surface2);}
 .btn-sm-ghost{background:none;border:1px solid var(--border);color:var(--muted);padding:.3rem .75rem;border-radius:.35rem;cursor:pointer;font-size:.75rem;font-family:'DM Sans',sans-serif;transition:all .15s;}
 .btn-sm-ghost:hover{border-color:var(--danger);color:var(--danger);}
 
-/* TABS */
 .studio-tabs{display:flex;border-bottom:1px solid var(--border);background:var(--surface);padding:0 1.5rem;overflow-x:auto;}
 .tab{padding:.75rem 1.1rem;font-size:.84rem;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;display:flex;align-items:center;gap:.4rem;}
 .tab:hover{color:var(--text);}
@@ -82,7 +78,6 @@ tr:hover td{background:var(--surface2);}
 .tab-content{display:none;padding:2rem 1.5rem 5rem;max-width:920px;margin:0 auto;width:100%;}
 .tab-content.active{display:block;}
 
-/* SHARED FORM ELEMENTS */
 .section-label{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.7rem;font-family:'DM Mono',monospace;}
 .nichos-wrap{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1.25rem;}
 .n-chip{background:var(--surface);border:1px solid var(--border);color:var(--text);padding:.42rem .9rem;border-radius:100px;cursor:pointer;font-size:.82rem;transition:all .18s;user-select:none;display:flex;align-items:center;gap:.35rem;}
@@ -108,7 +103,13 @@ tr:hover td{background:var(--surface2);}
 .use-lbl{font-size:.65rem;color:var(--gold);opacity:0;transition:opacity .15s;font-family:'DM Mono',monospace;white-space:nowrap;}
 .title-item:hover .use-lbl{opacity:1;}
 
-/* INTEGRAÇÕES */
+/* prompt mestre */
+.master-box{background:linear-gradient(135deg,rgba(201,168,76,.08),rgba(108,79,194,.06));border:1px solid rgba(201,168,76,.35);border-radius:.75rem;padding:1.1rem;margin-bottom:1.25rem;}
+.master-box-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem;}
+.master-box-title{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-family:'DM Mono',monospace;}
+.master-text{font-size:.82rem;color:var(--text);line-height:1.7;font-family:'DM Mono',monospace;white-space:pre-wrap;}
+.master-actions{display:flex;gap:.5rem;margin-top:.75rem;flex-wrap:wrap;}
+
 .integrations-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;}
 @media(max-width:640px){.integrations-grid{grid-template-columns:1fr;}}
 .api-card{background:var(--surface);border:1px solid var(--border);border-radius:.85rem;padding:1.1rem;}
@@ -130,7 +131,6 @@ tr:hover td{background:var(--surface2);}
 .ext-btn{display:inline-flex;align-items:center;gap:.4rem;background:var(--surface);border:1px solid var(--border);color:var(--muted);padding:.42rem .9rem;border-radius:100px;cursor:pointer;font-size:.78rem;font-family:'DM Sans',sans-serif;text-decoration:none;transition:all .2s;}
 .ext-btn:hover{border-color:var(--gold);color:var(--gold);}
 
-/* BOTÕES PRINCIPAIS */
 .btn-gerar{width:100%;border:none;padding:1rem;border-radius:.65rem;font-size:1rem;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:1rem;}
 .btn-gerar.gold{background:linear-gradient(135deg,var(--gold),#a07030);color:#0a0807;}
 .btn-gerar.purple{background:linear-gradient(135deg,#9b6cd4,#6c4fc2);color:#fff;}
@@ -148,7 +148,6 @@ tr:hover td{background:var(--surface2);}
 .status-bar{text-align:center;padding:.8rem;font-size:.8rem;color:var(--muted);font-family:'DM Mono',monospace;}
 .status-bar.err{color:var(--danger);}.status-bar.ok{color:var(--success);}
 
-/* BLOCOS */
 .blocos-area{display:flex;flex-direction:column;gap:1.1rem;margin-top:1.5rem;}
 .bloco-card{background:var(--surface);border:1px solid var(--border);border-radius:.9rem;overflow:hidden;animation:fadeUp .3s ease both;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
@@ -170,31 +169,19 @@ tr:hover td{background:var(--surface2);}
 .bloco-footer{border-top:1px solid var(--border);padding:.85rem 1.2rem;display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;background:var(--surface2);}
 .btn-voice{display:inline-flex;align-items:center;gap:.4rem;padding:.38rem .88rem;border-radius:.4rem;font-size:.75rem;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;border:none;transition:all .2s;text-decoration:none;}
 .btn-voice.el{background:rgba(124,92,212,.2);color:#b090f0;border:1px solid rgba(124,92,212,.35);}
-.btn-voice.gtts{background:rgba(66,133,244,.15);color:#7ab4ff;border:1px solid rgba(66,133,244,.3);}
 .btn-voice.ai33{background:rgba(52,168,83,.1);color:#68d48a;border:1px solid rgba(52,168,83,.25);}
+.btn-voice.capcut{background:rgba(0,200,100,.1);color:#40e080;border:1px solid rgba(0,200,100,.25);}
 .btn-voice:disabled{opacity:.35;cursor:not-allowed;}
 .btn-imagen-sm{display:inline-flex;align-items:center;gap:.4rem;padding:.38rem .88rem;border-radius:.4rem;font-size:.75rem;font-weight:600;cursor:pointer;background:rgba(201,168,76,.1);color:var(--gold);border:1px solid rgba(201,168,76,.25);font-family:'DM Sans',sans-serif;transition:all .2s;}
 .btn-imagen-sm:disabled{opacity:.35;cursor:not-allowed;}
-.btn-voice.capcut{background:rgba(0,200,100,.1);color:#40e080;border:1px solid rgba(0,200,100,.25);}
 .btn-veo3{display:inline-flex;align-items:center;gap:.4rem;padding:.38rem .88rem;border-radius:.4rem;font-size:.75rem;font-weight:600;cursor:pointer;background:rgba(66,133,244,.12);color:#7ab4ff;border:1px solid rgba(66,133,244,.25);font-family:'DM Sans',sans-serif;transition:all .2s;}
 .btn-veo3:disabled{opacity:.35;cursor:not-allowed;}
-.veo3-panel{display:none;padding:1rem 1.4rem;border-top:1px solid var(--border);background:rgba(66,133,244,.04);}
-.veo3-panel.show{display:block;}
-.veo3-master{background:var(--surface2);border:1px solid rgba(201,168,76,.3);border-radius:.5rem;padding:.85rem;margin-bottom:.85rem;font-size:.8rem;line-height:1.7;color:var(--gold2);}
-.veo3-cenas{display:flex;flex-direction:column;gap:.6rem;}
-.veo3-cena{background:var(--surface2);border:1px solid var(--border);border-radius:.45rem;padding:.75rem;}
-.veo3-cena-num{font-size:.62rem;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:.3rem;letter-spacing:.1em;text-transform:uppercase;}
-.veo3-cena-txt{font-size:.8rem;color:#a0c4ff;line-height:1.6;font-family:'DM Mono',monospace;margin-bottom:.4rem;white-space:pre-wrap;}
-.veo3-cena-actions{display:flex;gap:.4rem;}
-.btn-veo3-copy{background:none;border:1px solid var(--border);color:var(--muted);padding:.2rem .55rem;border-radius:4px;font-size:.63rem;cursor:pointer;font-family:'DM Mono',monospace;transition:all .15s;}
-.btn-veo3-copy:hover{color:var(--gold);border-color:var(--gold);}
-.btn-veo3-flow{background:rgba(66,133,244,.1);border:1px solid rgba(66,133,244,.25);color:#7ab4ff;padding:.2rem .55rem;border-radius:4px;font-size:.63rem;cursor:pointer;font-family:'DM Mono',monospace;text-decoration:none;display:inline-flex;align-items:center;gap:.25rem;}
 .audio-player{display:none;padding:.5rem 1.2rem .75rem;}
 audio{width:100%;height:32px;}
 .images-strip{display:none;gap:.6rem;flex-wrap:wrap;padding:.6rem 1.2rem 1rem;}
-.img-thumb{width:150px;height:85px;border-radius:.4rem;overflow:hidden;border:1px solid var(--border);position:relative;background:var(--surface2);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.img-thumb{width:220px;height:124px;border-radius:.4rem;overflow:hidden;border:1px solid var(--border);position:relative;background:var(--surface2);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .img-thumb img{width:100%;height:100%;object-fit:cover;}
-.img-loading{font-size:.68rem;color:var(--muted);font-family:'DM Mono',monospace;animation:shim 1.2s ease-in-out infinite;}
+.img-loading{font-size:.68rem;color:var(--muted);font-family:'DM Mono',monospace;}
 .dl-btn{position:absolute;bottom:.3rem;right:.3rem;background:rgba(0,0,0,.7);border:none;color:#fff;padding:.15rem .45rem;border-radius:3px;font-size:.62rem;cursor:pointer;opacity:0;transition:opacity .15s;}
 .img-thumb:hover .dl-btn{opacity:1;}
 .next-wrap{text-align:center;padding:1.4rem 0 .5rem;}
@@ -205,7 +192,24 @@ audio{width:100%;height:32px;}
 .done-banner p{font-size:.83rem;color:var(--muted);margin-bottom:1rem;}
 .actions-bar{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border);}
 
-/* ===== ABA TÍTULOS & THUMB ===== */
+/* Veo3 panel */
+.veo3-panel{display:none;padding:1rem 1.4rem;border-top:1px solid var(--border);background:rgba(66,133,244,.03);}
+.veo3-panel.show{display:block;}
+.veo3-section-title{font-size:.62rem;color:var(--muted);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem;}
+.veo3-master-prompt{background:var(--surface2);border:1px solid rgba(201,168,76,.3);border-radius:.5rem;padding:.85rem;margin-bottom:.85rem;}
+.veo3-master-en{font-size:.78rem;color:var(--gold2);font-family:'DM Mono',monospace;line-height:1.6;margin-bottom:.35rem;}
+.veo3-master-pt{font-size:.75rem;color:var(--muted);line-height:1.55;font-style:italic;margin-bottom:.5rem;}
+.veo3-cenas{display:flex;flex-direction:column;gap:.55rem;}
+.veo3-cena{background:var(--surface2);border:1px solid var(--border);border-radius:.45rem;padding:.75rem;}
+.veo3-cena-num{font-size:.6rem;color:var(--gold);font-family:'DM Mono',monospace;margin-bottom:.25rem;letter-spacing:.1em;text-transform:uppercase;}
+.veo3-cena-en{font-size:.78rem;color:#a0c4ff;line-height:1.6;font-family:'DM Mono',monospace;margin-bottom:.25rem;}
+.veo3-cena-pt{font-size:.73rem;color:var(--muted);line-height:1.5;font-style:italic;margin-bottom:.4rem;}
+.veo3-cena-actions{display:flex;gap:.4rem;flex-wrap:wrap;}
+.btn-veo3-copy{background:none;border:1px solid var(--border);color:var(--muted);padding:.2rem .55rem;border-radius:4px;font-size:.63rem;cursor:pointer;font-family:'DM Mono',monospace;transition:all .15s;}
+.btn-veo3-copy:hover{color:var(--gold);border-color:var(--gold);}
+.btn-veo3-flow{background:rgba(66,133,244,.1);border:1px solid rgba(66,133,244,.25);color:#7ab4ff;padding:.2rem .55rem;border-radius:4px;font-size:.63rem;font-family:'DM Mono',monospace;text-decoration:none;display:inline-flex;align-items:center;gap:.25rem;}
+
+/* Títulos & Thumb */
 .tt-card{background:var(--surface);border:1px solid var(--border);border-radius:.85rem;padding:1.1rem 1.25rem;margin-bottom:.65rem;position:relative;cursor:pointer;transition:all .2s;}
 .tt-card:hover{border-color:var(--gold);transform:translateY(-1px);}
 .tt-card.selected{border-color:var(--gold);background:linear-gradient(135deg,rgba(201,168,76,.06),rgba(108,79,194,.04));}
@@ -221,7 +225,6 @@ audio{width:100%;height:32px;}
 .tg-agg{background:rgba(232,100,60,.1);color:#e87050;border:1px solid rgba(232,100,60,.2);}
 .tt-copy{position:absolute;top:.75rem;right:.75rem;background:none;border:1px solid var(--border);color:var(--muted);padding:.18rem .5rem;border-radius:4px;font-size:.63rem;cursor:pointer;font-family:'DM Mono',monospace;transition:all .15s;}
 .tt-copy:hover{color:var(--gold);border-color:var(--gold);}
-
 .thumb-card{background:var(--surface);border:1px solid var(--border);border-radius:.85rem;overflow:hidden;margin-bottom:1rem;}
 .thumb-preview{aspect-ratio:16/9;background:var(--surface2);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
 .thumb-preview img{width:100%;height:100%;object-fit:cover;}
@@ -240,7 +243,7 @@ audio{width:100%;height:32px;}
 .btn-gen-img:hover{background:rgba(66,133,244,.22);}
 .btn-gen-img:disabled{opacity:.35;cursor:not-allowed;}
 
-/* ===== ABA DESCRIÇÃO ===== */
+/* Descrição */
 .desc-result{background:var(--surface);border:1px solid var(--border);border-radius:.85rem;overflow:hidden;margin-top:1.5rem;display:none;animation:fadeUp .4s ease;}
 .desc-result.show{display:block;}
 .desc-section{border-bottom:1px solid var(--border);}
@@ -251,7 +254,7 @@ audio{width:100%;height:32px;}
 .hashtag-wrap{display:flex;flex-wrap:wrap;gap:.4rem;padding:.75rem 1.2rem 1rem;}
 .hashtag{background:var(--surface2);border:1px solid var(--border);color:#7ab4ff;padding:.25rem .7rem;border-radius:100px;font-size:.78rem;font-family:'DM Mono',monospace;}
 
-/* ===== ABA COMUNIDADE ===== */
+/* Comunidade */
 .comm-result{margin-top:1.5rem;display:none;animation:fadeUp .4s ease;}
 .comm-result.show{display:block;}
 .comm-post-card{background:var(--surface);border:1px solid var(--border);border-radius:.85rem;overflow:hidden;margin-bottom:1rem;}
@@ -259,11 +262,9 @@ audio{width:100%;height:32px;}
 .comm-post-label{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-family:'DM Mono',monospace;display:flex;align-items:center;gap:.5rem;}
 .comm-post-body{padding:1.2rem;font-size:.9rem;line-height:1.85;color:var(--text);white-space:pre-wrap;}
 .comm-img-card{background:var(--surface);border:1px solid var(--border);border-radius:.85rem;overflow:hidden;margin-bottom:1rem;}
-.comm-img-preview{aspect-ratio:1/1;background:var(--surface2);display:flex;align-items:center;justify-content:center;overflow:hidden;max-width:400px;margin:0 auto;}
-.comm-img-preview img{width:100%;height:100%;object-fit:cover;}
 .comm-img-info{padding:1rem 1.2rem;}
 
-/* ===== PROJETOS ===== */
+/* Projetos */
 .projeto-card{background:var(--surface);border:1px solid var(--border);border-radius:.85rem;padding:1.1rem 1.25rem;margin-bottom:.75rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;transition:border-color .2s;}
 .projeto-card:hover{border-color:var(--gold);}
 .projeto-info{flex:1;min-width:0;}
@@ -275,28 +276,40 @@ audio{width:100%;height:32px;}
 .btn-proj.del:hover{border-color:var(--danger);color:var(--danger);}
 .proj-empty{text-align:center;color:var(--muted);font-size:.85rem;padding:3rem;font-family:'DM Mono',monospace;border:1px dashed var(--border);border-radius:.85rem;}
 
-/* Modal projeto */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;align-items:center;justify-content:center;padding:1rem;}
+/* Modal projeto v2 — com abas internas */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:200;align-items:flex-start;justify-content:center;padding:1rem;overflow-y:auto;}
 .modal-overlay.show{display:flex;}
-.modal-box{background:var(--surface);border:1px solid var(--border);border-radius:1rem;width:100%;max-width:700px;max-height:85vh;display:flex;flex-direction:column;overflow:hidden;}
+.modal-box{background:var(--surface);border:1px solid var(--border);border-radius:1rem;width:100%;max-width:780px;margin:auto;display:flex;flex-direction:column;overflow:hidden;}
 .modal-head{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;background:var(--surface2);border-bottom:1px solid var(--border);}
-.modal-head h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gold2);}
-.modal-close{background:none;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer;padding:0;}
-.modal-body{overflow-y:auto;padding:1.25rem;flex:1;}
+.modal-head h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gold2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:80%;}
+.modal-close{background:none;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer;padding:0;flex-shrink:0;}
+.modal-tabs{display:flex;border-bottom:1px solid var(--border);background:var(--surface2);overflow-x:auto;}
+.modal-tab{padding:.6rem 1rem;font-size:.78rem;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s;}
+.modal-tab:hover{color:var(--text);}
+.modal-tab.active{color:var(--gold2);border-bottom-color:var(--gold);}
+.modal-tab-content{display:none;padding:1.25rem;max-height:65vh;overflow-y:auto;}
+.modal-tab-content.active{display:block;}
 .modal-bloco{margin-bottom:1.25rem;}
-.modal-bloco-label{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-family:'DM Mono',monospace;margin-bottom:.4rem;}
+.modal-bloco-label{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-family:'DM Mono',monospace;margin-bottom:.4rem;display:flex;align-items:center;justify-content:space-between;}
 .modal-bloco-text{font-size:.88rem;line-height:1.85;color:var(--text);white-space:pre-wrap;background:var(--surface2);border-radius:.4rem;padding:.85rem;}
-.modal-foot{padding:.85rem 1.25rem;border-top:1px solid var(--border);display:flex;gap:.6rem;flex-wrap:wrap;}
+.modal-foot{padding:.85rem 1.25rem;border-top:1px solid var(--border);display:flex;gap:.6rem;flex-wrap:wrap;background:var(--surface2);}
+.modal-sec-label{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:.6rem;margin-top:1rem;}
+.modal-sec-label:first-child{margin-top:0;}
+.modal-text-block{font-size:.88rem;line-height:1.8;color:var(--text);white-space:pre-wrap;background:var(--surface2);border-radius:.4rem;padding:.85rem;margin-bottom:.6rem;}
+.modal-hashtags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.75rem;}
+.modal-tag{background:var(--surface);border:1px solid var(--border);color:#7ab4ff;padding:.2rem .6rem;border-radius:100px;font-size:.75rem;font-family:'DM Mono',monospace;}
+.modal-tt-item{background:var(--surface2);border:1px solid var(--border);border-radius:.4rem;padding:.65rem .85rem;margin-bottom:.5rem;font-size:.88rem;font-weight:600;color:var(--text);}
+.regen-bar{background:rgba(108,79,194,.08);border:1px solid rgba(108,79,194,.2);border-radius:.5rem;padding:.75rem 1rem;margin-bottom:1rem;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;}
+.regen-bar span{font-size:.75rem;color:var(--muted);}
 
-/* Toast feedback */
-.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(20px);background:var(--surface);border:1px solid var(--success);color:var(--success);padding:.6rem 1.4rem;border-radius:100px;font-size:.82rem;font-family:'DM Mono',monospace;z-index:999;opacity:0;transition:all .25s;pointer-events:none;}
+/* Toast */
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(20px);background:var(--surface);border:1px solid var(--success);color:var(--success);padding:.6rem 1.4rem;border-radius:100px;font-size:.82rem;font-family:'DM Mono',monospace;z-index:999;opacity:0;transition:all .25s;pointer-events:none;white-space:nowrap;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 .toast.err{border-color:var(--danger);color:var(--danger);}
 </style>
 </head>
 <body>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <!-- LOGIN -->
@@ -368,20 +381,35 @@ audio{width:100%;height:32px;}
       </div>
     </div>
 
-    <!-- TABS -->
     <div class="studio-tabs">
       <div class="tab active" onclick="setTab('roteiro')" id="tab-btn-roteiro">🎬 Roteiro</div>
       <div class="tab" onclick="setTab('titulos')" id="tab-btn-titulos">🎯 Títulos & Thumb</div>
       <div class="tab" onclick="setTab('descricao')" id="tab-btn-descricao">📝 Descrição</div>
       <div class="tab" onclick="setTab('comunidade')" id="tab-btn-comunidade">👥 Comunidade</div>
-      <div class="tab" onclick="setTab('projetos')" id="tab-btn-projetos">📁 Meus Projetos</div>
+      <div class="tab" onclick="setTab('projetos')" id="tab-btn-projetos">📁 Projetos</div>
       <div class="tab" onclick="setTab('config')" id="tab-btn-config">⚙️ Config</div>
     </div>
 
-    <!-- ===== TAB ROTEIRO ===== -->
+    <!-- TAB ROTEIRO -->
     <div class="tab-content active" id="tab-roteiro">
       <div class="section-label">Nicho do canal</div>
       <div class="nichos-wrap" id="nichos-wrap"></div>
+
+      <!-- Prompt mestre do personagem -->
+      <div id="master-box" style="display:none;" class="master-box">
+        <div class="master-box-head">
+          <span class="master-box-title">🎭 Prompt Mestre — Personagem & Estilo Visual</span>
+          <button class="btn-copy" onclick="copiarTexto(masterPrompt)">copiar EN</button>
+        </div>
+        <div class="master-text" id="master-text-en" style="color:var(--gold2);margin-bottom:.5rem;"></div>
+        <div style="font-size:.68rem;color:var(--muted);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem;">Descrição em português</div>
+        <div class="master-text" id="master-text-pt" style="color:var(--muted);font-size:.78rem;"></div>
+        <div class="master-actions">
+          <button class="btn-sec" onclick="regenerarMestre()">↺ Regenerar mestre</button>
+          <button class="btn-sec" style="color:var(--gold);border-color:rgba(201,168,76,.4);" onclick="gerarPromptsBloco()">🎥 Gerar todos os prompts Veo3</button>
+        </div>
+      </div>
+
       <div class="card">
         <div class="card-title">Configurações do roteiro</div>
         <div class="field"><label>Tema do vídeo</label><textarea id="tema" rows="3" placeholder="Ex: Como parar de viver para agradar os outros e começar a viver de verdade..."></textarea></div>
@@ -424,12 +452,14 @@ audio{width:100%;height:32px;}
       <div id="done-area"></div>
       <div class="actions-bar" id="actions-bar" style="display:none">
         <button class="btn-sec" onclick="copiarTudo()">📋 Copiar roteiro completo</button>
+        <button class="btn-sec" onclick="copiarRoteirLimpo()">🎙 Roteiro limpo (áudio)</button>
+        <button class="btn-sec" onclick="gerarMestrePersonagem()">🎭 Gerar prompt mestre</button>
         <button class="btn-sec" onclick="resetarRoteiro()">↺ Novo roteiro</button>
       </div>
       <div class="status-bar" id="status"></div>
     </div>
 
-    <!-- ===== TAB TÍTULOS & THUMB ===== -->
+    <!-- TAB TÍTULOS & THUMB -->
     <div class="tab-content" id="tab-titulos">
       <div class="card">
         <div class="card-title">Gerar Títulos & Thumbnails</div>
@@ -443,8 +473,7 @@ audio{width:100%;height:32px;}
         <div class="field" style="margin-top:1rem"><label>Canal de referência (opcional)</label><input type="text" id="tt-canal" placeholder="Ex: @Motiversity, Psych2Go..."></div>
         <button class="btn-gerar purple" id="btn-tt-gerar" onclick="gerarTitulosThumb()">✦ Gerar Títulos + Thumbnails</button>
       </div>
-
-      <div id="tt-results" style="display:none;animation:fadeUp .4s ease;">
+      <div id="tt-results" style="display:none;">
         <div style="font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'DM Mono',monospace;margin-bottom:1rem;display:flex;align-items:center;gap:.6rem;">Títulos sugeridos<span style="flex:1;height:1px;background:var(--border);display:block;"></span></div>
         <div id="tt-titles-list" style="margin-bottom:1.75rem;display:flex;flex-direction:column;gap:.65rem;"></div>
         <div style="font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-family:'DM Mono',monospace;margin-bottom:1rem;display:flex;align-items:center;gap:.6rem;">Conceitos de Thumbnail<span style="flex:1;height:1px;background:var(--border);display:block;"></span></div>
@@ -452,7 +481,7 @@ audio{width:100%;height:32px;}
       </div>
     </div>
 
-    <!-- ===== TAB DESCRIÇÃO ===== -->
+    <!-- TAB DESCRIÇÃO -->
     <div class="tab-content" id="tab-descricao">
       <div class="card">
         <div class="card-title">Gerar Descrição do Vídeo</div>
@@ -489,7 +518,7 @@ audio{width:100%;height:32px;}
       </div>
     </div>
 
-    <!-- ===== TAB COMUNIDADE ===== -->
+    <!-- TAB COMUNIDADE -->
     <div class="tab-content" id="tab-comunidade">
       <div class="card">
         <div class="card-title">Gerar Post de Comunidade</div>
@@ -510,54 +539,43 @@ audio{width:100%;height:32px;}
         <div class="field" style="margin-top:1rem"><label>Nome do canal (opcional)</label><input type="text" id="comm-canal" placeholder="Ex: Canal da Liliane, LSB Stories..."></div>
         <button class="btn-gerar blue" id="btn-comm-gerar" onclick="gerarComunidade()">✦ Gerar Post + Imagem de Comunidade</button>
       </div>
-
       <div class="comm-result" id="comm-result">
         <div class="comm-post-card">
-          <div class="comm-post-head">
-            <span class="comm-post-label">📢 Post — Convite para o vídeo</span>
-            <button class="btn-copy" onclick="copiarEl('comm-post-convite')">copiar</button>
-          </div>
+          <div class="comm-post-head"><span class="comm-post-label">📢 Post — Convite para o vídeo</span><button class="btn-copy" onclick="copiarEl('comm-post-convite')">copiar</button></div>
           <div class="comm-post-body" id="comm-post-convite"></div>
         </div>
         <div class="comm-post-card">
-          <div class="comm-post-head">
-            <span class="comm-post-label">💬 Post — Pergunta de engajamento</span>
-            <button class="btn-copy" onclick="copiarEl('comm-post-pergunta')">copiar</button>
-          </div>
+          <div class="comm-post-head"><span class="comm-post-label">💬 Post — Pergunta de engajamento</span><button class="btn-copy" onclick="copiarEl('comm-post-pergunta')">copiar</button></div>
           <div class="comm-post-body" id="comm-post-pergunta"></div>
         </div>
         <div class="comm-img-card">
-          <div class="comm-post-head" style="border-bottom:1px solid var(--border);">
-            <span class="comm-post-label">🎨 Imagem para a Comunidade</span>
-          </div>
+          <div class="comm-post-head" style="border-bottom:1px solid var(--border);"><span class="comm-post-label">🎨 Imagem para a Comunidade</span></div>
           <div class="comm-img-info">
             <div style="font-size:.68rem;color:var(--muted);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem;">Conceito visual</div>
             <div id="comm-img-conceito" style="font-size:.85rem;color:var(--text);margin-bottom:.75rem;line-height:1.6;"></div>
-            <div style="font-size:.68rem;color:var(--muted);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem;">Prompt Imagen 3</div>
+            <div style="font-size:.68rem;color:var(--muted);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem;">Prompt (EN)</div>
             <div class="prompt-box" id="comm-img-prompt" style="padding-right:2.5rem;"></div>
             <button class="btn-copy" style="margin-bottom:.65rem;" onclick="copiarEl('comm-img-prompt')">copiar prompt</button>
-            <div class="comm-img-preview" id="comm-img-preview" style="display:none;border-radius:.6rem;overflow:hidden;max-width:400px;margin-bottom:.65rem;aspect-ratio:1/1;background:var(--surface2);align-items:center;justify-content:center;">
-              <span style="font-size:.75rem;color:var(--muted);font-family:'DM Mono',monospace;">Gerando imagem...</span>
-            </div>
-            <button class="btn-gen-img" id="btn-gen-comm-img" onclick="gerarImagemComunidade()" style="max-width:300px;">🎨 Gerar imagem com Imagen 3</button>
+            <div id="comm-img-preview" style="display:none;border-radius:.6rem;overflow:hidden;max-width:400px;margin-bottom:.65rem;aspect-ratio:1/1;background:var(--surface2);align-items:center;justify-content:center;"></div>
+            <button class="btn-gen-img" id="btn-gen-comm-img" onclick="gerarImagemComunidade()" style="max-width:300px;">🖼️ Gerar imagem com Gemini</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ===== TAB PROJETOS ===== -->
+    <!-- TAB PROJETOS -->
     <div class="tab-content" id="tab-projetos">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;">
         <div>
           <div style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--gold2);">Meus Projetos</div>
-          <div style="font-size:.72rem;color:var(--muted);font-family:'DM Mono',monospace;margin-top:.2rem;">Roteiros salvos automaticamente</div>
+          <div style="font-size:.72rem;color:var(--muted);font-family:'DM Mono',monospace;margin-top:.2rem;">Salvos automaticamente ao concluir o roteiro</div>
         </div>
         <button class="btn-sec" onclick="limparProjetos()" style="border-color:var(--danger);color:var(--danger);">Limpar tudo</button>
       </div>
       <div id="projetos-lista"></div>
     </div>
 
-    <!-- ===== TAB CONFIG ===== -->
+    <!-- TAB CONFIG -->
     <div class="tab-content" id="tab-config">
       <div class="section-label">Integrações de API</div>
       <div style="background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.3);border-radius:.85rem;padding:1.1rem;margin-bottom:1rem;">
@@ -567,10 +585,7 @@ audio{width:100%;height:32px;}
           <span class="api-status api-off" id="claude-status">Desconectado</span>
         </div>
         <div style="font-size:.78rem;color:var(--muted);margin-bottom:.75rem;line-height:1.5;">Necessário para gerar roteiros. <a href="https://console.anthropic.com" target="_blank" style="color:var(--blue);">Obter chave → console.anthropic.com</a></div>
-        <div class="api-row">
-          <input type="password" id="claude-key" placeholder="sk-ant-api03-...">
-          <button class="btn-connect" style="background:var(--gold);color:#0a0807;" onclick="salvarKey('claude')">Conectar</button>
-        </div>
+        <div class="api-row"><input type="password" id="claude-key" placeholder="sk-ant-api03-..."><button class="btn-connect" style="background:var(--gold);color:#0a0807;" onclick="salvarKey('claude')">Conectar</button></div>
       </div>
       <div class="integrations-grid">
         <div class="api-card">
@@ -579,15 +594,16 @@ audio{width:100%;height:32px;}
           <div class="api-row"><input type="password" id="el-key" placeholder="sk-..."><button class="btn-connect purple" onclick="salvarKey('el')">Conectar</button></div>
         </div>
         <div class="api-card">
-          <div class="api-card-head"><span class="api-icon">🎨</span><strong>Google AI (Imagen 3 + TTS)</strong><span class="api-status api-off" id="g-status">Desconectado</span></div>
-          <div class="api-desc">Imagens e voz. <a href="https://aistudio.google.com/apikey" target="_blank">Obter chave grátis →</a></div>
+          <div class="api-card-head"><span class="api-icon">🎨</span><strong>Google AI (Gemini Image)</strong><span class="api-status api-off" id="g-status">Desconectado</span></div>
+          <div class="api-desc">Imagens via Gemini. <a href="https://aistudio.google.com/apikey" target="_blank">Obter chave grátis →</a></div>
           <div class="api-row"><input type="password" id="g-key" placeholder="AIza..."><button class="btn-connect blue" onclick="salvarKey('g')">Conectar</button></div>
         </div>
       </div>
       <div class="section-label">Ferramentas externas</div>
       <div class="ext-tools">
-        <a class="ext-btn" href="https://ai33.pro" target="_blank">🇧🇷 ai33.pro — TTS + Voz (Pix)</a>
+        <a class="ext-btn" href="https://ai33.pro" target="_blank">🇧🇷 ai33.pro — TTS</a>
         <a class="ext-btn" href="https://capcut.com" target="_blank">🎬 CapCut</a>
+        <a class="ext-btn" href="https://labs.google/flow" target="_blank">🎥 Google Flow (Veo3)</a>
         <a class="ext-btn" href="https://runwayml.com" target="_blank">🎥 Runway</a>
         <a class="ext-btn" href="https://klingai.com" target="_blank">🎥 Kling AI</a>
         <a class="ext-btn" href="https://youtube.com/community" target="_blank">📢 YouTube Studio</a>
@@ -596,25 +612,68 @@ audio{width:100%;height:32px;}
         <div class="card-title">Sobre o LSB Studios</div>
         <div style="font-size:.85rem;color:var(--muted);line-height:1.8;">
           <strong style="color:var(--text);">LSB Studios</strong> — Plataforma de produção de conteúdo YouTube com IA.<br>
-          Roteiros longos · Títulos & Thumbnails · Descrições · Posts de Comunidade<br><br>
-          <span style="font-size:.75rem;font-family:'DM Mono',monospace;">Versão 1.1 · by Liliane S.B.</span>
+          Roteiros · Títulos & Thumbnails · Descrições · Posts · Veo3 · Gemini Image<br><br>
+          <span style="font-size:.75rem;font-family:'DM Mono',monospace;">Versão 2.0 · by Liliane S.B.</span>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- MODAL PROJETO -->
+<!-- MODAL PROJETO v2 -->
 <div class="modal-overlay" id="modal-projeto">
   <div class="modal-box">
     <div class="modal-head">
       <h3 id="modal-titulo">Projeto</h3>
       <button class="modal-close" onclick="fecharModal()">✕</button>
     </div>
-    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-tabs">
+      <div class="modal-tab active" onclick="setModalTab('roteiro')">🎬 Roteiro</div>
+      <div class="modal-tab" onclick="setModalTab('titulos')">🎯 Títulos</div>
+      <div class="modal-tab" onclick="setModalTab('descricao')">📝 Descrição</div>
+      <div class="modal-tab" onclick="setModalTab('comunidade')">👥 Comunidade</div>
+      <div class="modal-tab" onclick="setModalTab('prompts')">🎥 Prompts Veo3</div>
+    </div>
+    <!-- Roteiro -->
+    <div class="modal-tab-content active" id="modal-tab-roteiro">
+      <div id="modal-blocos"></div>
+    </div>
+    <!-- Títulos -->
+    <div class="modal-tab-content" id="modal-tab-titulos">
+      <div class="regen-bar">
+        <span>Regenerar títulos a partir deste roteiro</span>
+        <button class="btn-sec" onclick="regenarTitulosModal()" style="font-size:.75rem;padding:.3rem .75rem;">✦ Gerar títulos</button>
+      </div>
+      <div id="modal-titulos-lista"></div>
+    </div>
+    <!-- Descrição -->
+    <div class="modal-tab-content" id="modal-tab-descricao">
+      <div class="regen-bar">
+        <span>Regenerar descrição a partir deste roteiro</span>
+        <button class="btn-sec" onclick="regenarDescricaoModal()" style="font-size:.75rem;padding:.3rem .75rem;">✦ Gerar descrição</button>
+      </div>
+      <div id="modal-descricao-area"></div>
+    </div>
+    <!-- Comunidade -->
+    <div class="modal-tab-content" id="modal-tab-comunidade">
+      <div class="regen-bar">
+        <span>Regenerar post de comunidade</span>
+        <button class="btn-sec" onclick="regenarComunidadeModal()" style="font-size:.75rem;padding:.3rem .75rem;">✦ Gerar post</button>
+      </div>
+      <div id="modal-comunidade-area"></div>
+    </div>
+    <!-- Prompts Veo3 -->
+    <div class="modal-tab-content" id="modal-tab-prompts">
+      <div class="regen-bar">
+        <span>Gerar prompt mestre + prompts por bloco</span>
+        <button class="btn-sec" onclick="gerarPromptsModal()" style="font-size:.75rem;padding:.3rem .75rem;">✦ Gerar prompts Veo3</button>
+      </div>
+      <div id="modal-prompts-area"></div>
+    </div>
     <div class="modal-foot">
-      <button class="btn-sec" onclick="copiarProjeto()">📋 Copiar roteiro completo</button>
-      <button class="btn-sec" onclick="usarProjeto()">🎬 Usar como base</button>
+      <button class="btn-sec" onclick="copiarProjetoModal()">📋 Copiar roteiro</button>
+      <button class="btn-sec" onclick="copiarRoteirLimpoModal()">🎙 Roteiro limpo</button>
+      <button class="btn-sec" onclick="usarProjetoModal()">🎬 Usar como base</button>
       <button class="btn-sec" onclick="fecharModal()" style="margin-left:auto;">Fechar</button>
     </div>
   </div>
@@ -622,25 +681,46 @@ audio{width:100%;height:32px;}
 
 <script>
 const ADMIN_PASS='LSB@2024';
+// Usuário padrão sempre garantido
+const DEFAULT_USER={name:'Liliane',code:'LSB2024',createdAt:0,expiresAt:Date.now()+365*86400000,trial:false,lastAccess:null};
 
-// ---- storage ----
-let _users = [
-  {name:'Liliane',code:'LSB2024',createdAt:Date.now(),expiresAt:Date.now()+365*86400000,trial:false,lastAccess:null}
+// Usuários fixos no código (sempre disponíveis para qualquer dispositivo)
+const FIXED_USERS=[
+  {name:'Liliane', code:'LSB2024', createdAt:0, expiresAt:8640000000000000, trial:false, lastAccess:null},
+  {name:'Pâmela',  code:'PD2024',  createdAt:0, expiresAt:8640000000000000, trial:false, lastAccess:null},
 ];
-function loadUsers(){return _users;}
-function saveUsers(u){_users=u;}
 
-// ---- toast ----
+function loadUsers(){
+  try{
+    const raw=localStorage.getItem('lsb_users');
+    const saved=raw?JSON.parse(raw):[];
+    // Mescla fixos + extras cadastrados pelo admin
+    const merged=[...FIXED_USERS];
+    saved.forEach(u=>{
+      // Adiciona só se não for um usuário fixo
+      if(!FIXED_USERS.find(f=>f.code===u.code)) merged.push(u);
+    });
+    return merged;
+  }catch{}
+  return [...FIXED_USERS];
+}
+
+function saveUsers(u){
+  // Salva apenas os usuários extras (não os fixos)
+  const extras=u.filter(usr=>!FIXED_USERS.find(f=>f.code===usr.code));
+  try{localStorage.setItem('lsb_users',JSON.stringify(extras));}catch{}
+}
+
+// Toast
 let _toastTimer=null;
 function toast(msg,tipo='ok'){
   const el=document.getElementById('toast');
-  el.textContent=msg;
-  el.className='toast show'+(tipo==='err'?' err':'');
+  el.textContent=msg;el.className='toast show'+(tipo==='err'?' err':'');
   if(_toastTimer)clearTimeout(_toastTimer);
-  _toastTimer=setTimeout(()=>el.classList.remove('show'),2500);
+  _toastTimer=setTimeout(()=>el.classList.remove('show'),2800);
 }
 
-// ---- nav ----
+// Nav
 function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
 function setTab(name){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -650,29 +730,26 @@ function setTab(name){
   if(name==='projetos')renderProjetos();
   const tema=document.getElementById('tema').value.trim();
   if(tema){
-    ['tt-tema','desc-tema','comm-tema'].forEach(id=>{if(document.getElementById(id)&&!document.getElementById(id).value)document.getElementById(id).value=tema;});
-    const nichoLabel=nichos.find(n=>n.id===nichoAtivo)?.label||'';
-    if(document.getElementById('tt-nicho')&&!document.getElementById('tt-nicho').value)document.getElementById('tt-nicho').value=nichoLabel;
+    ['tt-tema','desc-tema','comm-tema'].forEach(id=>{const el=document.getElementById(id);if(el&&!el.value)el.value=tema;});
+    const nl=nichos.find(n=>n.id===nichoAtivo)?.label||'';
+    const ttNicho=document.getElementById('tt-nicho');if(ttNicho&&!ttNicho.value)ttNicho.value=nl;
   }
 }
 
-// ---- login ----
+// Login
 function fazerLogin(){
   const code=document.getElementById('login-code').value.trim().toUpperCase();
   if(!code)return;
-  const users=loadUsers();
-  const user=users.find(u=>u.code===code);
+  const users=loadUsers();const user=users.find(u=>u.code===code);
   const err=document.getElementById('login-err');
   if(!user){err.textContent='Código não encontrado.';return;}
-  if(Date.now()>user.expiresAt){err.textContent='Acesso expirado. Entre em contato com a LSB Studios.';return;}
-  user.lastAccess=Date.now();saveUsers(users);
-  currentUser=user;abrirEstudio();
+  if(Date.now()>user.expiresAt){err.textContent='Acesso expirado.';return;}
+  user.lastAccess=Date.now();saveUsers(users);currentUser=user;abrirEstudio();
 }
 function loginAdmin(){if(document.getElementById('admin-pass').value===ADMIN_PASS){showScreen('screen-admin');renderAdmin();}else document.getElementById('admin-err').textContent='Senha incorreta.';}
 function sairAdmin(){document.getElementById('admin-pass').value='';showScreen('screen-login');}
-
 async function renderAdmin(){
-  const users=await loadUsers();const hoje=Date.now();
+  const users=loadUsers();const hoje=Date.now();
   const at=users.filter(u=>hoje<=u.expiresAt).length,ex=users.filter(u=>hoje>u.expiresAt).length;
   document.getElementById('stats-row').innerHTML=`<div class="stat-box"><div class="stat-num">${users.length}</div><div class="stat-lbl">Total</div></div><div class="stat-box"><div class="stat-num" style="color:var(--success)">${at}</div><div class="stat-lbl">Ativos</div></div><div class="stat-box"><div class="stat-num" style="color:var(--danger)">${ex}</div><div class="stat-lbl">Expirados</div></div>`;
   const tbody=document.getElementById('users-tbody');
@@ -687,22 +764,18 @@ async function adicionarUser(){
   const nome=document.getElementById('u-nome').value.trim(),codigo=document.getElementById('u-codigo').value.trim().toUpperCase(),dias=parseInt(document.getElementById('u-dias').value.trim());
   const err=document.getElementById('add-err');
   if(!nome||!codigo||!dias||isNaN(dias)){err.textContent='Preencha todos os campos.';return;}
-  const users=await loadUsers();
+  const users=loadUsers();
   if(users.find(u=>u.code===codigo)){err.textContent='Código já existe.';return;}
   users.push({name:nome,code:codigo,createdAt:Date.now(),expiresAt:Date.now()+dias*86400000,trial:dias<=10,lastAccess:null});
-  await saveUsers(users);err.textContent='';
+  saveUsers(users);err.textContent='';
   ['u-nome','u-codigo','u-dias'].forEach(id=>document.getElementById(id).value='');
   renderAdmin();
 }
-async function excluir(i){if(!confirm('Excluir?'))return;const u=await loadUsers();u.splice(i,1);await saveUsers(u);renderAdmin();}
-async function extender(i){const u=await loadUsers();u[i].expiresAt+=30*86400000;await saveUsers(u);renderAdmin();}
+async function excluir(i){if(!confirm('Excluir?'))return;const u=loadUsers();u.splice(i,1);saveUsers(u);renderAdmin();}
+async function extender(i){const u=loadUsers();u[i].expiresAt+=30*86400000;saveUsers(u);renderAdmin();}
 
-// ---- estúdio ----
-var elKey='';
-var gKey='';
-var currentUser=null;
-var claudeKey='';
-
+// Estúdio
+var elKey='',gKey='',currentUser=null,claudeKey='';
 function abrirEstudio(){
   showScreen('screen-studio');
   document.getElementById('s-username').textContent=currentUser.name;
@@ -718,9 +791,7 @@ function abrirEstudio(){
     if(ek){elKey=ek;document.getElementById('el-key').value=ek;setApiOn('el');}
     if(gk){gKey=gk;document.getElementById('g-key').value=gk;setApiOn('g');}
   }catch{}
-  carregarProjetosLS();
-  renderNichos();
-  renderProjetos();
+  carregarProjetosLS();renderNichos();renderProjetos();
 }
 function sairEstudio(){currentUser=null;elKey='';gKey='';resetarRoteiro();showScreen('screen-login');}
 function salvarKey(t){
@@ -728,12 +799,11 @@ function salvarKey(t){
   if(t==='claude'){claudeKey=v;localStorage.setItem('lsb_claude_global',v);}
   else if(t==='el'){elKey=v;localStorage.setItem('lsb_el_global',v);}
   else{gKey=v;localStorage.setItem('lsb_g_global',v);}
-  setApiOn(t);
-  toast('✓ Chave salva!');
+  setApiOn(t);toast('✓ Chave salva!');
 }
 function setApiOn(t){const el=document.getElementById(t+'-status');if(el){el.textContent='Conectado ✓';el.className='api-status api-on';}}
 
-// ---- nichos ----
+// Nichos
 const ND=[{id:'espiritualidade',label:'✨ Espiritualidade',custom:false},{id:'emocional',label:'💔 Histórias Emocionantes',custom:false},{id:'gospel',label:'🙏 Gospel',custom:false},{id:'autoconhecimento',label:'🧠 Autoconhecimento',custom:false},{id:'geopolitica',label:'🌍 Geopolítica',custom:false},{id:'dark',label:'🌑 Mistério / Dark',custom:false}];
 let nichos=[...ND],nichoAtivo=ND[0].id;
 function renderNichos(){
@@ -754,16 +824,16 @@ function renderNichos(){
 function cancelarNicho(){document.getElementById('n-form').classList.remove('show');document.getElementById('n-add-btn').style.display='';document.getElementById('n-input').value='';}
 function confirmarNicho(){const v=document.getElementById('n-input').value.trim();if(!v)return;const id='c_'+Date.now();nichos.push({id,label:v,custom:true});nichoAtivo=id;cancelarNicho();renderNichos();}
 
-// ---- canal ref ----
+// Canal ref
 let refEstilo='';
 async function analisarCanal(){
-  if(!claudeKey){toast('Configure a chave Claude em ⚙️ Config primeiro.','err');return;}
+  if(!claudeKey){toast('Configure a chave Claude em ⚙️ Config.','err');return;}
   const canal=document.getElementById('canal-ref').value.trim();
   const tema=document.getElementById('tema').value.trim();
   if(!canal){toast('Digite o nome do canal.','err');return;}
   const btn=document.querySelector('#tab-roteiro .ref-box .btn-xs');btn.textContent='Analisando...';btn.disabled=true;
   try{
-    const txt=await callClaude(`Analyze the YouTube channel "${canal}" and respond ONLY in valid JSON (no markdown):\n{"estilo":"2-3 sentences about narrative style, tone, pace, hook patterns in Portuguese","titulos":["title1","title2","title3","title4","title5"]}\nTitles inspired by the channel's patterns but for topic: "${tema||'(tema a definir)'}". In ${document.getElementById('idioma').value}. Compelling, not generic.`,700);
+    const txt=await callClaude(`Analyze YouTube channel "${canal}". Respond ONLY valid JSON no markdown:\n{"estilo":"2-3 sentences about narrative style in Portuguese","titulos":["t1","t2","t3","t4","t5"]}\nTitles for topic:"${tema||'(tema a definir)'}". Language:${document.getElementById('idioma').value}`,700);
     const p=JSON.parse(txt.replace(/```json|```/g,'').trim());
     refEstilo=p.estilo||'';
     document.getElementById('ref-estilo').textContent=refEstilo;
@@ -780,7 +850,7 @@ async function analisarCanal(){
 }
 function limparRef(){document.getElementById('canal-ref').value='';document.getElementById('ref-suggestions').classList.remove('show');refEstilo='';}
 
-// ---- ROTEIRO ----
+// ROTEIRO
 const BLOCOS=[
   {num:1,nome:'Gancho',cor:'#c9a84c',bg:'rgba(201,168,76,.15)'},
   {num:2,nome:'Desenvolvimento',cor:'#7c9fd4',bg:'rgba(124,159,212,.13)'},
@@ -793,22 +863,23 @@ const BLOCOS=[
 ];
 let blocoAtual=0,textosGerados=[],gerando=false;
 let temaVal='',faixaVal='',generoVal='',contextoVal='',idiomaVal='';
+let masterPrompt='',masterPromptPT='';
 
 function buildPrompt(idx,ant){
   const nl=nichos.find(n=>n.id===nichoAtivo)?.label||nichoAtivo;
   const ctx=contextoVal||'pessoas que buscam crescimento pessoal e conexão verdadeira';
-  const refInfo=refEstilo?`\n\nESTILO DO CANAL DE REFERÊNCIA: ${refEstilo}`:'';
-  const base=`Roteirista YouTube especializado em "${nl}" para público ${faixaVal}.\n\nEscreva em ${idiomaVal}. Tema: "${temaVal}"\nVoz: ${generoVal} | Público: ${ctx}${refInfo}\n\nREGRAS: conversa direta, linguagem simples, emoção contida, pausas naturais, repetições poéticas, NUNCA soar como IA, mais subtexto que explicação, tom maduro e verdadeiro.\nROTEIRO LIMPO: zero rótulos (sem "Narrador:", "[CENA]", cabeçalhos). Só texto puro.\nPROIBIÇÕES: sem clichês motivacionais, sem coach, sem promessas, sem emojis, sem moral explícita, sem termos místicos infantis.`;
-  const hist=ant.length?`\n\nATÉ AGORA (continue sem repetir):\n${ant.map((t,i)=>`[B${i+1}]\n${t}`).join('\n\n')}`:'';
+  const refInfo=refEstilo?`\n\nESTILO DO CANAL: ${refEstilo}`:'';
+  const base=`Roteirista YouTube "${nl}" público ${faixaVal}. Escreva em ${idiomaVal}. Tema:"${temaVal}"\nVoz:${generoVal}|Público:${ctx}${refInfo}\nREGRAS:conversa direta,linguagem simples,emoção contida,pausas naturais,NUNCA soar como IA.\nROTEIRO LIMPO:zero rótulos,zero cabeçalhos. SÓ texto puro.\nPROIBIÇÕES:sem clichês,sem coach,sem promessas,sem emojis,sem moral explícita.`;
+  const hist=ant.length?`\n\nATÉ AGORA:\n${ant.map((t,i)=>`[B${i+1}]\n${t}`).join('\n\n')}`:'';
   const insts=[
-    `\n\nBLOCO 1 — GANCHO (~1000 chars). Gancho magnético, máxima retenção 3min. Espectador sente que você descobre os pensamentos dele. SÓ texto puro.`,
-    `\n\nBLOCO ${BLOCOS[idx].num} — DESENVOLVIMENTO (~4500 chars). Profundidade, metáforas, reflexões. Tom conversacional. Camadas graduais. Mini-arco próprio. Continue sem repetir. SÓ texto puro.`,
-    `\n\nBLOCO ${BLOCOS[idx].num} — DESENVOLVIMENTO (~4500 chars). Profundidade, metáforas, reflexões. Tom conversacional. Camadas graduais. Mini-arco próprio. Continue sem repetir. SÓ texto puro.`,
-    `\n\nBLOCO ${BLOCOS[idx].num} — DESENVOLVIMENTO (~4500 chars). Profundidade, metáforas, reflexões. Tom conversacional. Camadas graduais. Mini-arco próprio. Continue sem repetir. SÓ texto puro.`,
-    `\n\nBLOCO ${BLOCOS[idx].num} — DESENVOLVIMENTO (~4500 chars). Profundidade, metáforas, reflexões. Tom conversacional. Camadas graduais. Mini-arco próprio. Continue sem repetir. SÓ texto puro.`,
-    `\n\nBLOCO ${BLOCOS[idx].num} — DESENVOLVIMENTO (~4500 chars). Profundidade, metáforas, reflexões. Tom conversacional. Camadas graduais. Mini-arco próprio. Continue sem repetir. SÓ texto puro.`,
-    `\n\nBLOCO 7 — CTA + CONTEÚDO (~4500 chars). 1)CTA natural: convide a se inscrever. 2)Comentário conectado. 3)Gancho rápido de volta. 4)Continue ao fechamento. CTA nunca forçada. SÓ texto puro.`,
-    `\n\nBLOCO 8 — FECHAMENTO MAGISTRAL (~4500 chars). Amarre tudo. Transformação prometida. Reflexão poderosa. NÃO explique a moral. Ecoe na mente. CTA compartilhar+5. Peça comentário e próximo tema. SÓ texto puro.`
+    `\n\nBLOCO 1—GANCHO(~1000 chars). Gancho magnético,retenção 3min. SÓ texto puro.`,
+    `\n\nBLOCO ${BLOCOS[idx].num}—DESENVOLVIMENTO(~4500 chars). Profundidade,metáforas. Continue sem repetir. SÓ texto puro.`,
+    `\n\nBLOCO ${BLOCOS[idx].num}—DESENVOLVIMENTO(~4500 chars). Profundidade,metáforas. Continue sem repetir. SÓ texto puro.`,
+    `\n\nBLOCO ${BLOCOS[idx].num}—DESENVOLVIMENTO(~4500 chars). Profundidade,metáforas. Continue sem repetir. SÓ texto puro.`,
+    `\n\nBLOCO ${BLOCOS[idx].num}—DESENVOLVIMENTO(~4500 chars). Profundidade,metáforas. Continue sem repetir. SÓ texto puro.`,
+    `\n\nBLOCO ${BLOCOS[idx].num}—DESENVOLVIMENTO(~4500 chars). Profundidade,metáforas. Continue sem repetir. SÓ texto puro.`,
+    `\n\nBLOCO 7—CTA+CONTEÚDO(~4500 chars). CTA natural,comentário conectado. SÓ texto puro.`,
+    `\n\nBLOCO 8—FECHAMENTO(~4500 chars). Amarre tudo,reflexão poderosa. SÓ texto puro.`
   ];
   return base+hist+insts[idx];
 }
@@ -822,7 +893,7 @@ async function gerarBloco(idx){
   card.className='bloco-card streaming';card.id=`bc-${idx}`;
   card.innerHTML=`
     <div class="bloco-head">
-      <span class="bloco-num">BLOCO ${String(cfg.num).padStart(2,'0')}</span>
+      <span class="bloco-num">B${String(cfg.num).padStart(2,'0')}</span>
       <span class="bloco-tipo" style="color:${cfg.cor};background:${cfg.bg}">${cfg.nome}</span>
       <span class="bloco-tit" id="bt-${idx}">Gerando...</span>
       <button class="btn-copy" id="cb-${idx}" style="display:none" onclick="copiarBloco(${idx})">copiar</button>
@@ -838,9 +909,9 @@ async function gerarBloco(idx){
     <div class="bloco-footer">
       <button class="btn-voice el" onclick="gerarVozEL(${idx})" ${!elKey?'disabled':''}>🎙 ElevenLabs</button>
       <button class="btn-voice ai33" onclick="copiarParaAi33(${idx})">🇧🇷 ai33.pro</button>
-      <button class="btn-voice capcut" onclick="abrirCapCut(${idx})">🎬 CapCut</button>
-      <button class="btn-imagen-sm" onclick="gerarImagensBloco(${idx})" ${!gKey?'disabled':''}>🖼️ Gemini Img</button>
-      <button class="btn-veo3" onclick="gerarPromptsVeo3(${idx})">🎥 Prompts Veo3</button>
+      <button class="btn-voice capcut" onclick="window.open('https://capcut.com','_blank')">🎬 CapCut</button>
+      <button class="btn-imagen-sm" onclick="gerarImagemBloco(${idx})" ${!gKey?'disabled':''}>🖼️ Gemini Img</button>
+      <button class="btn-veo3" onclick="gerarPromptsVeo3Bloco(${idx})">🎥 Veo3</button>
     </div>
     <div id="audio-wrap-${idx}" class="audio-player"></div>
     <div id="imgs-wrap-${idx}" class="images-strip"></div>
@@ -852,14 +923,14 @@ async function gerarBloco(idx){
     if(!texto)throw new Error('Resposta vazia');
     textosGerados.push(texto);
     card.classList.remove('streaming');
-    document.getElementById(`bt-${idx}`).textContent=cfg.nome+' · Bloco '+cfg.num;
+    document.getElementById(`bt-${idx}`).textContent=`${cfg.nome} · B${cfg.num}`;
     await typeText(document.getElementById(`bb-${idx}`),texto,4);
     document.getElementById(`cb-${idx}`).style.display='';
     setStatus('','');updateProg(idx+1);
     if(idx<7){document.getElementById('prox-num').textContent=idx+2;document.getElementById('next-wrap').style.display='block';document.getElementById('next-wrap').scrollIntoView({behavior:'smooth'});}
     else mostrarConcluido();
   }catch(e){
-    document.getElementById(`bb-${idx}`).textContent='❌ Erro ao gerar. Tente novamente.';
+    document.getElementById(`bb-${idx}`).textContent='❌ Erro: '+e.message;
     card.classList.remove('streaming');
     setStatus('Erro: '+e.message,'err');
     document.getElementById('btn-gerar').disabled=false;
@@ -871,7 +942,7 @@ async function traduzirBloco(idx,lang){
   const el=document.getElementById(`tr-${idx}`);
   el.textContent='Traduzindo...';el.classList.add('show');
   try{
-    const txt=await callClaude(`Translate to ${lang}. Keep tone and naturalness. ONLY the translated text:\n\n${texto}`,2000);
+    const txt=await callClaude(`Translate to ${lang}. Keep tone. ONLY translated text:\n\n${texto}`,2000);
     el.textContent=txt||'';
   }catch(e){el.textContent='Erro: '+e.message;}
 }
@@ -890,112 +961,213 @@ async function gerarVozEL(idx){
   finally{btn.disabled=false;btn.textContent='🎙 ElevenLabs';}
 }
 
-// Google TTS removido — use ElevenLabs ou ai33.pro
+function copiarParaAi33(idx){
+  const texto=textosGerados[idx];if(!texto)return;
+  copiarTexto(texto).then(()=>{toast('✓ Texto copiado! Abrindo ai33.pro...');setTimeout(()=>window.open('https://ai33.pro','_blank'),600);});
+}
 
-async function gerarImagensBloco(idx){
+// Gemini Image — usando gemini-2.0-flash-exp (suporta geração de imagens)
+async function gerarImagemBloco(idx){
   if(!gKey){toast('Configure a chave Google AI em ⚙️ Config.','err');return;}
   const texto=textosGerados[idx];if(!texto)return;
   const btn=event.target;btn.disabled=true;btn.textContent='Gerando...';
   const wrap=document.getElementById(`imgs-wrap-${idx}`);
-  wrap.style.display='flex';wrap.innerHTML='<div class="img-thumb"><span class="img-loading">Gerando...</span></div>';
+  wrap.style.display='flex';wrap.innerHTML='<div class="img-thumb"><span class="img-loading">Aguarde...</span></div>';
   try{
-    // Gera prompt cinematográfico via Claude
-    const pr=await callClaude(`Based on this script excerpt, write ONE cinematic image generation prompt in English. Ultra-realistic, dramatic lighting, 16:9 aspect ratio, photographic quality. Max 2 sentences. ONLY the prompt text, nothing else:\n\n${texto.slice(0,500)}`);
-    // Usa Gemini 2.0 Flash para gerar imagem (funciona com chave AI Studio)
-    const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-preview-image-generation:generateContent?key=${gKey}`,{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
+    const masterRef=masterPrompt?`\nCharacter/Style reference (MUST follow): ${masterPrompt}`:'';
+    const pr=await callClaude(`Write ONE cinematic Veo3/image prompt in English for this script. Ultra-realistic, dramatic lighting, 16:9.${masterRef}\nScript (B${idx+1}):\n${texto.slice(0,500)}\nONLY the prompt text.`);
+    const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${gKey}`,{
+      method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
-        contents:[{parts:[{text:pr}]}],
+        contents:[{parts:[{text:`Generate an image: ${pr}`}]}],
         generationConfig:{responseModalities:['IMAGE','TEXT']}
       })
     });
     const d=await r.json();
-    if(!r.ok)throw new Error(d.error?.message||'Erro Gemini Image');
+    if(!r.ok)throw new Error(d.error?.message||'Erro Gemini');
     wrap.innerHTML='';
     const parts=d.candidates?.[0]?.content?.parts||[];
-    let found=false;
-    parts.forEach((p,i)=>{
-      if(p.inlineData){
-        found=true;
-        const src=`data:${p.inlineData.mimeType};base64,${p.inlineData.data}`;
-        const t=document.createElement('div');t.className='img-thumb';t.style.cssText='width:220px;height:124px;';
-        t.innerHTML=`<img src="${src}" style="width:100%;height:100%;object-fit:cover;"><button class="dl-btn" onclick="dlImg('${src}',${i+1})">⬇</button>`;
-        wrap.appendChild(t);
-      }
-    });
-    if(!found)throw new Error('Nenhuma imagem retornada. Tente novamente.');
+    const img=parts.find(p=>p.inlineData);
+    if(img){
+      const src=`data:${img.inlineData.mimeType};base64,${img.inlineData.data}`;
+      const t=document.createElement('div');t.className='img-thumb';t.style.cssText='width:220px;height:124px;';
+      t.innerHTML=`<img src="${src}" style="width:100%;height:100%;object-fit:cover;"><button class="dl-btn" onclick="dlImg('${src}',${idx+1})">⬇</button>`;
+      wrap.appendChild(t);
+    }else throw new Error('Sem imagem na resposta. Tente novamente.');
   }catch(e){wrap.innerHTML=`<span style="color:var(--danger);font-size:.78rem;padding:.5rem;">Erro: ${e.message}</span>`;}
   finally{btn.disabled=false;btn.textContent='🖼️ Gemini Img';}
 }
-function dlImg(src,n){const a=document.createElement('a');a.href=src;a.download=`lsb-img-${n}.png`;a.click();}
+function dlImg(src,n){const a=document.createElement('a');a.href=src;a.download=`lsb-b${n}.png`;a.click();}
 
-function copiarParaAi33(idx){
-  const texto=textosGerados[idx];if(!texto)return;
-  copiarTexto(texto).then(()=>{
-    toast('✓ Texto copiado! Abrindo ai33.pro...');
-    setTimeout(()=>window.open('https://ai33.pro','_blank'),600);
-  });
-}
-
-function abrirCapCut(idx){
-  window.open('https://www.capcut.com','_blank');
-}
-
-async function gerarPromptsVeo3(idx){
+// Veo3 prompts por bloco
+async function gerarPromptsVeo3Bloco(idx){
   if(!claudeKey){toast('Configure a chave Claude em ⚙️ Config.','err');return;}
   const texto=textosGerados[idx];if(!texto)return;
-  const btn=event.target;btn.disabled=true;btn.textContent='Gerando...';
+  const btn=event.target;btn.disabled=true;btn.textContent='Analisando...';
   const panel=document.getElementById(`veo3-panel-${idx}`);
-  panel.innerHTML='<div style="font-size:.75rem;color:var(--muted);padding:.5rem;">Analisando cenas...</div>';
+  panel.innerHTML=`<div style="font-size:.75rem;color:var(--muted);padding:.75rem;font-family:'DM Mono',monospace;">⏳ Analisando o bloco e dividindo em cenas cinematográficas...</div>`;
   panel.classList.add('show');
   try{
-    const personagemMestre=temaVal?`Tema: ${temaVal}.`:'';
-    const txt=await callClaude(`You are a Veo3 video director. Analyze this script and:
-1. Create ONE "Master Character/Style Reference" prompt in English that will be used consistently across ALL scenes (describe the main character appearance, art style, lighting style, color palette — be very specific so character stays consistent).
-2. Divide the script into 4-6 cinematic scenes and write a Veo3 prompt for each scene IN ENGLISH. Each scene prompt must reference the master style and character description for consistency.
+    const masterRef=masterPrompt
+      ?`\n\nMASTER CHARACTER & STYLE REFERENCE (apply to EVERY scene — this ensures visual consistency across the entire video):\n${masterPrompt}`
+      :'';
+    // Estima quantidade de prompts baseado no tamanho do bloco
+    const palavras=texto.split(' ').length;
+    const qtdCenas=Math.min(15,Math.max(8,Math.round(palavras/80)));
+    const txt=await callClaude(
+`You are a professional Veo3 video director for Google Flow. Your job is to break a YouTube script block into individual cinematic shots.${masterRef}
 
-${personagemMestre}
+SCRIPT BLOCK B${String(idx+1).padStart(2,'0')} (${BLOCOS[idx].nome}):
+${texto}
 
-Script:
-${texto.slice(0,1200)}
+INSTRUCTIONS:
+- Divide the script into ${qtdCenas} individual shots/scenes that together cover the ENTIRE block from start to finish
+- Each shot = one Veo3 generation in Google Flow
+- Think like a film director: vary angles, distances, emotions, environments
+- Every scene MUST reference the master style for character consistency
+- Durations: hooks/emotional peaks = 8s, transitions = 5s, wide shots = 6s
 
-Respond ONLY in valid JSON (no markdown):
+For each scene provide:
+- pt: what happens visually in Portuguese (1 sentence, for director reference)
+- en: full Veo3 prompt in English (3-4 sentences: subject + action + camera + lighting + mood + master style reference)
+- es: Spanish subtitle/caption suggestion for this shot (1 sentence matching the script)
+- duracao: "5s", "6s" or "8s"
+- tipo: "close-up", "wide", "medium", "over-shoulder", "aerial", "slow-motion", or "reaction"
+
+Respond ONLY in valid JSON (no markdown, no explanation):
 {
-  "master": "Master character and style reference prompt (2-3 sentences, very detailed)",
+  "total_cenas": ${qtdCenas},
+  "cobertura": "Covers full block B${idx+1}",
   "cenas": [
-    {"num":1,"duracao":"5s","prompt":"Full Veo3 prompt for this scene, referencing master style"},
-    {"num":2,"duracao":"5s","prompt":"..."},
-    {"num":3,"duracao":"5s","prompt":"..."},
-    {"num":4,"duracao":"5s","prompt":"..."}
+    {
+      "num": 1,
+      "duracao": "8s",
+      "tipo": "close-up",
+      "pt": "Descrição em português do que acontece",
+      "en": "Full Veo3 prompt in English referencing master style. Camera angle. Lighting. Emotional mood.",
+      "es": "Sugerencia de subtítulo en español"
+    }
   ]
-}`,1200);
+}`,2000);
     const data=JSON.parse(txt.replace(/```json|```/g,'').trim());
-    let html=`<div style="font-size:.65rem;color:var(--gold);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem;">🎥 Prompts Veo3 — Bloco ${idx+1}</div>`;
-    html+=`<div style="font-size:.65rem;color:var(--muted);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem;">📌 Referência mestre (use em todas as cenas)</div>`;
-    html+=`<div class="veo3-master">${data.master}<br><br><div style="display:flex;gap:.4rem;margin-top:.4rem;"><button class="btn-veo3-copy" onclick="copiarTextoBtn('${escQ(data.master)}',this)">copiar</button><a class="btn-veo3-flow" href="https://labs.google/flow" target="_blank">↗ Abrir Flow</a></div></div>`;
-    html+=`<div style="font-size:.65rem;color:var(--muted);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem;">🎬 Cenas</div>`;
-    html+=`<div class="veo3-cenas">`;
-    (data.cenas||[]).forEach(c=>{
-      const pEsc=escQ(c.prompt);
-      html+=`<div class="veo3-cena">
-        <div class="veo3-cena-num">Cena ${c.num} · ${c.duracao||'5s'}</div>
-        <div class="veo3-cena-txt">${c.prompt}</div>
-        <div class="veo3-cena-actions">
-          <button class="btn-veo3-copy" onclick="copiarTextoBtn('${pEsc}',this)">copiar prompt</button>
+    const cenas=data.cenas||[];
+    const tipoColors={
+      'close-up':'#c9a84c','wide':'#7ab4ff','medium':'#9b6cd4',
+      'over-shoulder':'#3eb87a','aerial':'#e08080','slow-motion':'#e87050','reaction':'#a07ce0'
+    };
+    let html=`
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem;flex-wrap:wrap;gap:.4rem;">
+        <div style="font-size:.65rem;color:var(--gold);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.1em;">
+          🎥 Veo3 — B${String(idx+1).padStart(2,'0')} · ${cenas.length} cenas
+        </div>
+        <div style="display:flex;gap:.4rem;flex-wrap:wrap;">
+          <button class="btn-veo3-copy" onclick="copiarTodasCenas(${idx})">copiar todas EN</button>
+          <button class="btn-veo3-copy" onclick="copiarTodasCenasTrilingual(${idx})">copiar PT+EN+ES</button>
           <a class="btn-veo3-flow" href="https://labs.google/flow" target="_blank">↗ Abrir Flow</a>
+        </div>
+      </div>`;
+    if(masterPrompt){
+      html+=`<div style="background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.2);border-radius:.4rem;padding:.6rem .85rem;margin-bottom:.75rem;font-size:.72rem;color:var(--gold);font-family:'DM Mono',monospace;">
+        ✓ Prompt mestre aplicado em todas as ${cenas.length} cenas
+      </div>`;
+    }
+    html+=`<div class="veo3-cenas">`;
+    cenas.forEach((c,ci)=>{
+      const pEnEsc=escQ(c.en);
+      const pPtEsc=escQ(c.pt);
+      const pEsEsc=escQ(c.es||'');
+      const triEsc=escQ(`[PT] ${c.pt}\n[EN] ${c.en}\n[ES] ${c.es||''}`);
+      const cor=tipoColors[c.tipo]||'#7ab4ff';
+      html+=`<div class="veo3-cena" id="veo3-c-${idx}-${ci}">
+        <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.4rem;flex-wrap:wrap;">
+          <div class="veo3-cena-num">B${String(idx+1).padStart(2,'0')} · C${String(c.num).padStart(2,'0')} · ${c.duracao||'5s'}</div>
+          <span style="font-size:.6rem;padding:.12rem .5rem;border-radius:100px;border:1px solid ${cor};color:${cor};font-family:'DM Mono',monospace;">${c.tipo||'shot'}</span>
+        </div>
+        <div style="font-size:.75rem;color:var(--muted);font-style:italic;margin-bottom:.25rem;line-height:1.5;">🇧🇷 ${c.pt}</div>
+        <div class="veo3-cena-en" style="margin-bottom:.3rem;">🇺🇸 ${c.en}</div>
+        <div style="font-size:.75rem;color:#b8c0d8;font-style:italic;margin-bottom:.5rem;line-height:1.5;">🇪🇸 ${c.es||'—'}</div>
+        <div class="veo3-cena-actions">
+          <button class="btn-veo3-copy" onclick="copiarTextoBtn('${pEnEsc}',this)">EN</button>
+          <button class="btn-veo3-copy" onclick="copiarTextoBtn('${pPtEsc}',this)">PT</button>
+          <button class="btn-veo3-copy" onclick="copiarTextoBtn('${pEsEsc}',this)">ES</button>
+          <button class="btn-veo3-copy" onclick="copiarTextoBtn('${triEsc}',this)">PT+EN+ES</button>
+          <a class="btn-veo3-flow" href="https://labs.google/flow" target="_blank">↗ Flow</a>
         </div>
       </div>`;
     });
     html+=`</div>`;
+    // Salva os dados para copiar tudo
+    panel._cenas=cenas;
     panel.innerHTML=html;
-  }catch(e){panel.innerHTML=`<span style="color:var(--danger);font-size:.78rem;">Erro: ${e.message}</span>`;}
-  finally{btn.disabled=false;btn.textContent='🎥 Prompts Veo3';}
+  }catch(e){panel.innerHTML=`<span style="color:var(--danger);font-size:.78rem;padding:.5rem;display:block;">Erro: ${e.message}</span>`;}
+  finally{btn.disabled=false;btn.textContent='🎥 Veo3';}
 }
 
-// ---- TÍTULOS & THUMB ----
+function copiarTodasCenas(idx){
+  const panel=document.getElementById(`veo3-panel-${idx}`);
+  if(!panel._cenas){toast('Gere os prompts primeiro.','warn');return;}
+  const txt=panel._cenas.map(c=>`B${String(idx+1).padStart(2,'0')}·C${String(c.num).padStart(2,'0')} [${c.tipo}] [${c.duracao}]\n${c.en}`).join('\n\n');
+  copiarTexto(txt).then(()=>toast(`✓ ${panel._cenas.length} prompts EN copiados!`));
+}
+
+function copiarTodasCenasTrilingual(idx){
+  const panel=document.getElementById(`veo3-panel-${idx}`);
+  if(!panel._cenas){toast('Gere os prompts primeiro.','warn');return;}
+  const txt=panel._cenas.map(c=>`── B${String(idx+1).padStart(2,'0')}·C${String(c.num).padStart(2,'0')} [${c.tipo||'shot'}] [${c.duracao}] ──\n🇧🇷 ${c.pt}\n🇺🇸 ${c.en}\n🇪🇸 ${c.es||'—'}`).join('\n\n');
+  copiarTexto(txt).then(()=>toast(`✓ ${panel._cenas.length} cenas PT+EN+ES copiadas!`));
+}
+
+// Prompt mestre do personagem
+async function gerarMestrePersonagem(){
+  if(!claudeKey){toast('Configure a chave Claude em ⚙️ Config.','err');return;}
+  if(!textosGerados.length){toast('Gere pelo menos um bloco primeiro.','err');return;}
+  toast('Gerando prompt mestre...');
+  const resumo=textosGerados.slice(0,3).join('\n\n').slice(0,1500);
+  try{
+    const txt=await callClaude(`Based on this YouTube script, create a "Master Character & Visual Style" reference for Veo3/image generation.\nCreate:\n1. master_en: detailed English prompt (3-4 sentences) describing the main character appearance, art style, lighting, color palette, camera style — very specific for consistency across all scenes.\n2. master_pt: description in Portuguese of the same.\n\nScript:\n${resumo}\n\nRespond ONLY valid JSON no markdown:\n{"master_en":"...","master_pt":"..."}`,600);
+    const data=JSON.parse(txt.replace(/```json|```/g,'').trim());
+    masterPrompt=data.master_en||'';
+    masterPromptPT=data.master_pt||'';
+    document.getElementById('master-text-en').textContent=masterPrompt;
+    document.getElementById('master-text-pt').textContent=masterPromptPT;
+    document.getElementById('master-box').style.display='block';
+    document.getElementById('master-box').scrollIntoView({behavior:'smooth'});
+    toast('✓ Prompt mestre gerado!');
+  }catch(e){toast('Erro: '+e.message,'err');}
+}
+
+async function regenerarMestre(){await gerarMestrePersonagem();}
+
+async function gerarPromptsBloco(){
+  if(!textosGerados.length)return;
+  toast('Gerando prompts para todos os blocos...');
+  for(let i=0;i<textosGerados.length;i++){
+    await gerarPromptsVeo3BlocoSilent(i);
+  }
+  toast('✓ Todos os prompts Veo3 gerados!');
+}
+
+async function gerarPromptsVeo3BlocoSilent(idx){
+  const texto=textosGerados[idx];if(!texto)return;
+  const panel=document.getElementById(`veo3-panel-${idx}`);if(!panel)return;
+  panel.classList.add('show');
+  panel.innerHTML='<div style="font-size:.72rem;color:var(--muted);">Gerando prompts B'+(idx+1)+'...</div>';
+  try{
+    const masterRef=masterPrompt?`\nMaster reference: ${masterPrompt}`:'';
+    const txt=await callClaude(`Veo3 director. Script B${idx+1}:${masterRef}\n${texto.slice(0,1000)}\nDivide into 3 scenes. Respond ONLY valid JSON:\n{"cenas":[{"num":1,"duracao":"5s","prompt_en":"...","prompt_pt":"..."}]}`,700);
+    const data=JSON.parse(txt.replace(/```json|```/g,'').trim());
+    let html=`<div style="font-size:.62rem;color:var(--gold);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem;">🎥 B${idx+1}</div><div class="veo3-cenas">`;
+    (data.cenas||[]).forEach(c=>{
+      html+=`<div class="veo3-cena"><div class="veo3-cena-num">B${idx+1}·C${c.num}·${c.duracao}</div><div class="veo3-cena-en">${c.prompt_en}</div><div class="veo3-cena-pt">${c.prompt_pt||''}</div><div class="veo3-cena-actions"><button class="btn-veo3-copy" onclick="copiarTextoBtn('${escQ(c.prompt_en)}',this)">copiar EN</button><a class="btn-veo3-flow" href="https://labs.google/flow" target="_blank">↗ Flow</a></div></div>`;
+    });
+    html+=`</div>`;
+    panel.innerHTML=html;
+  }catch(e){panel.innerHTML=`<span style="color:var(--danger);font-size:.75rem;">Erro B${idx+1}: ${e.message}</span>`;}
+}
+
+// TÍTULOS & THUMB
 async function gerarTitulosThumb(){
-  if(!claudeKey){toast('Configure a chave Claude em ⚙️ Config primeiro.','err');return;}
+  if(!claudeKey){toast('Configure a chave Claude em ⚙️ Config.','err');return;}
   const tema=document.getElementById('tt-tema').value.trim();
   if(!tema){toast('Descreva o tema do vídeo.','err');return;}
   const nicho=document.getElementById('tt-nicho').value.trim()||'YouTube';
@@ -1005,66 +1177,32 @@ async function gerarTitulosThumb(){
   btn.disabled=true;btn.textContent='Gerando...';
   document.getElementById('tt-results').style.display='none';
   try{
-    const prompt=`You are a top YouTube title and thumbnail strategist for the "${nicho}" niche.
-Topic: "${tema}"
-${canal?`Reference channel style: ${canal}`:''}
-Language for titles: ${idioma}
-
-Respond ONLY in valid JSON (no markdown):
-{
-  "titulos": [
-    {"texto":"title","porque":"why it works in Portuguese","tags":["hook","emotion","curiosity","benefit","aggressive"]},
-    {"texto":"title","porque":"...","tags":[...]},
-    {"texto":"title","porque":"...","tags":[...]},
-    {"texto":"title","porque":"...","tags":[...]},
-    {"texto":"title","porque":"...","tags":[...]}
-  ],
-  "thumbnails": [
-    {
-      "conceito":"Short concept name in Portuguese",
-      "descricao":"Visual description of the thumbnail in Portuguese (2-3 sentences)",
-      "elementos":["element 1","element 2","element 3"],
-      "prompt":"Detailed Imagen 3 prompt in English, cinematic, emotional, ultra-realistic photography, 16:9 aspect ratio, dramatic lighting"
-    },
-    {
-      "conceito":"...",
-      "descricao":"...",
-      "elementos":["..."],
-      "prompt":"..."
-    },
-    {
-      "conceito":"...",
-      "descricao":"...",
-      "elementos":["..."],
-      "prompt":"..."
-    }
-  ]
-}`;
-    const txt=await callClaude(prompt,1200);
+    const prompt=`YouTube title and thumbnail strategist for "${nicho}" niche.\nTopic:"${tema}"\n${canal?`Reference channel:${canal}`:''}\nLanguage:${idioma}\n\nRespond ONLY valid JSON no markdown:\n{"titulos":[{"texto":"title","porque":"why it works in Portuguese","tags":["hook","emotion","curiosity","benefit","aggressive"]},{"texto":"","porque":"","tags":[]},{"texto":"","porque":"","tags":[]},{"texto":"","porque":"","tags":[]},{"texto":"","porque":"","tags":[]}],"thumbnails":[{"conceito":"name in PT","descricao":"description in PT","elementos":["el1","el2","el3"],"prompt_en":"Imagen/Gemini prompt in English, cinematic 16:9"},{"conceito":"","descricao":"","elementos":[],"prompt_en":""},{"conceito":"","descricao":"","elementos":[],"prompt_en":""}]}`;
+    const txt=await callClaude(prompt,1400);
     const data=JSON.parse(txt.replace(/```json|```/g,'').trim());
+    // render títulos
     const tl=document.getElementById('tt-titles-list');tl.innerHTML='';
     (data.titulos||[]).forEach((t,i)=>{
       const tagMap={hook:'tg-hook',emotion:'tg-emo',curiosity:'tg-cur',benefit:'tg-ben',aggressive:'tg-agg'};
       const tags=(t.tags||[]).map(tg=>`<span class="tt-tag ${tagMap[tg]||'tg-hook'}">${tg}</span>`).join('');
       const card=document.createElement('div');card.className='tt-card';
-      card.innerHTML=`<div class="tt-rank">OPÇÃO ${i+1}</div><div class="tt-title-text">${t.texto}</div><div class="tt-why">${t.porque}</div><div class="tt-tags">${tags}</div><button class="tt-copy" onclick="event.stopPropagation();copiarTextoBtn('${escQ(t.texto)}',this)">copiar</button>`;
+      card.innerHTML=`<div class="tt-rank">OPÇÃO ${i+1}</div><div class="tt-title-text">${t.texto}</div><div class="tt-why">${t.porque||''}</div><div class="tt-tags">${tags}</div><button class="tt-copy" onclick="event.stopPropagation();copiarTextoBtn('${escQ(t.texto)}',this)">copiar</button>`;
       tl.appendChild(card);
     });
+    // render thumbs
     const thr=document.getElementById('tt-thumbs-list');thr.innerHTML='';
     (data.thumbnails||[]).forEach((th,i)=>{
       const els=(th.elementos||[]).map(e=>`<div class="thumb-el">${e}</div>`).join('');
       const card=document.createElement('div');card.className='thumb-card';
       card.innerHTML=`
-        <div class="thumb-preview" id="tp-${i}">
-          <div class="thumb-no-img">Clique em "Gerar" para<br>visualizar a thumbnail</div>
-        </div>
+        <div class="thumb-preview" id="tp-${i}"><div class="thumb-no-img">Clique em "Gerar" para visualizar</div></div>
         <div class="thumb-info">
-          <div class="thumb-concept">${th.conceito}</div>
-          <div class="thumb-desc">${th.descricao}</div>
+          <div class="thumb-concept">${th.conceito||''}</div>
+          <div class="thumb-desc">${th.descricao||''}</div>
           <div class="thumb-elements"><div class="thumb-elements-title">Elementos visuais</div><div class="thumb-el-list">${els}</div></div>
-          <div style="font-size:.68rem;color:var(--muted);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem;margin-top:.75rem;">Prompt Imagen 3</div>
-          <div class="prompt-box" id="tp-prompt-${i}">${th.prompt}<button class="prompt-copy" onclick="copiarTextoBtn('${escQ(th.prompt)}',this)">copiar</button></div>
-          <button class="btn-gen-img" ${!gKey?'disabled':''} onclick="gerarThumbImagem(${i},'${escQ(th.prompt)}')">🎨 Gerar com Imagen 3</button>
+          <div style="font-size:.68rem;color:var(--muted);font-family:'DM Mono',monospace;text-transform:uppercase;letter-spacing:.1em;margin:.75rem 0 .4rem;">Prompt (EN)</div>
+          <div class="prompt-box" style="padding-right:2.5rem;">${th.prompt_en||''}<button class="prompt-copy" onclick="copiarTextoBtn('${escQ(th.prompt_en||'')}',this)">copiar</button></div>
+          <button class="btn-gen-img" ${!gKey?'disabled':''} onclick="gerarThumbImagem(${i},'${escQ(th.prompt_en||'')}')">🖼️ Gerar com Gemini</button>
         </div>`;
       thr.appendChild(card);
     });
@@ -1076,55 +1214,56 @@ Respond ONLY in valid JSON (no markdown):
 
 async function gerarThumbImagem(i,prompt){
   if(!gKey){toast('Configure a chave Google AI em ⚙️ Config.','err');return;}
-  const btn=document.querySelector(`#tt-thumbs-list .thumb-card:nth-child(${i+1}) .btn-gen-img`);
+  const btns=document.querySelectorAll(`#tt-thumbs-list .thumb-card`);
+  const btn=btns[i]?.querySelector('.btn-gen-img');
   if(btn){btn.disabled=true;btn.textContent='Gerando...';}
   const preview=document.getElementById(`tp-${i}`);
-  preview.innerHTML=`<span style="color:var(--muted);font-size:.75rem;font-family:'DM Mono',monospace;">Gerando imagem...</span>`;
+  preview.innerHTML=`<span style="color:var(--muted);font-size:.75rem;font-family:'DM Mono',monospace;padding:1rem;">Gerando thumbnail...</span>`;
   try{
-    const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-preview-image-generation:generateContent?key=${gKey}`,{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        contents:[{parts:[{text:prompt+'. YouTube thumbnail, 16:9, cinematic, dramatic lighting, ultra realistic.'}]}],
-        generationConfig:{responseModalities:['IMAGE','TEXT']}
-      })
-    });
-    const d=await r.json();
-    if(!r.ok)throw new Error(d.error?.message||'Erro Gemini Image');
-    const parts=d.candidates?.[0]?.content?.parts||[];
-    const img=parts.find(p=>p.inlineData);
+    // Tenta gemini-2.0-flash-preview-image-generation primeiro, fallback para gemini-2.0-flash-exp
+    const models=['gemini-2.0-flash-preview-image-generation','gemini-2.0-flash-exp'];
+    let img=null;
+    for(const model of models){
+      try{
+        const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${gKey}`,{
+          method:'POST',headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({
+            contents:[{parts:[{text:`Create a YouTube thumbnail image. ${prompt}. Aspect ratio 16:9, cinematic composition, dramatic lighting, ultra realistic photography, high contrast, vibrant colors suitable for YouTube thumbnail.`}]}],
+            generationConfig:{responseModalities:['IMAGE','TEXT']}
+          })
+        });
+        const d=await r.json();
+        if(!r.ok){console.warn(`Model ${model} failed:`,d.error?.message);continue;}
+        img=d.candidates?.[0]?.content?.parts?.find(p=>p.inlineData);
+        if(img)break;
+      }catch(e){console.warn(`Model ${model} error:`,e.message);}
+    }
     if(img){
       const src=`data:${img.inlineData.mimeType};base64,${img.inlineData.data}`;
       preview.innerHTML=`<img src="${src}" style="width:100%;height:100%;object-fit:cover;">`;
-    }else{throw new Error('Nenhuma imagem retornada.');}
-  }catch(e){preview.innerHTML=`<span style="color:var(--danger);font-size:.75rem;padding:1rem;">${e.message}</span>`;}
+      // Add download button
+      const dl=document.createElement('button');
+      dl.className='dl-btn';dl.style.opacity='1';dl.textContent='⬇';
+      dl.onclick=()=>dlImg(src,`thumb-${i+1}`);
+      preview.style.position='relative';
+      preview.appendChild(dl);
+    }else throw new Error('Nenhuma imagem gerada. Verifique se a chave Google AI tem acesso ao Gemini com geração de imagens.');
+  }catch(e){preview.innerHTML=`<span style="color:var(--danger);font-size:.75rem;padding:1rem;display:block;">${e.message}</span>`;}
   finally{if(btn){btn.disabled=false;btn.textContent='🖼️ Gerar novamente';}}
 }
 
-// ---- DESCRIÇÃO ----
+// DESCRIÇÃO
 async function gerarDescricao(){
-  if(!claudeKey){toast('Configure a chave Claude em ⚙️ Config primeiro.','err');return;}
+  if(!claudeKey){toast('Configure a chave Claude.','err');return;}
   const tema=document.getElementById('desc-tema').value.trim();
-  if(!tema){toast('Descreva o tema do vídeo.','err');return;}
+  if(!tema){toast('Descreva o tema.','err');return;}
   const tom=document.getElementById('desc-tom').value;
   const idioma=document.getElementById('desc-idioma').value;
   const links=document.getElementById('desc-links').value.trim();
   const btn=document.getElementById('btn-desc-gerar');
   btn.disabled=true;btn.textContent='Gerando...';
   try{
-    const prompt=`You are a YouTube SEO and description expert. Create a complete video description in ${idioma}.
-
-Video topic: "${tema}"
-Tone: ${tom}
-${links?`Channel links to include: ${links}`:''}
-
-Respond ONLY in valid JSON (no markdown):
-{
-  "descricao_principal": "Compelling 150-200 word description. Start with a hook. Describe what viewer will feel/learn. Natural, not robotic. End with soft CTA.",
-  "links_capitulos": "Timestamps and links section:\\n00:00 - Intro\\n02:30 - [chapter]\\n...\\n\\nLinks:\\n${links||'[Coloque seus links aqui]'}",
-  "hashtags": ["hashtag1","hashtag2","hashtag3","hashtag4","hashtag5","hashtag6","hashtag7","hashtag8","hashtag9","hashtag10"]
-}`;
-    const txt=await callClaude(prompt,800);
+    const txt=await callClaude(`YouTube description expert. Language:${idioma}. Topic:"${tema}". Tone:${tom}.${links?` Links:${links}`:''}\nRespond ONLY valid JSON no markdown:\n{"descricao_principal":"150-200 words, hook start, soft CTA end","links_capitulos":"00:00 - Intro\\n...\\n\\nLinks:\\n${links||'[seus links]'}","hashtags":["tag1","tag2","tag3","tag4","tag5","tag6","tag7","tag8","tag9","tag10"]}`,900);
     const data=JSON.parse(txt.replace(/```json|```/g,'').trim());
     document.getElementById('desc-principal').textContent=data.descricao_principal||'';
     document.getElementById('desc-links-out').textContent=data.links_capitulos||'';
@@ -1136,32 +1275,19 @@ Respond ONLY in valid JSON (no markdown):
   finally{btn.disabled=false;btn.textContent='✦ Gerar Descrição Completa';}
 }
 
-// ---- COMUNIDADE ----
+// COMUNIDADE
 let commImgPrompt='';
 async function gerarComunidade(){
-  if(!claudeKey){toast('Configure a chave Claude em ⚙️ Config primeiro.','err');return;}
+  if(!claudeKey){toast('Configure a chave Claude.','err');return;}
   const tema=document.getElementById('comm-tema').value.trim();
-  if(!tema){toast('Descreva o tema do próximo vídeo.','err');return;}
+  if(!tema){toast('Descreva o tema.','err');return;}
   const tom=document.getElementById('comm-tom').value;
   const idioma=document.getElementById('comm-idioma').value;
   const canal=document.getElementById('comm-canal').value.trim()||'nosso canal';
   const btn=document.getElementById('btn-comm-gerar');
   btn.disabled=true;btn.textContent='Gerando...';
   try{
-    const prompt=`You are a YouTube community manager. Create community posts in ${idioma}.
-
-Next video topic: "${tema}"
-Tone: ${tom}
-Channel name: "${canal}"
-
-Respond ONLY in valid JSON (no markdown):
-{
-  "post_convite": "Compelling community post (4-6 lines) inviting subscribers to watch the next video. Create mystery/anticipation. No emojis unless natural. End asking them to turn on notifications.",
-  "post_pergunta": "Engagement post (3-5 lines) with a thought-provoking question related to the video theme. Make it personal and emotional. End with the question clearly stated.",
-  "imagem_conceito": "Brief description of the community image concept in Portuguese (1-2 sentences)",
-  "imagem_prompt": "Detailed Imagen 3 image prompt in English for a 1:1 square community post image. Cinematic, emotional, eye-catching. Should represent the video theme without text."
-}`;
-    const txt=await callClaude(prompt,800);
+    const txt=await callClaude(`YouTube community manager. Language:${idioma}. Topic:"${tema}". Tone:${tom}. Channel:"${canal}".\nRespond ONLY valid JSON no markdown:\n{"post_convite":"4-6 lines invitation post","post_pergunta":"3-5 lines engagement question post","imagem_conceito":"visual concept in Portuguese","imagem_prompt":"Gemini image prompt in English, 1:1 square, cinematic"}`,900);
     const data=JSON.parse(txt.replace(/```json|```/g,'').trim());
     document.getElementById('comm-post-convite').textContent=data.post_convite||'';
     document.getElementById('comm-post-pergunta').textContent=data.post_pergunta||'';
@@ -1180,20 +1306,16 @@ async function gerarImagemComunidade(){
   const btn=document.getElementById('btn-gen-comm-img');
   btn.disabled=true;btn.textContent='Gerando...';
   const preview=document.getElementById('comm-img-preview');
-  preview.style.display='flex';preview.innerHTML=`<span style="color:var(--muted);font-size:.75rem;font-family:'DM Mono',monospace;">Gerando imagem...</span>`;
+  preview.style.display='flex';preview.style.cssText='display:flex;align-items:center;justify-content:center;border-radius:.6rem;overflow:hidden;max-width:400px;margin-bottom:.65rem;aspect-ratio:1/1;background:var(--surface2);';
+  preview.innerHTML=`<span style="color:var(--muted);font-size:.75rem;font-family:'DM Mono',monospace;">Gerando...</span>`;
   try{
-    const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-preview-image-generation:generateContent?key=${gKey}`,{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        contents:[{parts:[{text:commImgPrompt+'. Square 1:1, cinematic, emotional, high quality.'}]}],
-        generationConfig:{responseModalities:['IMAGE','TEXT']}
-      })
+    const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${gKey}`,{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({contents:[{parts:[{text:`Generate a square community post image: ${commImgPrompt}`}]}],generationConfig:{responseModalities:['IMAGE','TEXT']}})
     });
     const d=await r.json();
-    if(!r.ok)throw new Error(d.error?.message||'Erro Gemini Image');
-    const parts=d.candidates?.[0]?.content?.parts||[];
-    const img=parts.find(p=>p.inlineData);
+    if(!r.ok)throw new Error(d.error?.message||'Erro Gemini');
+    const img=d.candidates?.[0]?.content?.parts?.find(p=>p.inlineData);
     if(img){
       const src=`data:${img.inlineData.mimeType};base64,${img.inlineData.data}`;
       preview.innerHTML=`<img src="${src}" style="width:100%;height:100%;object-fit:cover;">`;
@@ -1201,36 +1323,232 @@ async function gerarImagemComunidade(){
       a.style.cssText='display:block;text-align:center;padding:.5rem;font-size:.75rem;color:var(--gold);cursor:pointer;';
       a.textContent='⬇ Baixar imagem';
       preview.parentElement.appendChild(a);
-    }else{throw new Error('Nenhuma imagem retornada.');}
+    }else throw new Error('Sem imagem.');
   }catch(e){preview.innerHTML=`<span style="color:var(--danger);font-size:.75rem;padding:1rem;">${e.message}</span>`;}
   finally{btn.disabled=false;btn.textContent='🖼️ Gerar novamente';}
 }
 
-// ====================================================
-// FIX 1: callClaude — sem x-api-key no header (CORS)
-// O header 'anthropic-version' também causa CORS
-// A chave vai no body via proxy não é suportado —
-// mas como é GitHub Pages, a chave deve ir no header
-// com o fetch simples (o CORS da Anthropic permite
-// x-api-key em requests de browser quando a key é válida)
-// ====================================================
+// PROJETOS
+let _projetos=[],_projetoAberto=null;
+
+function salvarProjeto(){
+  if(!textosGerados.length)return;
+  const projeto={
+    id:Date.now(),
+    titulo:temaVal.slice(0,60)||'Sem título',
+    nicho:nichos.find(n=>n.id===nichoAtivo)?.label||'',
+    idioma:idiomaVal,
+    data:new Date().toLocaleString('pt-BR'),
+    blocos:textosGerados.map((t,i)=>({num:BLOCOS[i].num,nome:BLOCOS[i].nome,texto:t})),
+    masterPrompt,masterPromptPT,
+    titulos:[],descricao:{},comunidade:{}
+  };
+  _projetos.unshift(projeto);
+  try{localStorage.setItem('lsb_projetos',JSON.stringify(_projetos));}catch{}
+  renderProjetos();
+  toast('✓ Projeto salvo!');
+}
+
+function carregarProjetosLS(){
+  try{const r=localStorage.getItem('lsb_projetos');if(r)_projetos=JSON.parse(r);}catch{}
+}
+
+function renderProjetos(){
+  const lista=document.getElementById('projetos-lista');if(!lista)return;
+  if(!_projetos.length){lista.innerHTML=`<div class="proj-empty">Nenhum projeto salvo ainda.<br><br>Gere um roteiro completo e ele será salvo aqui automaticamente.</div>`;return;}
+  lista.innerHTML=_projetos.map((p,i)=>`
+    <div class="projeto-card">
+      <div class="projeto-info">
+        <div class="projeto-titulo">${p.titulo}</div>
+        <div class="projeto-meta">
+          <span>${p.nicho||'—'}</span><span>${p.idioma||'—'}</span>
+          <span>${(p.blocos||[]).length} blocos</span><span>${p.data}</span>
+          ${p.masterPrompt?'<span style="color:var(--gold)">🎭 mestre</span>':''}
+        </div>
+      </div>
+      <div class="projeto-acoes">
+        <button class="btn-proj" onclick="abrirProjeto(${i})">📂 Abrir</button>
+        <button class="btn-proj del" onclick="excluirProjeto(${i})">✕</button>
+      </div>
+    </div>`).join('');
+}
+
+function setModalTab(name){
+  document.querySelectorAll('.modal-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.modal-tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.modal-tab').forEach(t=>{if(t.textContent.toLowerCase().includes(name.slice(0,4).toLowerCase()))t.classList.add('active');});
+  document.getElementById('modal-tab-'+name).classList.add('active');
+}
+
+function abrirProjeto(i){
+  const p=_projetos[i];if(!p)return;
+  _projetoAberto=p;
+  document.getElementById('modal-titulo').textContent=p.titulo;
+  // Aba roteiro — blocos numerados
+  document.getElementById('modal-blocos').innerHTML=(p.blocos||[]).map(b=>`
+    <div class="modal-bloco">
+      <div class="modal-bloco-label">
+        <span>B${String(b.num).padStart(2,'0')} — ${b.nome}</span>
+        <button class="btn-copy" onclick="copiarTextoBtn('${escQ(b.texto)}',this)">copiar</button>
+      </div>
+      <div class="modal-bloco-text">${b.texto.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
+    </div>`).join('');
+  // Aba títulos — se salvos
+  const tLista=document.getElementById('modal-titulos-lista');
+  tLista.innerHTML=(p.titulos||[]).length
+    ?p.titulos.map((t,i)=>`<div class="modal-tt-item"><span style="font-size:.62rem;color:var(--muted);font-family:'DM Mono',monospace;">OPÇÃO ${i+1}</span><br>${t}<button class="btn-copy" style="margin-left:.5rem;" onclick="copiarTextoBtn('${escQ(t)}',this)">copiar</button></div>`).join('')
+    :'<div style="color:var(--muted);font-size:.82rem;padding:1rem;">Nenhum título salvo. Clique em "Gerar títulos" acima.</div>';
+  // Aba descrição
+  const descArea=document.getElementById('modal-descricao-area');
+  if(p.descricao?.principal){
+    descArea.innerHTML=`
+      <div class="modal-sec-label">📌 Descrição principal</div>
+      <div class="modal-text-block">${p.descricao.principal}</div>
+      <div class="modal-sec-label">🔗 Links e capítulos</div>
+      <div class="modal-text-block">${p.descricao.links||''}</div>
+      <div class="modal-sec-label">#️⃣ Hashtags</div>
+      <div class="modal-hashtags">${(p.descricao.hashtags||[]).map(h=>`<span class="modal-tag">#${h}</span>`).join('')}</div>`;
+  }else descArea.innerHTML='<div style="color:var(--muted);font-size:.82rem;padding:1rem;">Nenhuma descrição salva. Clique em "Gerar descrição" acima.</div>';
+  // Aba comunidade
+  const commArea=document.getElementById('modal-comunidade-area');
+  if(p.comunidade?.postConvite){
+    commArea.innerHTML=`
+      <div class="modal-sec-label">📢 Post convite</div>
+      <div class="modal-text-block">${p.comunidade.postConvite}</div>
+      <div class="modal-sec-label">💬 Post engajamento</div>
+      <div class="modal-text-block">${p.comunidade.postPergunta||''}</div>`;
+  }else commArea.innerHTML='<div style="color:var(--muted);font-size:.82rem;padding:1rem;">Nenhum post salvo. Clique em "Gerar post" acima.</div>';
+  // Aba prompts
+  const promptsArea=document.getElementById('modal-prompts-area');
+  if(p.masterPrompt){
+    let html=`<div class="modal-sec-label">🎭 Prompt mestre (EN)</div>
+      <div class="modal-text-block" style="color:var(--gold2);font-family:'DM Mono',monospace;font-size:.8rem;">${p.masterPrompt}<br><br><button class="btn-copy" onclick="copiarTextoBtn('${escQ(p.masterPrompt)}',this)">copiar EN</button></div>
+      <div class="modal-sec-label">Descrição em português</div>
+      <div class="modal-text-block" style="color:var(--muted);font-size:.78rem;">${p.masterPromptPT||''}</div>`;
+    promptsArea.innerHTML=html;
+  }else promptsArea.innerHTML='<div style="color:var(--muted);font-size:.82rem;padding:1rem;">Nenhum prompt salvo. Clique em "Gerar prompts Veo3" acima.</div>';
+  document.getElementById('modal-projeto').classList.add('show');
+  setModalTab('roteiro');
+}
+
+// Regenerar no modal
+async function regenarTitulosModal(){
+  if(!_projetoAberto||!claudeKey)return;
+  const btn=document.querySelector('#modal-tab-titulos .btn-sec');
+  if(btn){btn.disabled=true;btn.textContent='Gerando...';}
+  try{
+    const resumo=(_projetoAberto.blocos||[]).slice(0,2).map(b=>b.texto).join('\n\n').slice(0,800);
+    const txt=await callClaude(`Generate 5 compelling YouTube titles for this script. Language: ${_projetoAberto.idioma||'Português do Brasil'}.\nScript: ${resumo}\nRespond ONLY valid JSON: {"titulos":["t1","t2","t3","t4","t5"]}`,600);
+    const data=JSON.parse(txt.replace(/```json|```/g,'').trim());
+    _projetoAberto.titulos=data.titulos||[];
+    // salvar
+    const idx=_projetos.findIndex(p=>p.id===_projetoAberto.id);
+    if(idx>=0){_projetos[idx]=_projetoAberto;try{localStorage.setItem('lsb_projetos',JSON.stringify(_projetos));}catch{}}
+    document.getElementById('modal-titulos-lista').innerHTML=(_projetoAberto.titulos||[]).map((t,i)=>`<div class="modal-tt-item"><span style="font-size:.62rem;color:var(--muted);font-family:'DM Mono',monospace;">OPÇÃO ${i+1}</span><br>${t}<button class="btn-copy" style="margin-left:.5rem;" onclick="copiarTextoBtn('${escQ(t)}',this)">copiar</button></div>`).join('');
+    toast('✓ Títulos gerados e salvos!');
+  }catch(e){toast('Erro: '+e.message,'err');}
+  finally{if(btn){btn.disabled=false;btn.textContent='✦ Gerar títulos';}}
+}
+
+async function regenarDescricaoModal(){
+  if(!_projetoAberto||!claudeKey)return;
+  const btn=document.querySelector('#modal-tab-descricao .btn-sec');
+  if(btn){btn.disabled=true;btn.textContent='Gerando...';}
+  try{
+    const resumo=(_projetoAberto.blocos||[]).slice(0,2).map(b=>b.texto).join('\n\n').slice(0,800);
+    const txt=await callClaude(`YouTube description for: "${_projetoAberto.titulo}". Language:${_projetoAberto.idioma||'Português do Brasil'}.\nRespond ONLY valid JSON:\n{"principal":"150 words description","links":"timestamps section","hashtags":["h1","h2","h3","h4","h5","h6","h7","h8"]}`,700);
+    const data=JSON.parse(txt.replace(/```json|```/g,'').trim());
+    _projetoAberto.descricao={principal:data.principal,links:data.links,hashtags:data.hashtags||[]};
+    const idx=_projetos.findIndex(p=>p.id===_projetoAberto.id);
+    if(idx>=0){_projetos[idx]=_projetoAberto;try{localStorage.setItem('lsb_projetos',JSON.stringify(_projetos));}catch{}}
+    document.getElementById('modal-descricao-area').innerHTML=`
+      <div class="modal-sec-label">📌 Descrição principal</div>
+      <div class="modal-text-block">${data.principal||''}</div>
+      <div class="modal-sec-label">🔗 Links</div>
+      <div class="modal-text-block">${data.links||''}</div>
+      <div class="modal-sec-label">#️⃣ Hashtags</div>
+      <div class="modal-hashtags">${(data.hashtags||[]).map(h=>`<span class="modal-tag">#${h}</span>`).join('')}</div>`;
+    toast('✓ Descrição gerada e salva!');
+  }catch(e){toast('Erro: '+e.message,'err');}
+  finally{if(btn){btn.disabled=false;btn.textContent='✦ Gerar descrição';}}
+}
+
+async function regenarComunidadeModal(){
+  if(!_projetoAberto||!claudeKey)return;
+  const btn=document.querySelector('#modal-tab-comunidade .btn-sec');
+  if(btn){btn.disabled=true;btn.textContent='Gerando...';}
+  try{
+    const txt=await callClaude(`YouTube community posts for:"${_projetoAberto.titulo}". Language:${_projetoAberto.idioma||'Português do Brasil'}.\nRespond ONLY valid JSON:\n{"post_convite":"invitation post","post_pergunta":"engagement question"}`,500);
+    const data=JSON.parse(txt.replace(/```json|```/g,'').trim());
+    _projetoAberto.comunidade={postConvite:data.post_convite,postPergunta:data.post_pergunta};
+    const idx=_projetos.findIndex(p=>p.id===_projetoAberto.id);
+    if(idx>=0){_projetos[idx]=_projetoAberto;try{localStorage.setItem('lsb_projetos',JSON.stringify(_projetos));}catch{}}
+    document.getElementById('modal-comunidade-area').innerHTML=`
+      <div class="modal-sec-label">📢 Post convite</div>
+      <div class="modal-text-block">${data.post_convite||''}</div>
+      <div class="modal-sec-label">💬 Post engajamento</div>
+      <div class="modal-text-block">${data.post_pergunta||''}</div>`;
+    toast('✓ Posts gerados e salvos!');
+  }catch(e){toast('Erro: '+e.message,'err');}
+  finally{if(btn){btn.disabled=false;btn.textContent='✦ Gerar post';}}
+}
+
+async function gerarPromptsModal(){
+  if(!_projetoAberto||!claudeKey)return;
+  const btn=document.querySelector('#modal-tab-prompts .btn-sec');
+  if(btn){btn.disabled=true;btn.textContent='Gerando...';}
+  try{
+    const resumo=(_projetoAberto.blocos||[]).slice(0,2).map(b=>b.texto).join('\n\n').slice(0,1000);
+    const txt=await callClaude(`Create master character/style reference for Veo3 based on script:"${_projetoAberto.titulo}".\n${resumo}\nRespond ONLY valid JSON:\n{"master_en":"detailed English prompt 3-4 sentences","master_pt":"Portuguese description"}`,500);
+    const data=JSON.parse(txt.replace(/```json|```/g,'').trim());
+    _projetoAberto.masterPrompt=data.master_en||'';
+    _projetoAberto.masterPromptPT=data.master_pt||'';
+    const idx=_projetos.findIndex(p=>p.id===_projetoAberto.id);
+    if(idx>=0){_projetos[idx]=_projetoAberto;try{localStorage.setItem('lsb_projetos',JSON.stringify(_projetos));}catch{}}
+    document.getElementById('modal-prompts-area').innerHTML=`
+      <div class="modal-sec-label">🎭 Prompt mestre (EN)</div>
+      <div class="modal-text-block" style="color:var(--gold2);font-family:'DM Mono',monospace;font-size:.8rem;">${data.master_en||''}<br><br><button class="btn-copy" onclick="copiarTextoBtn('${escQ(data.master_en||'')}',this)">copiar EN</button></div>
+      <div class="modal-sec-label">Descrição em português</div>
+      <div class="modal-text-block" style="color:var(--muted);font-size:.78rem;">${data.master_pt||''}</div>`;
+    toast('✓ Prompt mestre gerado!');
+  }catch(e){toast('Erro: '+e.message,'err');}
+  finally{if(btn){btn.disabled=false;btn.textContent='✦ Gerar prompts Veo3';}}
+}
+
+function fecharModal(){document.getElementById('modal-projeto').classList.remove('show');_projetoAberto=null;}
+function copiarProjetoModal(){
+  if(!_projetoAberto)return;
+  copiarTexto((_projetoAberto.blocos||[]).map(b=>`[B${b.num} — ${b.nome}]\n${b.texto}`).join('\n\n---\n\n')).then(()=>toast('✓ Roteiro copiado!'));
+}
+function copiarRoteirLimpoModal(){
+  if(!_projetoAberto)return;
+  copiarTexto((_projetoAberto.blocos||[]).map(b=>b.texto).join('\n\n')).then(()=>toast('✓ Roteiro limpo copiado!'));
+}
+function usarProjetoModal(){
+  if(!_projetoAberto)return;
+  document.getElementById('tema').value=_projetoAberto.titulo;
+  fecharModal();setTab('roteiro');
+  toast('✓ Tema carregado!');
+}
+function excluirProjeto(i){
+  if(!confirm('Excluir este projeto?'))return;
+  _projetos.splice(i,1);
+  try{localStorage.setItem('lsb_projetos',JSON.stringify(_projetos));}catch{}
+  renderProjetos();
+}
+function limparProjetos(){
+  if(!confirm('Apagar TODOS os projetos?'))return;
+  _projetos=[];try{localStorage.removeItem('lsb_projetos');}catch{}
+  renderProjetos();
+}
+
+// callClaude
 async function callClaude(prompt,maxTokens=1000){
-  if(!claudeKey){
-    throw new Error('Chave Claude não configurada. Vá em ⚙️ Config e conecte sua chave.');
-  }
+  if(!claudeKey)throw new Error('Chave Claude não configurada. Vá em ⚙️ Config.');
   const r=await fetch('https://api.anthropic.com/v1/messages',{
     method:'POST',
-    headers:{
-      'Content-Type':'application/json',
-      'x-api-key': claudeKey,
-      'anthropic-version': '2023-06-01',
-      'anthropic-dangerous-direct-browser-access': 'true'
-    },
-    body:JSON.stringify({
-      model:'claude-sonnet-4-6',
-      max_tokens:maxTokens,
-      messages:[{role:'user',content:prompt}]
-    })
+    headers:{'Content-Type':'application/json','x-api-key':claudeKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+    body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:maxTokens,messages:[{role:'user',content:prompt}]})
   });
   const d=await r.json();
   if(!r.ok)throw new Error(d.error?.message||`HTTP ${r.status}`);
@@ -1239,40 +1557,13 @@ async function callClaude(prompt,maxTokens=1000){
 
 function escQ(s){return(s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;').replace(/\n/g,' ');}
 
-// ====================================================
-// FIX 2: copiarEl com fallback para navegadores sem permissão
-// ====================================================
-async function copiarEl(id){
-  const el=document.getElementById(id);
-  if(!el)return;
-  const txt=(el.textContent||el.innerText||'').trim();
-  await copiarTexto(txt);
-}
-
 async function copiarTexto(txt){
-  try{
-    await navigator.clipboard.writeText(txt);
-    toast('✓ Copiado!');
-  }catch{
-    // fallback para Safari / iframe restrito
-    const ta=document.createElement('textarea');
-    ta.value=txt;
-    ta.style.cssText='position:fixed;opacity:0;top:0;left:0;';
-    document.body.appendChild(ta);
-    ta.focus();ta.select();
-    try{document.execCommand('copy');toast('✓ Copiado!');}
-    catch{toast('Não foi possível copiar.','err');}
-    document.body.removeChild(ta);
-  }
+  try{await navigator.clipboard.writeText(txt);}
+  catch{const ta=document.createElement('textarea');ta.value=txt;ta.style.cssText='position:fixed;opacity:0;';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');}catch{}document.body.removeChild(ta);}
 }
-
-function copiarHashtags(){
-  const tags=[...document.querySelectorAll('#desc-hashtags .hashtag')].map(t=>t.textContent).join(' ');
-  copiarTexto(tags);
-}
-function copiarTextoBtn(txt,btn){
-  copiarTexto(txt).then(()=>{const o=btn.textContent;btn.textContent='✓';setTimeout(()=>btn.textContent=o,1500);});
-}
+async function copiarEl(id){const el=document.getElementById(id);if(!el)return;await copiarTexto(el.textContent||'');toast('✓ Copiado!');}
+function copiarHashtags(){const tags=[...document.querySelectorAll('#desc-hashtags .hashtag')].map(t=>t.textContent).join(' ');copiarTexto(tags).then(()=>toast('✓ Hashtags copiadas!'));}
+function copiarTextoBtn(txt,btn){copiarTexto(txt).then(()=>{const o=btn.textContent;btn.textContent='✓';setTimeout(()=>btn.textContent=o,1500);});}
 
 async function typeText(el,text,ms){
   const words=text.split(' ');let cur='';
@@ -1281,18 +1572,19 @@ async function typeText(el,text,ms){
 }
 
 function iniciarRoteiro(){
-  if(!claudeKey){toast('Configure a chave Claude em ⚙️ Config primeiro.','err');setTab('config');return;}
+  if(!claudeKey){toast('Configure a chave Claude em ⚙️ Config.','err');setTab('config');return;}
   temaVal=document.getElementById('tema').value.trim();
   if(!temaVal){setStatus('Descreva o tema.','err');return;}
   faixaVal=document.getElementById('faixa').value;
   generoVal=document.getElementById('genero').value;
   contextoVal=document.getElementById('contexto').value.trim();
   idiomaVal=document.getElementById('idioma').value;
-  blocoAtual=0;textosGerados=[];
+  blocoAtual=0;textosGerados=[];masterPrompt='';masterPromptPT='';
   document.getElementById('blocos-area').innerHTML='';
   document.getElementById('next-wrap').style.display='none';
   document.getElementById('done-area').innerHTML='';
   document.getElementById('actions-bar').style.display='none';
+  document.getElementById('master-box').style.display='none';
   document.getElementById('btn-gerar').disabled=true;
   document.getElementById('prog-wrap').classList.add('show');
   gerarBloco(0);
@@ -1306,144 +1598,19 @@ function updateProg(done){
 }
 function mostrarConcluido(){
   salvarProjeto();
-  document.getElementById('done-area').innerHTML=`<div class="done-banner"><h3>✦ Roteiro Completo</h3><p>Todos os 8 blocos gerados e salvos em "Meus Projetos".</p><div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;"><button class="btn-sec" onclick="copiarTudo()">📋 Copiar tudo</button><button class="btn-sec" onclick="setTab('projetos')">📁 Ver projetos</button><button class="btn-sec" onclick="resetarRoteiro()">↺ Novo roteiro</button></div></div>`;
+  document.getElementById('done-area').innerHTML=`<div class="done-banner"><h3>✦ Roteiro Completo</h3><p>Todos os 8 blocos gerados e salvos em "Meus Projetos".</p><div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;"><button class="btn-sec" onclick="copiarTudo()">📋 Copiar tudo</button><button class="btn-sec" onclick="copiarRoteirLimpo()">🎙 Roteiro limpo</button><button class="btn-sec" onclick="gerarMestrePersonagem()">🎭 Gerar prompt mestre</button><button class="btn-sec" onclick="setTab('projetos')">📁 Ver projetos</button><button class="btn-sec" onclick="resetarRoteiro()">↺ Novo roteiro</button></div></div>`;
   document.getElementById('actions-bar').style.display='flex';
   document.getElementById('done-area').scrollIntoView({behavior:'smooth'});
   setStatus('','');
 }
-function copiarBloco(i){
-  copiarTexto(textosGerados[i]||'').then(()=>{
-    const b=document.getElementById(`cb-${i}`);
-    if(b){b.textContent='✓';setTimeout(()=>b.textContent='copiar',1800);}
-  });
-}
-
-// ====================================================
-// FIX 2: copiarTudo — também usa copiarTexto com fallback
-// ====================================================
-function copiarTudo(){
-  if(!textosGerados.length){toast('Nenhum roteiro gerado ainda.','err');return;}
-  const txt=textosGerados.join('\n\n---\n\n');
-  copiarTexto(txt).then(()=>toast('✓ Roteiro completo copiado!'));
-}
-
-function resetarRoteiro(){blocoAtual=0;textosGerados=[];document.getElementById('blocos-area').innerHTML='';document.getElementById('next-wrap').style.display='none';document.getElementById('done-area').innerHTML='';document.getElementById('actions-bar').style.display='none';document.getElementById('prog-wrap').classList.remove('show');document.getElementById('prog-fill').style.width='0%';document.getElementById('btn-gerar').disabled=false;document.getElementById('btn-gerar').textContent='✦ Gerar Bloco 1 — Gancho';setStatus('','');}
-function setStatus(m,t){
-  const el=document.getElementById('status');
-  if(!el)return;
-  el.textContent=m;el.className='status-bar'+(t?' '+t:'');
-}
-
-// ====================================================
-// FIX 3: Projetos — salvar, carregar, abrir modal
-// ====================================================
-let _projetos=[];
-let _projetoAberto=null;
-
-function salvarProjeto(){
-  if(!textosGerados.length)return;
-  const titulo=temaVal.slice(0,60)||'Sem título';
-  const nicho=nichos.find(n=>n.id===nichoAtivo)?.label||'';
-  const id=Date.now();
-  const projeto={
-    id,
-    titulo,
-    nicho,
-    idioma:idiomaVal,
-    data:new Date().toLocaleString('pt-BR'),
-    blocos:textosGerados.map((t,i)=>({num:BLOCOS[i].num,nome:BLOCOS[i].nome,texto:t}))
-  };
-  _projetos.unshift(projeto);
-  try{localStorage.setItem('lsb_projetos',JSON.stringify(_projetos));}catch{}
-  renderProjetos();
-  toast('✓ Projeto salvo em "Meus Projetos"!');
-}
-
-function carregarProjetosLS(){
-  try{
-    const r=localStorage.getItem('lsb_projetos');
-    if(r)_projetos=JSON.parse(r);
-  }catch{}
-}
-
-function renderProjetos(){
-  const lista=document.getElementById('projetos-lista');
-  if(!lista)return;
-  if(!_projetos.length){
-    lista.innerHTML=`<div class="proj-empty">Nenhum projeto salvo ainda.<br><br>Gere um roteiro e ele será salvo aqui automaticamente.</div>`;
-    return;
-  }
-  lista.innerHTML=_projetos.map((p,i)=>`
-    <div class="projeto-card">
-      <div class="projeto-info">
-        <div class="projeto-titulo">${p.titulo}</div>
-        <div class="projeto-meta">
-          <span>${p.nicho||'—'}</span>
-          <span>${p.idioma||'—'}</span>
-          <span>${p.blocos.length} bloco${p.blocos.length!==1?'s':''}</span>
-          <span>${p.data}</span>
-        </div>
-      </div>
-      <div class="projeto-acoes">
-        <button class="btn-proj" onclick="abrirProjeto(${i})">📂 Abrir</button>
-        <button class="btn-proj del" onclick="excluirProjeto(${i})">✕</button>
-      </div>
-    </div>`).join('');
-}
-
-// FIX 3: abrirProjeto agora renderiza o modal corretamente
-function abrirProjeto(i){
-  const p=_projetos[i];
-  if(!p)return;
-  _projetoAberto=p;
-  document.getElementById('modal-titulo').textContent=p.titulo;
-  const body=document.getElementById('modal-body');
-  body.innerHTML=p.blocos.map(b=>`
-    <div class="modal-bloco">
-      <div class="modal-bloco-label">Bloco ${b.num} — ${b.nome}</div>
-      <div class="modal-bloco-text">${b.texto.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
-    </div>`).join('');
-  document.getElementById('modal-projeto').classList.add('show');
-}
-
-function fecharModal(){
-  document.getElementById('modal-projeto').classList.remove('show');
-  _projetoAberto=null;
-}
-
-function copiarProjeto(){
-  if(!_projetoAberto)return;
-  const txt=_projetoAberto.blocos.map(b=>b.texto).join('\n\n---\n\n');
-  copiarTexto(txt).then(()=>toast('✓ Roteiro copiado!'));
-}
-
-function usarProjeto(){
-  if(!_projetoAberto)return;
-  // preenche o campo de tema com o título do projeto
-  document.getElementById('tema').value=_projetoAberto.titulo;
-  fecharModal();
-  setTab('roteiro');
-  toast('✓ Tema carregado. Configure e gere um novo roteiro!');
-}
-
-function excluirProjeto(i){
-  if(!confirm('Excluir este projeto?'))return;
-  _projetos.splice(i,1);
-  try{localStorage.setItem('lsb_projetos',JSON.stringify(_projetos));}catch{}
-  renderProjetos();
-}
-
-function limparProjetos(){
-  if(!confirm('Apagar todos os projetos salvos?'))return;
-  _projetos=[];
-  try{localStorage.removeItem('lsb_projetos');}catch{}
-  renderProjetos();
-}
+function copiarBloco(i){copiarTexto(textosGerados[i]||'').then(()=>{const b=document.getElementById(`cb-${i}`);if(b){b.textContent='✓';setTimeout(()=>b.textContent='copiar',1800);}});}
+function copiarTudo(){if(!textosGerados.length){toast('Nenhum roteiro gerado.','err');return;}copiarTexto(textosGerados.map((t,i)=>`[B${i+1} — ${BLOCOS[i].nome}]\n${t}`).join('\n\n---\n\n')).then(()=>toast('✓ Roteiro copiado!'));}
+function copiarRoteirLimpo(){if(!textosGerados.length){toast('Nenhum roteiro gerado.','err');return;}copiarTexto(textosGerados.join('\n\n')).then(()=>toast('✓ Roteiro limpo copiado! Pronto para áudio.'));}
+function resetarRoteiro(){blocoAtual=0;textosGerados=[];masterPrompt='';masterPromptPT='';document.getElementById('blocos-area').innerHTML='';document.getElementById('next-wrap').style.display='none';document.getElementById('done-area').innerHTML='';document.getElementById('actions-bar').style.display='none';document.getElementById('master-box').style.display='none';document.getElementById('prog-wrap').classList.remove('show');document.getElementById('prog-fill').style.width='0%';document.getElementById('btn-gerar').disabled=false;document.getElementById('btn-gerar').textContent='✦ Gerar Bloco 1 — Gancho';setStatus('','');}
+function setStatus(m,t){const el=document.getElementById('status');if(!el)return;el.textContent=m;el.className='status-bar'+(t?' '+t:'');}
 
 // Fechar modal clicando fora
-document.getElementById('modal-projeto').addEventListener('click',function(e){
-  if(e.target===this)fecharModal();
-});
+document.getElementById('modal-projeto').addEventListener('click',function(e){if(e.target===this)fecharModal();});
 </script>
 </body>
 </html>
