@@ -26,7 +26,21 @@ async function gerarFinaisAlternativos(){
     card.scrollIntoView({behavior:'smooth',block:'start'});
 
     try{
-      const prompt = buildPromptFinal(fin.letra, fin.desc);
+      const prompt = buildPromptFinalfunction buildPromptFinal(letra, desc){
+  const nl=nichos.find(n=>n.id===nichoAtivo)?.label||nichoAtivo;
+  const ctx=contextoVal||'pessoas que buscam crescimento pessoal';
+  const hist=textosGerados.map((t,i)=>`[B${i+1}]\n${t}`).join('\n\n');
+  return `Roteirista YouTube especializado em "${nl}" para público ${faixaVal}.
+
+Escreva em ${idiomaVal}. Tema: "${temaVal}" | Voz: ${generoVal} | Público: ${ctx}
+
+ROTEIRO ATÉ AGORA:\n${hist}
+
+FINAL ${letra} — ${desc}:
+Escreva APENAS o fechamento desta história com esse tom específico (~2000 chars).
+Amarre todas as pontas. Reflexão final poderosa. NÃO explique a moral.
+CTA para compartilhar e comentar. SÓ texto puro, sem rótulos.`;
+}fin.letra, fin.desc);
       const resp = await fetch('https://api.anthropic.com/v1/messages',{
         method:'POST',
         headers:{
